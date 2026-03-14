@@ -12,11 +12,11 @@
 const AI_CONFIG = {
   // ═══ IA DE TEXTO: Google Gemini ═══
   // Obtenha sua chave gratuita em: https://aistudio.google.com
-  GEMINI_API_KEY: 'SUA_CHAVE_GEMINI_AQUI',
+  GEMINI_API_KEY: 'AIzaSyCxYHNP0Kypu8zlWSBV335Wb2XJS7VsowY',
   
   // ═══ IA DE IMAGEM: Hugging Face ═══
   // Obtenha seu token gratuito em: https://huggingface.co/settings/tokens
-  HUGGINGFACE_TOKEN: 'SEU_TOKEN_HUGGINGFACE_AQUI'
+  HUGGINGFACE_TOKEN: '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'
 };
 
 /* ══════════════════════════════════════════════════════
@@ -25,13 +25,13 @@ const AI_CONFIG = {
 
 function isGeminiConfigured() {
   return AI_CONFIG.GEMINI_API_KEY && 
-         AI_CONFIG.GEMINI_API_KEY !== 'SUA_CHAVE_GEMINI_AQUI' &&
+         AI_CONFIG.GEMINI_API_KEY !== 'AIzaSyCxYHNP0Kypu8zlWSBV335Wb2XJS7VsowY' &&
          AI_CONFIG.GEMINI_API_KEY.length > 10;
 }
 
 function isHuggingFaceConfigured() {
   return AI_CONFIG.HUGGINGFACE_TOKEN && 
-         AI_CONFIG.HUGGINGFACE_TOKEN !== 'SEU_TOKEN_HUGGINGFACE_AQUI' &&
+         AI_CONFIG.HUGGINGFACE_TOKEN !== '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' &&
          AI_CONFIG.HUGGINGFACE_TOKEN.length > 10;
 }
 
