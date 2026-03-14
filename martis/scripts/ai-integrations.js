@@ -13,8 +13,7 @@
 ══════════════════════════════════════════════════════ */
 
 const API_STATUS = {
-  text: { online: false, lastCheck: null },
-  image: { online: false, lastCheck: null }
+  text: { online: false, lastCheck: null }
 };
 
 // Verifica se o Puter.js esta carregado
@@ -39,17 +38,6 @@ async function testTextAPI() {
   }
 }
 
-// Testa a API de imagem
-async function testImageAPI() {
-  // Puter.js sempre esta disponivel se carregado
-  if (!isPuterLoaded()) {
-    API_STATUS.image = { online: false, lastCheck: Date.now(), error: 'Puter.js nao carregado' };
-    return false;
-  }
-  API_STATUS.image = { online: true, lastCheck: Date.now() };
-  return true;
-}
-
 // Verifica todas as APIs
 async function checkAllAPIs() {
   if (!isPuterLoaded()) {
@@ -61,12 +49,9 @@ async function checkAllAPIs() {
     }
   }
   
-  const results = await Promise.all([
-    testTextAPI(),
-    testImageAPI()
-  ]);
+  const result = await testTextAPI();
   updateAPIStatus();
-  return results;
+  return result;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -113,42 +98,41 @@ async function callTextAPI(prompt, systemPrompt = '') {
 }
 
 /* ══════════════════════════════════════════════════════
-   PUTER.JS - IA DE IMAGEM
+   PUTER.JS - IA DE RESUMO/SUMARIZACAO
 ══════════════════════════════════════════════════════ */
 
-async function callImageGenerationAPI(prompt) {
+async function callSummaryAPI(text) {
   if (!isPuterLoaded()) {
     throw new Error('Puter.js ainda nao carregou. Aguarde alguns segundos e tente novamente.');
   }
 
   try {
-    // Puter.js suporta geracao de imagem via modelos multimodais
-    const response = await puter.ai.txt2img(prompt);
+    const systemPrompt = `Voce e um especialista em sumarizacao. Sua tarefa e criar resumos claros, concisos e informativos.
+Regras:
+- Mantenha os pontos principais
+- Use linguagem clara e direta
+- Estruture em topicos quando apropriado
+- Responda no mesmo idioma do texto original`;
+
+    const response = await puter.ai.chat([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: `Resuma o seguinte texto:\n\n${text}` }
+    ], { model: 'gpt-4.1-nano' });
     
-    // Retorna a URL da imagem gerada
-    if (response?.url) {
-      return response.url;
-    }
-    if (typeof response === 'string' && response.startsWith('http')) {
+    if (typeof response === 'string') {
       return response;
     }
-    
-    // Se retornar blob/base64, converte para URL
-    if (response instanceof Blob) {
-      return URL.createObjectURL(response);
+    if (response?.message?.content) {
+      const content = response.message.content;
+      if (Array.isArray(content)) {
+        return content.map(c => c.text || c).join('');
+      }
+      return content;
     }
-    
-    throw new Error('Formato de resposta inesperado');
+    return String(response);
   } catch (error) {
-    console.error('[Martis] Erro na geracao de imagem:', error);
-    
-    // Fallback: usa modelo de texto para descrever que geraria a imagem
-    // (alguns planos do Puter podem nao ter txt2img)
-    if (error.message.includes('not available') || error.message.includes('not supported')) {
-      throw new Error('Geracao de imagem nao disponivel no momento. Tente novamente mais tarde.');
-    }
-    
-    throw new Error('Erro ao gerar imagem: ' + error.message);
+    console.error('[Martis] Erro na sumarizacao:', error);
+    throw new Error('Erro ao resumir texto: ' + error.message);
   }
 }
 
@@ -337,24 +321,23 @@ async function sendShowcaseMessage(panelId) {
   input.focus();
 }
 
-// Gera imagem no showcase
-async function generateShowcaseImage() {
-  const panel = document.getElementById('sc-image');
-  const input = panel.querySelector('.image-prompt-input');
-  const resultContainer = panel.querySelector('.image-result');
-  const generateBtn = panel.querySelector('.generate-image-btn');
+// Gera resumo no showcase
+async function generateShowcaseSummary() {
+  const panel = document.getElementById('sc-summary');
+  const input = panel.querySelector('.summary-input');
+  const resultContainer = panel.querySelector('.summary-result');
+  const generateBtn = panel.querySelector('.generate-summary-btn');
   
-  const prompt = input.value.trim();
-  if (!prompt) return;
+  const text = input.value.trim();
+  if (!text) return;
 
   generateBtn.disabled = true;
-  generateBtn.textContent = 'Gerando...';
+  generateBtn.textContent = 'Resumindo...';
   
   resultContainer.innerHTML = `
-    <div class="image-loading">
+    <div class="summary-loading">
       <div class="loading-spinner"></div>
-      <p>Gerando imagem com IA...</p>
-      <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem">Isso pode levar alguns segundos</p>
+      <p>Analisando e resumindo...</p>
     </div>
   `;
 
@@ -363,40 +346,31 @@ async function generateShowcaseImage() {
       throw new Error('Aguardando Puter.js carregar...');
     }
 
-    const imageUrl = await callImageGenerationAPI(prompt);
+    const summary = await callSummaryAPI(text);
     
-    if (!API_STATUS.image.online) {
-      API_STATUS.image.online = true;
+    if (!API_STATUS.text.online) {
+      API_STATUS.text.online = true;
       updateAPIStatus();
     }
     
     resultContainer.innerHTML = `
-      <div class="generated-image-container">
-        <img src="${imageUrl}" alt="Imagem gerada: ${escapeHtml(prompt)}" class="generated-image"/>
-        <div class="image-caption">
-          <strong>Prompt:</strong> ${escapeHtml(prompt)}
-        </div>
-        <a href="${imageUrl}" download="martis-generated.png" class="btn btn-sm btn-ghost" style="margin-top:.75rem">
-          Baixar imagem
-        </a>
+      <div class="generated-summary">
+        <div class="summary-header">Resumo gerado:</div>
+        <div class="summary-content">${formatAIResponse(summary)}</div>
       </div>
     `;
 
   } catch (error) {
     resultContainer.innerHTML = `
-      <div class="image-error">
-        <div class="error-icon">!</div>
-        <p style="color:var(--rose)"><strong>Erro na geracao</strong></p>
+      <div class="summary-error">
+        <p style="color:var(--rose)"><strong>Erro ao resumir</strong></p>
         <p style="font-size:.8rem;color:var(--text2);margin-top:.5rem">${escapeHtml(error.message)}</p>
-        <p style="font-size:.75rem;color:var(--text3);margin-top:.75rem">
-          Dica: Tente recarregar a pagina ou usar um prompt mais simples.
-        </p>
       </div>
     `;
   }
 
   generateBtn.disabled = false;
-  generateBtn.textContent = 'Gerar Imagem';
+  generateBtn.textContent = 'Resumir Texto';
 }
 
 /* ══════════════════════════════════════════════════════
@@ -405,7 +379,6 @@ async function generateShowcaseImage() {
 
 function updateAPIStatus() {
   const textOnline = API_STATUS.text.online;
-  const imageOnline = API_STATUS.image.online;
   
   // Status do Hero Chat
   const heroStatus = document.getElementById('heroStatusIndicator');
@@ -419,29 +392,41 @@ function updateAPIStatus() {
     }
   }
 
-  // Status do modelo de texto no Showcase
-  const textModelStatus = document.getElementById('textModelStatus');
-  if (textModelStatus) {
+  // Atualiza TODOS os status das tabs do showcase
+  const allTabStatus = document.querySelectorAll('.tab-status');
+  allTabStatus.forEach(statusEl => {
     if (textOnline) {
-      textModelStatus.innerHTML = '<span class="status-dot online"></span> Online';
-      textModelStatus.className = 'model-status online';
+      statusEl.innerHTML = 'Online';
+      statusEl.className = 'tab-status online';
     } else {
-      textModelStatus.innerHTML = '<span class="status-dot offline"></span> Conectando...';
-      textModelStatus.className = 'model-status offline';
+      statusEl.innerHTML = 'Offline';
+      statusEl.className = 'tab-status offline';
     }
-  }
+  });
 
-  // Status do modelo de imagem no Showcase
-  const imageModelStatus = document.getElementById('imageModelStatus');
-  if (imageModelStatus) {
-    if (imageOnline) {
-      imageModelStatus.innerHTML = '<span class="status-dot online"></span> Online';
-      imageModelStatus.className = 'model-status online';
-    } else {
-      imageModelStatus.innerHTML = '<span class="status-dot offline"></span> Conectando...';
-      imageModelStatus.className = 'model-status offline';
+  // Status dos modelos nos paineis (badges)
+  const modelStatusElements = [
+    'textModelStatus',
+    'codeModelStatus', 
+    'thinkModelStatus',
+    'writeModelStatus',
+    'visionModelStatus',
+    'voiceModelStatus',
+    'summaryModelStatus'
+  ];
+  
+  modelStatusElements.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      if (textOnline) {
+        el.innerHTML = '<span class="status-dot online"></span> Online';
+        el.className = 'model-status online';
+      } else {
+        el.innerHTML = '<span class="status-dot offline"></span> Conectando...';
+        el.className = 'model-status offline';
+      }
     }
-  }
+  });
 }
 
 /* ══════════════════════════════════════════════════════
@@ -496,5 +481,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Expoe funcoes globalmente para uso no HTML
 window.heroSend = heroSend;
 window.sendShowcaseMessage = sendShowcaseMessage;
-window.generateShowcaseImage = generateShowcaseImage;
+window.generateShowcaseSummary = generateShowcaseSummary;
 window.checkAllAPIs = checkAllAPIs;
