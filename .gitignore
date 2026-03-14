@@ -1,0 +1,16 @@
+# Arquivo de chaves API - NAO COMMITAR
+martis/scripts/api-keys.js
+
+# Dependencias
+node_modules/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
