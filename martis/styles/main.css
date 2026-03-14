@@ -924,10 +924,15 @@
       box-shadow: 0 0 8px var(--green);
       animation: pulse 2s ease-in-out infinite;
     }
-    .status-dot.offline {
-      background: var(--rose);
-      box-shadow: 0 0 8px var(--rose);
-    }
+.status-dot.offline {
+  background: var(--rose);
+  box-shadow: 0 0 8px var(--rose);
+  }
+  .status-dot.checking {
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--amber);
+  animation: pulse 1s ease-in-out infinite;
+  }
 
     .cp-online.online { color: var(--green); }
     .cp-online.offline { color: var(--rose); }
@@ -940,6 +945,7 @@
     }
     .model-status.online { background: var(--green-dim); color: var(--green); }
     .model-status.offline { background: var(--rose-dim); color: var(--rose); }
+  .model-status.checking { background: var(--amber-dim); color: var(--amber); }
 
     .tab-status {
       display: block; font-size: .6rem; font-weight: 700;
@@ -947,6 +953,9 @@
     }
     .tab-status.online { color: var(--green); }
     .tab-status.offline { color: var(--rose); }
+  .tab-status.checking { color: var(--amber); }
+  
+  .cp-online.checking { color: var(--amber); }
 
     /* ═══════════════════════════
        SHOWCASE INPUT AREA

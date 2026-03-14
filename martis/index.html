@@ -280,10 +280,9 @@
             <div class="strength-item"><span class="s-icon">✓</span> Respostas nuancadas e contextuais</div>
           </div>
           <div class="api-info-box">
-            <div class="api-info-title">API: Google Gemini</div>
-            <p>Para ativar respostas reais, adicione sua chave em:</p>
-            <code>scripts/ai-integrations.js</code>
-            <p style="margin-top:.5rem;font-size:.7rem">Obtenha gratis em: <a href="https://aistudio.google.com" target="_blank" style="color:var(--accent-lt)">aistudio.google.com</a></p>
+            <div class="api-info-title">API: Puter.js (Gratuito)</div>
+            <p>IA 100% gratuita, sem chaves, sem configuracao!</p>
+            <p style="margin-top:.5rem;font-size:.7rem">Powered by <a href="https://puter.com" target="_blank" style="color:var(--accent-lt)">Puter.com</a> - GPT-4, Claude, Gemini e +400 modelos</p>
           </div>
         </div>
         <div class="sc-demo">
@@ -324,10 +323,9 @@
             <div class="strength-item"><span class="s-icon">✓</span> Alta resolucao (1024x1024)</div>
           </div>
           <div class="api-info-box">
-            <div class="api-info-title">API: Hugging Face</div>
-            <p>Para ativar geracao real, adicione seu token em:</p>
-            <code>scripts/ai-integrations.js</code>
-            <p style="margin-top:.5rem;font-size:.7rem">Obtenha gratis em: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color:var(--accent-lt)">huggingface.co/settings/tokens</a></p>
+            <div class="api-info-title">API: Puter.js (Gratuito)</div>
+            <p>Geracao de imagens 100% gratuita, sem chaves!</p>
+            <p style="margin-top:.5rem;font-size:.7rem">Powered by <a href="https://puter.com" target="_blank" style="color:var(--accent-lt)">Puter.com</a></p>
           </div>
         </div>
         <div class="sc-demo">
@@ -365,7 +363,10 @@
     <div class="sc-panel" id="sc-code">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--sky-dim);color:var(--sky);border-color:rgba(61,142,196,.3)">💻 Martis-Code 34B</div>
+          <div class="sc-badge" style="background:var(--sky-dim);color:var(--sky);border-color:rgba(61,142,196,.3)">
+  💻 Martis-Code 34B
+  <span id="codeModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+</div>
           <h3 class="sc-title">Codigo limpo, seguro e explicado.</h3>
           <p class="sc-desc">Fine-tuned em milhoes de repositorios reais, o Martis-Code nao so escreve codigo — ele entende contexto, detecta bugs, sugere refatoracoes e gera testes automaticamente.</p>
           <div class="sc-strengths">
@@ -447,7 +448,10 @@ def refresh(token: str):
     <div class="sc-panel" id="sc-think">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">🔢 Martis-Think 13B</div>
+          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">
+  🔢 Martis-Think 13B
+  <span id="thinkModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+</div>
           <h3 class="sc-title">Raciocinio passo a passo, sem pular etapas.</h3>
           <p class="sc-desc">O Martis-Think usa Chain-of-Thought nativo para resolver problemas matematicos, logicos e cientificos mostrando cada etapa do raciocinio — como um professor explicando no quadro.</p>
           <div class="sc-strengths">
@@ -508,7 +512,10 @@ def refresh(token: str):
     <div class="sc-panel" id="sc-write">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--amber-dim);color:var(--amber);border-color:rgba(196,157,74,.3)">✍️ Martis-Write 7B</div>
+          <div class="sc-badge" style="background:var(--amber-dim);color:var(--amber);border-color:rgba(196,157,74,.3)">
+  ✍️ Martis-Write 7B
+  <span id="writeModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+</div>
           <h3 class="sc-title">Escreve como humano, pensa como editor.</h3>
           <p class="sc-desc">O Martis-Write foi treinado em milhoes de textos editoriais, literarios e publicitarios. Adapta tom, estilo e vocabulario para cada contexto — de email corporativo a conto de ficcao.</p>
           <div class="sc-strengths">
@@ -560,7 +567,10 @@ def refresh(token: str):
     <div class="sc-panel" id="sc-vision">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--rose-dim);color:var(--rose);border-color:rgba(176,95,136,.3)">👁️ Martis-Vision 13B</div>
+          <div class="sc-badge" style="background:var(--rose-dim);color:var(--rose);border-color:rgba(176,95,136,.3)">
+  👁️ Martis-Vision 13B
+  <span id="visionModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+</div>
           <h3 class="sc-title">Ve, interpreta e extrai dados de imagens.</h3>
           <p class="sc-desc">O Martis-Vision combina visao computacional com linguagem natural. Analisa fotos, graficos, documentos escaneados e capturas de tela — e devolve insights estruturados ou texto editavel.</p>
           <div class="sc-strengths">
@@ -623,7 +633,10 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
     <div class="sc-panel" id="sc-voice">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">🎙️ Martis-Voice 3B</div>
+          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">
+  🎙️ Martis-Voice 3B
+  <span id="voiceModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+</div>
           <h3 class="sc-title">Transcreve, sintetiza e entende tom de voz.</h3>
           <p class="sc-desc">Especializado em audio, o Martis-Voice converte fala em texto com precisao de 97%, sintetiza voz natural em 15 idiomas e detecta sentimento emocional em conversas gravadas.</p>
           <div class="sc-strengths">
@@ -1101,6 +1114,8 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
 
 
 <script src="scripts/shared.js"></script>
+<!-- Puter.js - API de IA 100% gratuita, sem chaves, sem CORS -->
+<script src="https://js.puter.com/v2/"></script>
 <script src="scripts/ai-integrations.js"></script>
 </body>
 </html>
