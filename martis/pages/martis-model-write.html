@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Martis-Write 7B — Martis AI</title>
+  <link rel="stylesheet" href="../styles/tokens.css"/>
+  <link rel="stylesheet" href="../styles/model.css"/>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="logo-link">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <path d="M3 34 Q20 1 37 34" stroke="var(--accent)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <line x1="3" y1="34" x2="37" y2="34" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/>
+        <line x1="20" y1="2" x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.1" opacity=".7"/>
+        <circle cx="20" cy="2" r="2.2" fill="var(--accent)" opacity=".95"/>
+        <circle cx="20" cy="22" r="1.3" fill="var(--purple)" opacity=".6"/>
+      </svg>
+      <div class="logo-text">Martis</div>
+    </a>
+    <a href="../index.html#catalog" class="back-btn">← <span data-pt="Voltar ao Catálogo" data-en="Back to Catalog">Back to Catalog</span></a>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btnPT" onclick="setLang('pt')">PT</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <div class="toggle-orb" id="toggleOrb">☽</div>
+      <span id="toggleLabel" data-pt="Modo Escuro" data-en="Dark Mode">Dark Mode</span>
+    </button>
+  </div>
+</nav>
+
+<section class="model-hero">
+  <div class="wrap">
+    <div class="model-hero-inner">
+      <div>
+        <div class="model-breadcrumb">
+          <a href="../index.html">Martis AI</a> /
+          <a href="../index.html#catalog" data-pt="Catálogo" data-en="Catalog">Catalog</a> /
+          Martis-Write 7B
+        </div>
+        <div class="model-eyebrow" style="background:rgba(196,157,74,.2);color:#d4b060;border-color:rgba(196,157,74,.2)">✍️ Martis-Write 7B</div>
+        <h1 class="model-title">✍️ Martis-Write 7B</h1>
+        <p class="model-tagline" data-pt="Escrita criativa, copywriting e tradução cultural" data-en="Creative writing, copywriting & cultural translation">Creative writing, copywriting & cultural translation</p>
+        <div class="model-specs">
+          <div class="spec-pill"><strong data-pt="Parâmetros" data-en="Parameters">Parameters</strong>: 7B</div>
+          <div class="spec-pill"><strong data-pt="Contexto" data-en="Context">Context</strong>: 8K</div>
+          <div class="spec-pill"><strong data-pt="Tamanho" data-en="Size">Size</strong>: 4.1 GB</div>
+          <div class="spec-pill"><strong data-pt="Quantização" data-en="Quantization">Quantization</strong>: Q8_0</div>
+        </div>
+        <div class="hero-actions">
+          <a href="#tutorial" class="btn btn-primary">↓ <span data-pt="Como Baixar" data-en="How to Download">How to Download</span></a>
+          <a href="#demo"     class="btn btn-ghost">▶ <span data-pt="Ver Demo" data-en="See Demo">See Demo</span></a>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid rgba(196,157,74,.2);border-radius:14px;padding:1.5rem;min-width:220px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:.5rem">✍️</div>
+        <div style="font-size:.7rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem" data-pt="Melhor em" data-en="Best at">Best at</div>
+        <div style="font-size:.9rem;font-weight:700;color:#d4b060;line-height:1.4" data-pt="Escrita criativa, copywriting e tradução cultural" data-en="Creative writing, copywriting & cultural translation">Creative writing, copywriting & cultural translation</div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+          <div style="font-size:.7rem;color:var(--text3);margin-bottom:.3rem">WritingBench (perceived human quality)</div>
+          <div style="font-size:1.8rem;font-family:'Fraunces',serif;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">93%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="page-section">
+    <div class="grid-2">
+      <div>
+        <div class="sec-label" data-pt="O que é" data-en="What it does">What it does</div>
+        <h2 class="sec-h2" data-pt="O que o Martis-Write 7B faz" data-en="What Martis-Write 7B does">What Martis-Write 7B does</h2>
+        <p class="sec-p" data-pt="O Martis-Write foi treinado em milhões de textos curados por editores humanos. Adapta tom, voz e estilo para cada contexto — do e-mail corporativo ao conto de ficção científica." data-en="Martis-Write was trained on millions of editorial, literary, journalistic and advertising texts curated by human editors. It adapts tone, voice and style to each context — from corporate emails to science fiction short stories.">Martis-Write was trained on millions of editorial, literary, journalistic and advertising texts curated by human editors. It adapts tone, voice and style to each context — from corporate emails to science fiction short stories.</p>
+      </div>
+      <div>
+        <div class="sec-label" data-pt="Casos de uso" data-en="Use cases">Use cases</div>
+        <h2 class="sec-h2" data-pt="Quando usar" data-en="When to use">When to use</h2>
+        <ul class="use-list"><li><div class="use-dot">✓</div><span data-pt="Escrita criativa e narrativa" data-en="Creative writing & narrative">Creative writing & narrative</span></li>
+<li><div class="use-dot">✓</div><span data-pt="Copywriting e textos de vendas" data-en="Copywriting & sales text">Copywriting & sales text</span></li>
+<li><div class="use-dot">✓</div><span data-pt="Redação acadêmica e técnica" data-en="Academic & technical writing">Academic & technical writing</span></li>
+<li><div class="use-dot">✓</div><span data-pt="Tradução cultural (18 idiomas)" data-en="Cultural translation (18 languages)">Cultural translation (18 languages)</span></li>
+<li><div class="use-dot">✓</div><span data-pt="Adaptação de tom e voz da marca" data-en="Brand tone & voice adaptation">Brand tone & voice adaptation</span></li>
+</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="grid-2">
+      <div>
+        <div class="sec-label" data-pt="Por que é melhor" data-en="Why it's better">Why it's better</div>
+        <h2 class="sec-h2" data-pt="Vantagem competitiva" data-en="Competitive advantage">Competitive advantage</h2>
+        <p class="sec-p" data-pt="Modelos generalistas produzem texto previsível. O Martis-Write foi avaliado por escritores profissionais em 18 categorias: 93% classificadas como 'nível humano' vs 68% do Gemini Flash." data-en="Generalist models produce standardized, predictable text. Martis-Write was evaluated by professional writers in 18 writing categories: 93% rated 'human level' vs 68% for Gemini Flash and 44% for Claude Haiku.">Generalist models produce standardized, predictable text. Martis-Write was evaluated by professional writers in 18 writing categories: 93% rated 'human level' vs 68% for Gemini Flash and 44% for Claude Haiku.</p>
+      </div>
+      <div>
+        <div class="sec-label">WritingBench (perceived human quality)</div>
+        <h2 class="sec-h2" data-pt="Comparativo de benchmark" data-en="Benchmark comparison">Benchmark comparison</h2>
+        <div class="bench-section">
+        <div class="bench-row">
+          <span class="bench-label">Claude Haiku</span>
+          <div class="bench-bar"><div class="bench-fill" style="width:44%;background:var(--border2)"></div></div>
+          <span class="bench-val" style="color:var(--text3)">44%</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Gemini Flash</span>
+          <div class="bench-bar"><div class="bench-fill" style="width:68%;background:var(--border2)"></div></div>
+          <span class="bench-val" style="color:var(--text3)">68%</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Copilot</span>
+          <div class="bench-bar"><div class="bench-fill" style="width:62%;background:var(--accent-dim)"></div></div>
+          <span class="bench-val" style="color:var(--accent-lt)">62%</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Martis-Write</span>
+          <div class="bench-bar"><div class="bench-fill" style="width:93%;background:linear-gradient(90deg,var(--amber),#c47a4b)"></div></div>
+          <span class="bench-val" style="color:var(--amber)">93%</span>
+        </div>
+          <div class="bench-note" data-pt="Valores aproximados baseados em benchmarks públicos." data-en="Approximate values based on public benchmarks.">Approximate values based on public benchmarks.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="demo">
+    <div class="sec-label" data-pt="Exemplo real" data-en="Real example">Real example</div>
+    <h2 class="sec-h2" data-pt="Veja em ação" data-en="See it in action">See it in action</h2>
+    <div class="demo-box" style="max-width:780px">
+      <div class="demo-box-header">
+        <div class="demo-dot" style="background:#c49d4a"></div>
+        Martis-Write 7B — <span data-pt="Conversa de exemplo" data-en="Sample conversation">Sample conversation</span>
+      </div>
+      <div class="demo-msgs">
+        <div class="dm dm-u">
+          <div class="dm-av">U</div>
+          <div class="dm-bub" data-pt="Escreva um hook de abertura irresistível para um produto de IA voltado a escritores." data-en="Write an irresistible opening hook for an AI product aimed at writers.">Write an irresistible opening hook for an AI product aimed at writers.</div>
+        </div>
+        <div class="dm dm-ai">
+          <div class="dm-av" style="background:rgba(196,157,74,.2);border-color:#c49d4a;color:#d4b060">7</div>
+          <div class="dm-bub">Here are three different angles — choose what fits your brand:<br><br><strong>1. Emotional (triggers identification):</strong><br><em>"You've spent hours staring at a blank page that refused to fill. So have we. That's why we built something different."</em><br><br><strong>2. Provocative (breaks expectations):</strong><br><em>"AI won't replace writers. But writers who use AI will replace those who don't."</em><br><br><strong>3. Narrative (shows the future):</strong><br><em>"Imagine waking up Monday with your best chapter already drafted — ready to polish, not start from scratch."</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="tutorial">
+    <div class="sec-label" data-pt="Guia de instalação" data-en="Installation guide">Installation guide</div>
+    <h2 class="sec-h2" data-pt="Como baixar e rodar localmente" data-en="How to download and run locally">How to download and run locally</h2>
+    <p class="sec-p" style="margin-bottom:1.5rem">
+      <span data-pt="Siga os passos abaixo para rodar o Martis-Write 7B no seu computador. Requisito: 4 GB RAM · 4 GB VRAM (ou CPU)." data-en="Follow the steps below to run Martis-Write 7B on your machine. Requirement: 4 GB RAM · 4 GB VRAM (or CPU).">Follow the steps below to run Martis-Write 7B on your machine. Requirement: 4 GB RAM · 4 GB VRAM (or CPU).</span>
+    </p>
+
+    <div class="tut-step">
+      <div class="tut-num">01</div>
+      <div class="tut-body">
+        <h4 data-pt="Instale o Martis CLI" data-en="Install Martis CLI">Install Martis CLI</h4>
+        <p data-pt="O Martis CLI funciona em Windows, macOS e Linux." data-en="Martis CLI works on Windows, macOS and Linux.">Martis CLI works on Windows, macOS and Linux.</p>
+        <div class="tut-code"># macOS / Linux
+curl -fsSL https://martis.ai/install.sh | bash
+
+# Windows (PowerShell)
+irm https://martis.ai/install.ps1 | iex
+
+# Verify install
+martis --version</div>
+      </div>
+    </div>
+
+    <div class="tut-step">
+      <div class="tut-num">02</div>
+      <div class="tut-body">
+        <h4 data-pt="Baixe o modelo" data-en="Download the model">Download the model</h4>
+        <div class="tut-code">martis pull martis-write-7b
+
+# Output:
+# ✓ Connecting to repository…
+# → martis-write-7b.gguf
+#   ████████████░░░░  63% · 4.1 GB
+# ↳ Verifying integrity…  ✓</div>
+        <span class="tut-note">💾 Size: 4.1 GB · Q8_0</span>
+      </div>
+    </div>
+
+    <div class="tut-step">
+      <div class="tut-num">03</div>
+      <div class="tut-body">
+        <h4 data-pt="Rode o modelo" data-en="Run the model">Run the model</h4>
+        <div class="tut-code"># Interactive terminal chat
+martis run martis-write-7b
+
+# Or as a local REST API (OpenAI-compatible)
+martis run martis-write-7b --api --port 11434
+
+# Test the API
+curl http://localhost:11434/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model":"martis-write-7b","messages":[{"role":"user","content":"Hello!"}]}'</div>
+      </div>
+    </div>
+
+    <div class="tut-step">
+      <div class="tut-num">04</div>
+      <div class="tut-body">
+        <h4 data-pt="Integre no seu projeto" data-en="Integrate into your project">Integrate into your project</h4>
+        <div class="tut-code">from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://localhost:11434/v1",
+    api_key="martis-local"   # any string
+)
+
+resp = client.chat.completions.create(
+    model="martis-write-7b",
+    messages=[{"role": "user", "content": "Hello, Martis!"}]
+)
+
+print(resp.choices[0].message.content)</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2025 Martis AI · <a href="../index.html">martis.ai</a> ·
+    <span data-pt="Inspirado em Britomártis — a deusa cretense das redes." data-en="Inspired by Britomartis — the Cretan goddess of nets.">Inspired by Britomartis — the Cretan goddess of nets.</span></p>
+  </div>
+</footer>
+
+<script src="../scripts/shared.js"></script>
+</body>
+</html>

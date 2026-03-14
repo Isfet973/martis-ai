@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Docs — Martis AI</title>
+  <link rel="stylesheet" href="../styles/tokens.css"/>
+  <link rel="stylesheet" href="../styles/model.css"/>
+  <style>
+    /* ── DOCS-SPECIFIC LAYOUT ── */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+      padding: 3rem 0 5rem;
+      align-items: start;
+    }
+
+    /* Sidebar */
+    .docs-sidebar {
+      position: sticky;
+      top: 80px;
+    }
+
+    .docs-sidebar-section {
+      margin-bottom: 1.75rem;
+    }
+
+    .sidebar-heading {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: .6rem;
+      padding-left: .6rem;
+    }
+
+    .sidebar-link {
+      display: block;
+      padding: .38rem .6rem;
+      border-radius: 6px;
+      font-size: .82rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: all .18s;
+      border-left: 2px solid transparent;
+    }
+
+    .sidebar-link:hover { color: var(--text); background: var(--surface2); }
+    .sidebar-link.active {
+      color: var(--accent-lt);
+      border-left-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* Main content */
+    .docs-content { min-width: 0; }
+
+    .doc-section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .doc-section:last-child { border-bottom: none; }
+
+    .doc-section h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--text);
+      letter-spacing: -.4px;
+      margin-bottom: .5rem;
+    }
+
+    .doc-section h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin: 1.75rem 0 .5rem;
+    }
+
+    .doc-section p, .doc-section li {
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    .doc-section ul, .doc-section ol {
+      padding-left: 1.4rem;
+      margin: .6rem 0;
+    }
+
+    .doc-section li { margin-bottom: .3rem; }
+
+    .doc-intro {
+      font-size: .95rem;
+      color: var(--text2);
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Code blocks */
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .55rem 1rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-size: .7rem;
+      color: var(--text3);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: .18rem .55rem;
+      font-size: .65rem;
+      color: var(--text3);
+      cursor: pointer;
+      transition: all .18s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent-lt); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+    .code-block pre {
+      padding: 1rem 1.2rem;
+      font-family: 'Courier New', monospace;
+      font-size: .78rem;
+      line-height: 1.75;
+      color: var(--purple-lt);
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .code-block pre .c  { color: var(--text3); }       /* comment */
+    .code-block pre .k  { color: var(--accent-lt); }   /* keyword */
+    .code-block pre .s  { color: var(--green); }       /* string */
+    .code-block pre .n  { color: var(--text); }        /* name */
+    .code-block pre .o  { color: var(--amber); }       /* output/highlight */
+
+    /* Callout boxes */
+    .callout {
+      display: flex;
+      gap: .85rem;
+      padding: .9rem 1.1rem;
+      border-radius: 9px;
+      margin: 1rem 0;
+      font-size: .83rem;
+      line-height: 1.65;
+    }
+
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-text { color: var(--text2); }
+    .callout-text strong { color: var(--text); }
+
+    .callout-info    { background: var(--accent-dim); border: 1px solid rgba(79,130,196,.25); }
+    .callout-warn    { background: var(--amber-dim);  border: 1px solid rgba(196,157,74,.25); }
+    .callout-success { background: var(--green-dim);  border: 1px solid rgba(58,184,154,.25); }
+    .callout-tip     { background: var(--purple-dim); border: 1px solid rgba(124,92,191,.25); }
+
+    /* API endpoint table */
+    .endpoint-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: .82rem;
+    }
+
+    .endpoint-table th {
+      text-align: left;
+      padding: .5rem .75rem;
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .endpoint-table td {
+      padding: .65rem .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+      vertical-align: top;
+    }
+
+    .endpoint-table tr:last-child td { border-bottom: none; }
+
+    .method {
+      display: inline-block;
+      padding: .15rem .5rem;
+      border-radius: 4px;
+      font-size: .68rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+    }
+    .method-get  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(58,184,154,.3); }
+    .method-post { background: var(--accent-dim); color: var(--accent-lt); border: 1px solid rgba(79,130,196,.3); }
+
+    /* Model grid for quick ref */
+    .model-ref-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+
+    .model-ref-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: .85rem;
+    }
+
+    .model-ref-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--text);
+      margin-bottom: .2rem;
+    }
+
+    .model-ref-id {
+      font-family: 'Courier New', monospace;
+      font-size: .7rem;
+      color: var(--accent-lt);
+      margin-bottom: .4rem;
+    }
+
+    .model-ref-meta {
+      font-size: .68rem;
+      color: var(--text3);
+    }
+
+    /* Hero banner at top of docs */
+    .docs-hero {
+      padding: 2.5rem 0 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .docs-hero-inner {
+      max-width: 620px;
+      padding-bottom: 2.5rem;
+    }
+
+    .docs-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--text);
+      letter-spacing: -1px;
+      line-height: 1.05;
+      margin-bottom: .7rem;
+    }
+
+    .docs-hero p {
+      color: var(--text2);
+      font-size: .92rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .docs-hero-chips {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .docs-hero-chip {
+      padding: .35rem .9rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: .75rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: all .18s;
+    }
+
+    .docs-hero-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent-lt);
+      background: var(--accent-dim);
+    }
+
+    @media (max-width: 760px) {
+      .docs-layout { grid-template-columns: 1fr; }
+      .docs-sidebar { position: static; }
+      .model-ref-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="logo-link">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <path d="M3 34 Q20 1 37 34" stroke="var(--accent)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <line x1="3" y1="34" x2="37" y2="34" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/>
+        <line x1="20" y1="2" x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.1" opacity=".7"/>
+        <circle cx="20" cy="2" r="2.2" fill="var(--accent)" opacity=".95"/>
+        <circle cx="20" cy="22" r="1.3" fill="var(--purple)" opacity=".6"/>
+      </svg>
+      <div class="logo-text">Martis</div>
+    </a>
+
+    <ul style="display:flex;gap:0;list-style:none;margin-left:auto">
+      <li><a href="../index.html" style="display:block;padding:.4rem .9rem;color:var(--text2);text-decoration:none;font-size:.83rem;font-weight:500;border-radius:6px;transition:all .2s" data-pt="Início" data-en="Home">Home</a></li>
+      <li><a href="../index.html#catalog" style="display:block;padding:.4rem .9rem;color:var(--text2);text-decoration:none;font-size:.83rem;font-weight:500;border-radius:6px;transition:all .2s" data-pt="Catálogo" data-en="Catalog">Catalog</a></li>
+      <li><a href="docs.html" style="display:block;padding:.4rem .9rem;color:var(--text);text-decoration:none;font-size:.83rem;font-weight:500;border-radius:6px;background:var(--accent-dim)">Docs</a></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <div class="lang-toggle">
+        <button class="lang-btn" id="btnPT" onclick="setLang('pt')">PT</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <div class="toggle-orb" id="toggleOrb">☽</div>
+        <span id="toggleLabel" data-pt="Modo Escuro" data-en="Dark Mode">Dark Mode</span>
+      </button>
+      <a href="login.html" class="btn btn-ghost" data-pt="Entrar" data-en="Sign In">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+<!-- DOCS HERO -->
+<div class="wrap">
+  <div class="docs-hero">
+    <div class="docs-hero-inner">
+      <div style="font-size:.67rem;color:var(--accent-lt);letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:.7rem">⬡ Documentation</div>
+      <h1 data-pt="Documentação Martis AI" data-en="Martis AI Documentation">Martis AI Documentation</h1>
+      <p data-pt="Tudo que você precisa para usar a plataforma Martis — da API à instalação local, integração com frameworks e referência completa de modelos." data-en="Everything you need to use the Martis platform — from the API to local installation, framework integration, and complete model reference.">Everything you need to use the Martis platform — from the API to local installation, framework integration, and complete model reference.</p>
+      <div class="docs-hero-chips">
+        <a href="#quickstart" class="docs-hero-chip" data-pt="Início Rápido" data-en="Quick Start">Quick Start</a>
+        <a href="#api" class="docs-hero-chip">API Reference</a>
+        <a href="#models" class="docs-hero-chip" data-pt="Modelos" data-en="Models">Models</a>
+        <a href="#realtime-api" class="docs-hero-chip" data-pt="APIs de Teste Gratuitas" data-en="Free Test APIs">Free Test APIs</a>
+        <a href="#cli" class="docs-hero-chip">CLI</a>
+        <a href="#frameworks" class="docs-hero-chip">Frameworks</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCS LAYOUT -->
+<div class="wrap">
+  <div class="docs-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="docs-sidebar">
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading" data-pt="Começando" data-en="Getting Started">Getting Started</div>
+        <a href="#quickstart" class="sidebar-link active" data-pt="Início Rápido" data-en="Quick Start">Quick Start</a>
+        <a href="#concepts" class="sidebar-link" data-pt="Conceitos" data-en="Concepts">Concepts</a>
+        <a href="#auth" class="sidebar-link" data-pt="Autenticação" data-en="Authentication">Authentication</a>
+      </div>
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading">API</div>
+        <a href="#api" class="sidebar-link" data-pt="Visão Geral" data-en="Overview">Overview</a>
+        <a href="#endpoints" class="sidebar-link">Endpoints</a>
+        <a href="#streaming" class="sidebar-link">Streaming</a>
+        <a href="#errors" class="sidebar-link" data-pt="Erros" data-en="Errors">Errors</a>
+      </div>
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading" data-pt="Modelos" data-en="Models">Models</div>
+        <a href="#models" class="sidebar-link" data-pt="Referência" data-en="Reference">Reference</a>
+        <a href="#choosing" class="sidebar-link" data-pt="Como escolher" data-en="How to choose">How to choose</a>
+      </div>
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading" data-pt="APIs de Teste" data-en="Test APIs">Test APIs</div>
+        <a href="#realtime-api" class="sidebar-link" data-pt="Visão Geral" data-en="Overview">Overview</a>
+        <a href="#gemini-api" class="sidebar-link">Gemini (Text)</a>
+        <a href="#hf-api" class="sidebar-link">Hugging Face (Image)</a>
+        <a href="#combine-apis" class="sidebar-link" data-pt="Combinando as duas" data-en="Combining both">Combining both</a>
+      </div>
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading">CLI</div>
+        <a href="#cli" class="sidebar-link" data-pt="Instalação" data-en="Installation">Installation</a>
+        <a href="#cli-commands" class="sidebar-link" data-pt="Comandos" data-en="Commands">Commands</a>
+      </div>
+      <div class="docs-sidebar-section">
+        <div class="sidebar-heading">Frameworks</div>
+        <a href="#frameworks" class="sidebar-link">LangChain</a>
+        <a href="#frameworks" class="sidebar-link">LlamaIndex</a>
+        <a href="#frameworks" class="sidebar-link">Python SDK</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="docs-content">
+
+      <!-- QUICK START -->
+      <div class="doc-section" id="quickstart">
+        <h2 data-pt="Início Rápido" data-en="Quick Start">Quick Start</h2>
+        <p class="doc-intro" data-pt="Em menos de 5 minutos você pode estar conversando com um modelo Martis — direto no navegador ou via API." data-en="In less than 5 minutes you can be chatting with a Martis model — directly in the browser or via API.">In less than 5 minutes you can be chatting with a Martis model — directly in the browser or via API.</p>
+
+        <h3 data-pt="Opção 1 — Usar no navegador" data-en="Option 1 — Use in the browser">Option 1 — Use in the browser</h3>
+        <p data-pt="Nenhuma configuração necessária. Acesse martis.ai, clique em 'Começar Grátis' e escolha um modelo." data-en="No setup required. Go to martis.ai, click 'Start Free' and choose a model.">No setup required. Go to martis.ai, click 'Start Free' and choose a model.</p>
+
+        <h3 data-pt="Opção 2 — Via API (curl)" data-en="Option 2 — Via API (curl)">Option 2 — Via API (curl)</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>SHELL</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>curl https://api.martis.ai/v1/chat/completions \
+  -H <span class="s">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{
+    "model": "martis-70b-instruct",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'</span></pre>
+        </div>
+
+        <h3 data-pt="Opção 3 — Python SDK" data-en="Option 3 — Python SDK">Option 3 — Python SDK</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>PYTHON</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="k">from</span> <span class="n">openai</span> <span class="k">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> = <span class="n">OpenAI</span>(
+    base_url=<span class="s">"https://api.martis.ai/v1"</span>,
+    api_key=<span class="s">"YOUR_API_KEY"</span>
+)
+
+<span class="n">resp</span> = <span class="n">client</span>.<span class="n">chat</span>.<span class="n">completions</span>.<span class="n">create</span>(
+    model=<span class="s">"martis-70b-instruct"</span>,
+    messages=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"Hello!"</span>}]
+)
+
+<span class="k">print</span>(<span class="n">resp</span>.<span class="n">choices</span>[<span class="n">0</span>].<span class="n">message</span>.<span class="n">content</span>)</pre>
+        </div>
+
+        <div class="callout callout-success">
+          <span class="callout-icon">✅</span>
+          <span class="callout-text"><strong data-pt="Compatível com OpenAI" data-en="OpenAI-compatible">OpenAI-compatible</strong> — <span data-pt="A API Martis é compatível com o formato OpenAI. Se você já usa o SDK da OpenAI, basta trocar a base_url e api_key." data-en="The Martis API is compatible with the OpenAI format. If you already use the OpenAI SDK, just swap base_url and api_key.">The Martis API is compatible with the OpenAI format. If you already use the OpenAI SDK, just swap base_url and api_key.</span></span>
+        </div>
+      </div>
+
+      <!-- AUTH -->
+      <div class="doc-section" id="auth">
+        <h2 data-pt="Autenticação" data-en="Authentication">Authentication</h2>
+        <p data-pt="Todas as requisições à API precisam de uma chave de API no header Authorization." data-en="All API requests require an API key in the Authorization header.">All API requests require an API key in the Authorization header.</p>
+        <div class="code-block">
+          <div class="code-block-header"><span>HTTP HEADER</span></div>
+          <pre>Authorization: Bearer <span class="s">mk_live_xxxxxxxxxxxxxxxxxxxx</span></pre>
+        </div>
+        <div class="callout callout-warn">
+          <span class="callout-icon">⚠️</span>
+          <span class="callout-text" data-pt="Nunca exponha sua API key no código do front-end ou em repositórios públicos. Use variáveis de ambiente ou um proxy de servidor." data-en="Never expose your API key in front-end code or public repositories. Use environment variables or a server-side proxy.">Never expose your API key in front-end code or public repositories. Use environment variables or a server-side proxy.</span>
+        </div>
+      </div>
+
+      <!-- API REFERENCE -->
+      <div class="doc-section" id="api">
+        <h2>API Reference</h2>
+
+        <h3 id="endpoints">Endpoints</h3>
+        <table class="endpoint-table">
+          <thead>
+            <tr>
+              <th data-pt="Método" data-en="Method">Method</th>
+              <th>Endpoint</th>
+              <th data-pt="Descrição" data-en="Description">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method method-post">POST</span></td>
+              <td><code style="font-family:monospace;font-size:.8rem">/v1/chat/completions</code></td>
+              <td data-pt="Gera uma resposta de chat" data-en="Generate a chat response">Generate a chat response</td>
+            </tr>
+            <tr>
+              <td><span class="method method-get">GET</span></td>
+              <td><code style="font-family:monospace;font-size:.8rem">/v1/models</code></td>
+              <td data-pt="Lista todos os modelos disponíveis" data-en="List all available models">List all available models</td>
+            </tr>
+            <tr>
+              <td><span class="method method-post">POST</span></td>
+              <td><code style="font-family:monospace;font-size:.8rem">/v1/embeddings</code></td>
+              <td data-pt="Gera embeddings de texto" data-en="Generate text embeddings">Generate text embeddings</td>
+            </tr>
+            <tr>
+              <td><span class="method method-post">POST</span></td>
+              <td><code style="font-family:monospace;font-size:.8rem">/v1/images/generate</code></td>
+              <td data-pt="Gera imagens (Martis-Art)" data-en="Generate images (Martis-Art)">Generate images (Martis-Art)</td>
+            </tr>
+            <tr>
+              <td><span class="method method-post">POST</span></td>
+              <td><code style="font-family:monospace;font-size:.8rem">/v1/audio/transcriptions</code></td>
+              <td data-pt="Transcreve áudio para texto (Martis-Voice)" data-en="Transcribe audio to text (Martis-Voice)">Transcribe audio to text (Martis-Voice)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="streaming">Streaming</h3>
+        <p data-pt="Para receber respostas em tempo real, adicione stream: true à requisição." data-en="To receive responses in real time, add stream: true to the request.">To receive responses in real time, add <code style="background:var(--surface2);padding:.1rem .35rem;border-radius:4px;font-family:monospace;font-size:.8rem">stream: true</code> to the request.</p>
+        <div class="code-block">
+          <div class="code-block-header"><span>PYTHON — STREAMING</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="n">stream</span> = <span class="n">client</span>.<span class="n">chat</span>.<span class="n">completions</span>.<span class="n">create</span>(
+    model=<span class="s">"martis-70b-instruct"</span>,
+    messages=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"Write a poem about the sea"</span>}],
+    stream=<span class="k">True</span>
+)
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="k">in</span> <span class="n">stream</span>:
+    <span class="n">delta</span> = <span class="n">chunk</span>.<span class="n">choices</span>[<span class="n">0</span>].<span class="n">delta</span>.<span class="n">content</span>
+    <span class="k">if</span> <span class="n">delta</span>:
+        <span class="k">print</span>(<span class="n">delta</span>, end=<span class="s">""</span>, flush=<span class="k">True</span>)</pre>
+        </div>
+
+        <h3 id="errors" data-pt="Códigos de Erro" data-en="Error Codes">Error Codes</h3>
+        <table class="endpoint-table">
+          <thead><tr><th data-pt="Código" data-en="Code">Code</th><th data-pt="Significado" data-en="Meaning">Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><code style="font-family:monospace">400</code></td><td data-pt="Requisição inválida — verifique o JSON enviado" data-en="Bad request — check the JSON you sent">Bad request — check the JSON you sent</td></tr>
+            <tr><td><code style="font-family:monospace">401</code></td><td data-pt="API key inválida ou ausente" data-en="Invalid or missing API key">Invalid or missing API key</td></tr>
+            <tr><td><code style="font-family:monospace">429</code></td><td data-pt="Limite de requisições atingido — aguarde antes de tentar novamente" data-en="Rate limit exceeded — wait before retrying">Rate limit exceeded — wait before retrying</td></tr>
+            <tr><td><code style="font-family:monospace">500</code></td><td data-pt="Erro interno do servidor" data-en="Internal server error">Internal server error</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MODELS -->
+      <div class="doc-section" id="models">
+        <h2 data-pt="Referência de Modelos" data-en="Model Reference">Model Reference</h2>
+        <p data-pt="Use o identificador do modelo no campo model de cada requisição." data-en="Use the model identifier in the model field of each request.">Use the model identifier in the <code style="background:var(--surface2);padding:.1rem .35rem;border-radius:4px;font-family:monospace;font-size:.8rem">model</code> field of each request.</p>
+
+        <div class="model-ref-grid">
+          <div class="model-ref-card">
+            <div class="model-ref-name">🧠 Martis-70B</div>
+            <div class="model-ref-id">martis-70b-instruct</div>
+            <div class="model-ref-meta">70B · 128K ctx · Q4_K_M</div>
+          </div>
+          <div class="model-ref-card">
+            <div class="model-ref-name">💻 Martis-Code</div>
+            <div class="model-ref-id">martis-code-34b</div>
+            <div class="model-ref-meta">34B · 16K ctx · Q4_K</div>
+          </div>
+          <div class="model-ref-card">
+            <div class="model-ref-name">🔢 Martis-Think</div>
+            <div class="model-ref-id">martis-think-13b</div>
+            <div class="model-ref-meta">13B · 32K ctx · Q5_K</div>
+          </div>
+          <div class="model-ref-card">
+            <div class="model-ref-name">✍️ Martis-Write</div>
+            <div class="model-ref-id">martis-write-7b</div>
+            <div class="model-ref-meta">7B · 8K ctx · Q8_0</div>
+          </div>
+          <div class="model-ref-card">
+            <div class="model-ref-name">👁️ Martis-Vision</div>
+            <div class="model-ref-id">martis-vision-13b</div>
+            <div class="model-ref-meta">13B · 4K ctx · Multimodal</div>
+          </div>
+          <div class="model-ref-card">
+            <div class="model-ref-name">🎙️ Martis-Voice</div>
+            <div class="model-ref-id">martis-voice-3b</div>
+            <div class="model-ref-meta">3B · Audio · F16</div>
+          </div>
+        </div>
+
+        <h3 id="choosing" data-pt="Como escolher o modelo certo" data-en="How to choose the right model">How to choose the right model</h3>
+        <table class="endpoint-table">
+          <thead><tr><th data-pt="Tarefa" data-en="Task">Task</th><th data-pt="Modelo recomendado" data-en="Recommended model">Recommended model</th></tr></thead>
+          <tbody>
+            <tr><td data-pt="Análise e escrita longa" data-en="Analysis & long writing">Analysis & long writing</td><td><code style="font-family:monospace;font-size:.8rem">martis-70b-instruct</code></td></tr>
+            <tr><td data-pt="Código, debug, testes" data-en="Code, debug, tests">Code, debug, tests</td><td><code style="font-family:monospace;font-size:.8rem">martis-code-34b</code></td></tr>
+            <tr><td data-pt="Matemática e lógica" data-en="Math & logic">Math & logic</td><td><code style="font-family:monospace;font-size:.8rem">martis-think-13b</code></td></tr>
+            <tr><td data-pt="Copywriting, tradução" data-en="Copywriting, translation">Copywriting, translation</td><td><code style="font-family:monospace;font-size:.8rem">martis-write-7b</code></td></tr>
+            <tr><td data-pt="Imagens, OCR, gráficos" data-en="Images, OCR, charts">Images, OCR, charts</td><td><code style="font-family:monospace;font-size:.8rem">martis-vision-13b</code></td></tr>
+            <tr><td data-pt="Áudio, transcrição, voz" data-en="Audio, transcription, voice">Audio, transcription, voice</td><td><code style="font-family:monospace;font-size:.8rem">martis-voice-3b</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FREE REAL-TIME APIS -->
+      <div class="doc-section" id="realtime-api">
+        <h2 data-pt="APIs de IA Gratuitas para Testes em Tempo Real" data-en="Free AI APIs for Real-Time Testing">Free AI APIs for Real-Time Testing</h2>
+        <p class="doc-intro" data-pt="Para adicionar IA real ao seu projeto Martis sem custo, use o Google Gemini para texto e o Hugging Face para imagens. Ambos funcionam direto do navegador, sem backend." data-en="To add real AI to your Martis project at zero cost, use Google Gemini for text and Hugging Face for images. Both work directly from the browser, no backend needed.">To add real AI to your Martis project at zero cost, use Google Gemini for text and Hugging Face for images. Both work directly from the browser, no backend needed.</p>
+
+        <h3 id="gemini-api">1. Google Gemini Flash — Text AI</h3>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">ℹ️</span>
+          <span class="callout-text"><strong data-pt="Por que Gemini?" data-en="Why Gemini?">Why Gemini?</strong> — <span data-pt="É o modelo de texto gratuito mais rápido disponível hoje. O tier gratuito inclui 15 requisições por minuto e 1 milhão de tokens por dia — mais do que suficiente para demonstrações." data-en="It's the fastest free text model available today. The free tier includes 15 requests per minute and 1 million tokens per day — more than enough for demos.">It's the fastest free text model available today. The free tier includes 15 requests per minute and 1 million tokens per day — more than enough for demos.</span></span>
+        </div>
+
+        <h3 data-pt="Passo 1 — Obter a API Key" data-en="Step 1 — Get the API Key">Step 1 — Get the API Key</h3>
+        <ol>
+          <li data-pt="Acesse aistudio.google.com" data-en="Go to aistudio.google.com">Go to <a href="https://aistudio.google.com" target="_blank" style="color:var(--accent-lt)">aistudio.google.com</a></li>
+          <li data-pt="Faça login com sua conta Google" data-en="Sign in with your Google account">Sign in with your Google account</li>
+          <li data-pt="Clique em 'Get API Key' → 'Create API Key'" data-en="Click 'Get API Key' → 'Create API Key'">Click <strong>Get API Key</strong> → <strong>Create API Key</strong></li>
+          <li data-pt="Copie a chave — ela começa com AIza..." data-en="Copy the key — it starts with AIza...">Copy the key — it starts with <code style="background:var(--surface2);padding:.1rem .35rem;border-radius:4px;font-family:monospace;font-size:.8rem">AIza...</code></li>
+        </ol>
+
+        <h3 data-pt="Passo 2 — Chamar a API no HTML" data-en="Step 2 — Call the API in HTML">Step 2 — Call the API in HTML</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>JAVASCRIPT</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">const</span> <span class="n">GEMINI_KEY</span> = <span class="s">'YOUR_API_KEY_HERE'</span>;
+
+<span class="k">async function</span> <span class="n">askGemini</span>(<span class="n">prompt</span>) {
+  <span class="k">const</span> <span class="n">res</span> = <span class="k">await</span> <span class="n">fetch</span>(
+    <span class="s">`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${</span><span class="n">GEMINI_KEY</span><span class="s">}`</span>,
+    {
+      method: <span class="s">'POST'</span>,
+      headers: { <span class="s">'Content-Type'</span>: <span class="s">'application/json'</span> },
+      body: <span class="n">JSON</span>.<span class="n">stringify</span>({
+        contents: [{ parts: [{ text: <span class="n">prompt</span> }] }]
+      })
+    }
+  );
+  <span class="k">const</span> <span class="n">data</span> = <span class="k">await</span> <span class="n">res</span>.<span class="n">json</span>();
+  <span class="k">return</span> <span class="n">data</span>.<span class="n">candidates</span>[<span class="n">0</span>].<span class="n">content</span>.<span class="n">parts</span>[<span class="n">0</span>].<span class="n">text</span>;
+}
+
+<span class="c">// Usage:</span>
+<span class="k">const</span> <span class="n">reply</span> = <span class="k">await</span> <span class="n">askGemini</span>(<span class="s">"Explain quantum computing simply"</span>);
+<span class="n">document</span>.<span class="n">getElementById</span>(<span class="s">'output'</span>).<span class="n">textContent</span> = <span class="n">reply</span>;</pre>
+        </div>
+
+        <h3 data-pt="Com histórico de conversa (multi-turn)" data-en="With conversation history (multi-turn)">With conversation history (multi-turn)</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>JAVASCRIPT — MULTI-TURN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">let</span> <span class="n">history</span> = [];
+
+<span class="k">async function</span> <span class="n">chat</span>(<span class="n">userMessage</span>) {
+  <span class="n">history</span>.<span class="n">push</span>({ role: <span class="s">'user'</span>, parts: [{ text: <span class="n">userMessage</span> }] });
+
+  <span class="k">const</span> <span class="n">res</span> = <span class="k">await</span> <span class="n">fetch</span>(
+    <span class="s">`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${</span><span class="n">GEMINI_KEY</span><span class="s">}`</span>,
+    {
+      method: <span class="s">'POST'</span>,
+      headers: { <span class="s">'Content-Type'</span>: <span class="s">'application/json'</span> },
+      body: <span class="n">JSON</span>.<span class="n">stringify</span>({ contents: <span class="n">history</span> })
+    }
+  );
+
+  <span class="k">const</span> <span class="n">data</span> = <span class="k">await</span> <span class="n">res</span>.<span class="n">json</span>();
+  <span class="k">const</span> <span class="n">reply</span> = <span class="n">data</span>.<span class="n">candidates</span>[<span class="n">0</span>].<span class="n">content</span>.<span class="n">parts</span>[<span class="n">0</span>].<span class="n">text</span>;
+
+  <span class="n">history</span>.<span class="n">push</span>({ role: <span class="s">'model'</span>, parts: [{ text: <span class="n">reply</span> }] });
+  <span class="k">return</span> <span class="n">reply</span>;
+}</pre>
+        </div>
+
+        <div class="callout callout-warn">
+          <span class="callout-icon">⚠️</span>
+          <span class="callout-text" data-pt="A API key do Gemini pode ser chamada direto do browser para projetos de aprendizado. Para produção, use um proxy de servidor para não expor a chave." data-en="The Gemini API key can be called directly from the browser for learning projects. For production, use a server-side proxy to hide the key.">The Gemini API key can be called directly from the browser for learning projects. For production, use a server-side proxy to hide the key.</span>
+        </div>
+
+        <!-- HF IMAGE -->
+        <h3 id="hf-api" style="margin-top:2rem">2. Hugging Face — Image Generation (Free)</h3>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">ℹ️</span>
+          <span class="callout-text"><strong data-pt="Por que Hugging Face?" data-en="Why Hugging Face?">Why Hugging Face?</strong> — <span data-pt="O tier gratuito do Hugging Face dá acesso ao Stable Diffusion XL e outros modelos de imagem direto via API REST, sem nenhum servidor seu." data-en="Hugging Face's free tier gives access to Stable Diffusion XL and other image models directly via REST API, with no server of your own.">Hugging Face's free tier gives access to Stable Diffusion XL and other image models directly via REST API, with no server of your own.</span></span>
+        </div>
+
+        <h3 data-pt="Passo 1 — Obter o Token" data-en="Step 1 — Get the Token">Step 1 — Get the Token</h3>
+        <ol>
+          <li data-pt="Crie uma conta gratuita em huggingface.co" data-en="Create a free account at huggingface.co">Create a free account at <a href="https://huggingface.co" target="_blank" style="color:var(--accent-lt)">huggingface.co</a></li>
+          <li data-pt="Vá em Settings → Access Tokens → New Token" data-en="Go to Settings → Access Tokens → New Token">Go to <strong>Settings → Access Tokens → New Token</strong></li>
+          <li data-pt="Escolha 'Read' como permissão e copie o token" data-en="Choose 'Read' as permission and copy the token">Choose <strong>Read</strong> as permission and copy the token</li>
+        </ol>
+
+        <h3 data-pt="Passo 2 — Gerar imagem no HTML" data-en="Step 2 — Generate image in HTML">Step 2 — Generate image in HTML</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>JAVASCRIPT</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">const</span> <span class="n">HF_TOKEN</span> = <span class="s">'hf_YOUR_TOKEN_HERE'</span>;
+
+<span class="k">async function</span> <span class="n">generateImage</span>(<span class="n">prompt</span>) {
+  <span class="k">const</span> <span class="n">res</span> = <span class="k">await</span> <span class="n">fetch</span>(
+    <span class="s">'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0'</span>,
+    {
+      method: <span class="s">'POST'</span>,
+      headers: { <span class="s">'Authorization'</span>: <span class="s">`Bearer ${</span><span class="n">HF_TOKEN</span><span class="s">}`</span> },
+      body: <span class="n">JSON</span>.<span class="n">stringify</span>({ inputs: <span class="n">prompt</span> })
+    }
+  );
+
+  <span class="k">const</span> <span class="n">blob</span> = <span class="k">await</span> <span class="n">res</span>.<span class="n">blob</span>();          <span class="c">// response is raw image bytes</span>
+  <span class="k">const</span> <span class="n">url</span>  = <span class="n">URL</span>.<span class="n">createObjectURL</span>(<span class="n">blob</span>);  <span class="c">// create a local image URL</span>
+  <span class="n">document</span>.<span class="n">getElementById</span>(<span class="s">'result-img'</span>).<span class="n">src</span> = <span class="n">url</span>;
+}
+
+<span class="c">// Usage:</span>
+<span class="k">await</span> <span class="n">generateImage</span>(<span class="s">"A fishing net made of glowing blue light, digital art"</span>);</pre>
+        </div>
+
+        <div class="callout callout-tip">
+          <span class="callout-icon">💡</span>
+          <span class="callout-text" data-pt="A primeira chamada pode demorar 20–30 segundos enquanto o modelo carrega no servidor da Hugging Face. Chamadas seguintes são muito mais rápidas." data-en="The first call may take 20–30 seconds while the model loads on Hugging Face's servers. Subsequent calls are much faster.">The first call may take 20–30 seconds while the model loads on Hugging Face's servers. Subsequent calls are much faster.</span>
+        </div>
+
+        <!-- COMBINING -->
+        <h3 id="combine-apis" style="margin-top:2rem" data-pt="Combinando as duas APIs em um projeto" data-en="Combining both APIs in one project">Combining both APIs in one project</h3>
+        <p data-pt="Você pode usar Gemini para gerar um prompt criativo de imagem e então enviar esse prompt para o Hugging Face gerar a imagem — tudo em uma experiência conectada." data-en="You can use Gemini to generate a creative image prompt and then send that prompt to Hugging Face to generate the image — all in one connected experience.">You can use Gemini to generate a creative image prompt and then send that prompt to Hugging Face to generate the image — all in one connected experience.</p>
+
+        <div class="code-block">
+          <div class="code-block-header"><span>JAVASCRIPT — FULL FLOW</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">async function</span> <span class="n">textToImageFlow</span>(<span class="n">userIdea</span>) {
+
+  <span class="c">// Step 1: Ask Gemini to turn the user's idea into an image prompt</span>
+  <span class="k">const</span> <span class="n">imagePrompt</span> = <span class="k">await</span> <span class="n">askGemini</span>(
+    <span class="s">`Turn this idea into a detailed image generation prompt for Stable Diffusion.
+     Only return the prompt, nothing else.
+     Idea: "</span><span class="n">${userIdea}</span><span class="s">"`</span>
+  );
+
+  <span class="c">// Step 2: Send that prompt to Hugging Face to generate the image</span>
+  <span class="k">await</span> <span class="n">generateImage</span>(<span class="n">imagePrompt</span>);
+
+  <span class="k">return</span> <span class="n">imagePrompt</span>; <span class="c">// optionally show the prompt used</span>
+}
+
+<span class="c">// Example:</span>
+<span class="k">await</span> <span class="n">textToImageFlow</span>(<span class="s">"A fisherman goddess on the internet"</span>);
+<span class="c">// Gemini generates: "Ancient Greek goddess made of glowing network cables,</span>
+<span class="c">// holding a digital fishing net, ethereal blue light, 8k, photorealistic"</span>
+<span class="c">// Hugging Face renders that image automatically</span></pre>
+        </div>
+
+        <div class="callout callout-success">
+          <span class="callout-icon">✅</span>
+          <span class="callout-text"><strong data-pt="Resumo do setup" data-en="Setup summary">Setup summary</strong>: <span data-pt="Texto → Gemini Flash (gratuito, direto no browser, 1M tokens/dia). Imagem → Hugging Face SDXL (gratuito, sem servidor). Zero custo, zero backend." data-en="Text → Gemini Flash (free, direct browser call, 1M tokens/day). Image → Hugging Face SDXL (free, no server). Zero cost, zero backend.">Text → Gemini Flash (free, direct browser call, 1M tokens/day). Image → Hugging Face SDXL (free, no server). Zero cost, zero backend.</span></span>
+        </div>
+      </div>
+
+      <!-- CLI -->
+      <div class="doc-section" id="cli">
+        <h2>Martis CLI</h2>
+        <p data-pt="A interface de linha de comando para gerenciar modelos localmente." data-en="The command-line interface for managing models locally.">The command-line interface for managing models locally.</p>
+
+        <h3 id="cli-commands" data-pt="Instalação" data-en="Installation">Installation</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>SHELL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="c"># macOS / Linux</span>
+curl -fsSL https://martis.ai/install.sh | bash
+
+<span class="c"># Windows (PowerShell admin)</span>
+irm https://martis.ai/install.ps1 | iex</pre>
+        </div>
+
+        <h3 data-pt="Comandos" data-en="Commands">Commands</h3>
+        <table class="endpoint-table">
+          <thead><tr><th data-pt="Comando" data-en="Command">Command</th><th data-pt="Descrição" data-en="Description">Description</th></tr></thead>
+          <tbody>
+            <tr><td><code style="font-family:monospace">martis pull &lt;model&gt;</code></td><td data-pt="Baixa um modelo do repositório" data-en="Download a model from the repository">Download a model from the repository</td></tr>
+            <tr><td><code style="font-family:monospace">martis run &lt;model&gt;</code></td><td data-pt="Inicia o modelo no terminal" data-en="Start the model in terminal">Start the model in terminal</td></tr>
+            <tr><td><code style="font-family:monospace">martis run &lt;model&gt; --api</code></td><td data-pt="Expõe o modelo como API REST local" data-en="Expose the model as local REST API">Expose the model as local REST API</td></tr>
+            <tr><td><code style="font-family:monospace">martis list</code></td><td data-pt="Lista modelos baixados" data-en="List downloaded models">List downloaded models</td></tr>
+            <tr><td><code style="font-family:monospace">martis remove &lt;model&gt;</code></td><td data-pt="Remove um modelo local" data-en="Remove a local model">Remove a local model</td></tr>
+            <tr><td><code style="font-family:monospace">martis update</code></td><td data-pt="Atualiza o CLI" data-en="Update the CLI">Update the CLI</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FRAMEWORKS -->
+      <div class="doc-section" id="frameworks">
+        <h2>Frameworks</h2>
+
+        <h3>LangChain</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>PYTHON</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">from</span> <span class="n">langchain_openai</span> <span class="k">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">llm</span> = <span class="n">ChatOpenAI</span>(
+    model=<span class="s">"martis-70b-instruct"</span>,
+    base_url=<span class="s">"https://api.martis.ai/v1"</span>,
+    api_key=<span class="s">"YOUR_API_KEY"</span>
+)
+
+<span class="n">response</span> = <span class="n">llm</span>.<span class="n">invoke</span>(<span class="s">"Summarize the history of the internet"</span>)
+<span class="k">print</span>(<span class="n">response</span>.<span class="n">content</span>)</pre>
+        </div>
+
+        <h3>JavaScript / Node.js</h3>
+        <div class="code-block">
+          <div class="code-block-header"><span>JAVASCRIPT</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="k">import</span> <span class="n">OpenAI</span> <span class="k">from</span> <span class="s">'openai'</span>;
+
+<span class="k">const</span> <span class="n">client</span> = <span class="k">new</span> <span class="n">OpenAI</span>({
+  baseURL: <span class="s">'https://api.martis.ai/v1'</span>,
+  apiKey:  <span class="s">'YOUR_API_KEY'</span>
+});
+
+<span class="k">const</span> <span class="n">msg</span> = <span class="k">await</span> <span class="n">client</span>.<span class="n">chat</span>.<span class="n">completions</span>.<span class="n">create</span>({
+  model: <span class="s">'martis-70b-instruct'</span>,
+  messages: [{ role: <span class="s">'user'</span>, content: <span class="s">'Hello!'</span> }]
+});
+
+<span class="n">console</span>.<span class="n">log</span>(<span class="n">msg</span>.<span class="n">choices</span>[<span class="n">0</span>].<span class="n">message</span>.<span class="n">content</span>);</pre>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2025 Martis AI · <a href="../index.html">martis.ai</a> ·
+    <span data-pt="Inspirado em Britomártis — a deusa cretense das redes." data-en="Inspired by Britomartis — the Cretan goddess of nets.">Inspired by Britomartis — the Cretan goddess of nets.</span></p>
+  </div>
+</footer>
+
+<script src="../scripts/shared.js"></script>
+<script>
+  /* ── Sidebar active link on scroll ── */
+  const sections = document.querySelectorAll('.doc-section[id]');
+  const links    = document.querySelectorAll('.sidebar-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  /* ── Copy code button ── */
+  function copyCode(btn) {
+    const pre = btn.closest('.code-block').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
