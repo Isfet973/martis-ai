@@ -169,7 +169,7 @@
               <div class="cp-name">Martis AI</div>
               <div class="cp-sub" id="heroModelLabel">Martis-7B · Rapido</div>
             </div>
-            <div class="cp-online"><span class="cp-dot"></span> Online</div>
+            <div class="cp-online" id="heroStatusIndicator"><span class="status-dot offline"></span> Offline</div>
           </div>
 
           <!-- model selector tabs -->
@@ -223,39 +223,54 @@
         <span class="sc-tab-icon">🧠</span>
         <span class="sc-tab-name">Martis-70B</span>
         <span class="sc-tab-sub">Raciocinio profundo</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('image')"    data-model="image">
+        <span class="sc-tab-icon">🖼️</span>
+        <span class="sc-tab-name">Martis-Image</span>
+        <span class="sc-tab-sub">Geracao de imagens</span>
+        <span class="tab-status offline">Offline</span>
       </button>
       <button class="sc-tab" onclick="showModel('code')"    data-model="code">
         <span class="sc-tab-icon">💻</span>
         <span class="sc-tab-name">Martis-Code</span>
         <span class="sc-tab-sub">Programacao avancada</span>
+        <span class="tab-status offline">Offline</span>
       </button>
       <button class="sc-tab" onclick="showModel('think')"   data-model="think">
         <span class="sc-tab-icon">🔢</span>
         <span class="sc-tab-name">Martis-Think</span>
         <span class="sc-tab-sub">Matematica & logica</span>
+        <span class="tab-status offline">Offline</span>
       </button>
       <button class="sc-tab" onclick="showModel('write')"   data-model="write">
         <span class="sc-tab-icon">✍️</span>
         <span class="sc-tab-name">Martis-Write</span>
         <span class="sc-tab-sub">Escrita criativa</span>
+        <span class="tab-status offline">Offline</span>
       </button>
       <button class="sc-tab" onclick="showModel('vision')"  data-model="vision">
         <span class="sc-tab-icon">👁️</span>
         <span class="sc-tab-name">Martis-Vision</span>
         <span class="sc-tab-sub">Analise visual</span>
+        <span class="tab-status offline">Offline</span>
       </button>
       <button class="sc-tab" onclick="showModel('voice')"   data-model="voice">
         <span class="sc-tab-icon">🎙️</span>
         <span class="sc-tab-name">Martis-Voice</span>
         <span class="sc-tab-sub">Fala & audio</span>
+        <span class="tab-status offline">Offline</span>
       </button>
     </div>
 
-    <!-- ─ PANEL: Martis-70B ─ -->
+    <!-- ─ PANEL: Martis-70B (IA de Texto - Interativo) ─ -->
     <div class="sc-panel active" id="sc-chat70b">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">🧠 Martis-70B Instruct</div>
+          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">
+            🧠 Martis-70B Instruct
+            <span id="textModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+          </div>
           <h3 class="sc-title">Raciocinio que vai alem da superficie.</h3>
           <p class="sc-desc">Com 70B parametros e contexto de 128K tokens, o Martis-70B analisa situacoes complexas, conecta ideias distantes e elabora respostas com profundidade que modelos menores simplesmente nao conseguem.</p>
           <div class="sc-strengths">
@@ -264,34 +279,83 @@
             <div class="strength-item"><span class="s-icon">✓</span> Planejamento estrategico</div>
             <div class="strength-item"><span class="s-icon">✓</span> Respostas nuancadas e contextuais</div>
           </div>
-          <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:32%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">32%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-13B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:55%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--accent-lt)">55%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-70B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:97%;background:var(--grad)"></div></div>
-              <span class="cmp-val" style="color:var(--purple-lt)">97%</span>
-            </div>
-            <div class="cmp-legend">Benchmark: MMLU Raciocinio Complexo</div>
+          <div class="api-info-box">
+            <div class="api-info-title">API: Google Gemini</div>
+            <p>Para ativar respostas reais, adicione sua chave em:</p>
+            <code>scripts/ai-integrations.js</code>
+            <p style="margin-top:.5rem;font-size:.7rem">Obtenha gratis em: <a href="https://aistudio.google.com" target="_blank" style="color:var(--accent-lt)">aistudio.google.com</a></p>
           </div>
         </div>
         <div class="sc-demo">
           <div class="demo-header">
             <div class="demo-model-dot" style="background:var(--purple)"></div>
             <span class="demo-model-name">Martis-70B</span>
-            <span class="demo-tag">Exemplo real</span>
+            <span class="demo-tag">Chat interativo</span>
           </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u"><div class="dm-av">U</div><div class="dm-bub">Uma empresa de tecnologia deve priorizar crescimento agressivo ou sustentabilidade financeira nos primeiros 3 anos?</div></div>
-            <div class="dm dm-ai"><div class="dm-av">70</div><div class="dm-bub">Essa tensao e classica no ecossistema de startups, e a resposta depende de tres variaveis criticas:<br><br><strong>1. Tipo de mercado:</strong> Em mercados com efeito de rede (redes sociais, marketplaces), crescer rapido para atingir massa critica e quase obrigatorio — quem chega depois raramente consegue recuperar. Ja em mercados fragmentados, crescer devagar com unit economics saudaveis e mais seguro.<br><br><strong>2. Runway disponivel:</strong> Com menos de 18 meses de caixa, queimar dinheiro em crescimento e um risco existencial. Com runway confortavel e traction comprovada, o crescimento agressivo faz sentido.<br><br><strong>3. Custo de aquisicao vs LTV:</strong> Se seu CAC e recuperado em menos de 6 meses, crescer e a decisao certa. Se nao, cada novo cliente aprofunda o problema.<br><br><em>Minha recomendacao:</em> Busque crescimento sustentavel — nao o maximo possivel, mas o maximo que seus unit economics suportam sem deteriorar. Isso costuma significar crescer 15–30% ao mes mantendo CAC/LTV positivo.</div></div>
+          <div class="demo-msgs" style="height:280px;">
+            <div class="dm dm-ai"><div class="dm-av">70</div><div class="dm-bub">Ola! Sou o Martis-70B, especializado em raciocinio profundo e analise complexa. Pergunte-me sobre estrategia, analise de dados, ou qualquer topico que exija reflexao detalhada.</div></div>
+          </div>
+          <div class="showcase-input-area">
+            <input type="text" class="showcase-input" placeholder="Pergunte algo complexo..." onkeydown="if(event.key==='Enter')sendShowcaseMessage('sc-chat70b')"/>
+            <button class="showcase-send-btn" onclick="sendShowcaseMessage('sc-chat70b')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ PANEL: Martis-Image (IA de Imagem - Interativo) ─ -->
+    <div class="sc-panel" id="sc-image">
+      <div class="sc-layout">
+        <div class="sc-info">
+          <div class="sc-badge" style="background:var(--rose-dim);color:var(--rose);border-color:rgba(176,95,136,.3)">
+            🖼️ Martis-Image
+            <span id="imageModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+          </div>
+          <h3 class="sc-title">Crie imagens incriveis com IA.</h3>
+          <p class="sc-desc">Usando Stable Diffusion XL, o Martis-Image gera imagens de alta qualidade a partir de descricoes em texto. Perfeito para arte conceitual, ilustracoes e visualizacoes criativas.</p>
+          <div class="sc-strengths">
+            <div class="strength-item"><span class="s-icon">✓</span> Geracao de arte e ilustracoes</div>
+            <div class="strength-item"><span class="s-icon">✓</span> Visualizacao de conceitos</div>
+            <div class="strength-item"><span class="s-icon">✓</span> Estilos artisticos variados</div>
+            <div class="strength-item"><span class="s-icon">✓</span> Alta resolucao (1024x1024)</div>
+          </div>
+          <div class="api-info-box">
+            <div class="api-info-title">API: Hugging Face</div>
+            <p>Para ativar geracao real, adicione seu token em:</p>
+            <code>scripts/ai-integrations.js</code>
+            <p style="margin-top:.5rem;font-size:.7rem">Obtenha gratis em: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color:var(--accent-lt)">huggingface.co/settings/tokens</a></p>
+          </div>
+        </div>
+        <div class="sc-demo">
+          <div class="demo-header">
+            <div class="demo-model-dot" style="background:var(--rose)"></div>
+            <span class="demo-model-name">Martis-Image</span>
+            <span class="demo-tag">Geracao interativa</span>
+          </div>
+          <div class="image-generator">
+            <div class="image-input-area">
+              <input type="text" class="image-prompt-input" placeholder="Descreva a imagem que deseja criar... Ex: Uma cidade futurista ao por do sol, estilo cyberpunk"/>
+              <button class="generate-image-btn" onclick="generateShowcaseImage()">🎨 Gerar Imagem</button>
+            </div>
+            <div class="image-result">
+              <div class="image-placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <p>Sua imagem aparecera aqui</p>
+                <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem">Descreva o que deseja criar e clique em "Gerar Imagem"</p>
+              </div>
+            </div>
+            <div class="image-examples">
+              <p style="font-size:.72rem;color:var(--text3);margin-bottom:.5rem">Exemplos de prompts:</p>
+              <div class="example-prompts">
+                <button class="example-prompt" onclick="document.querySelector('.image-prompt-input').value='A mystical forest with glowing mushrooms at night, fantasy art style'">Floresta mistica</button>
+                <button class="example-prompt" onclick="document.querySelector('.image-prompt-input').value='A futuristic robot in a Japanese garden, anime style'">Robo futurista</button>
+                <button class="example-prompt" onclick="document.querySelector('.image-prompt-input').value='Abstract digital art with flowing colors, vibrant neon palette'">Arte abstrata</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1037,5 +1101,6 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
 
 
 <script src="scripts/shared.js"></script>
+<script src="scripts/ai-integrations.js"></script>
 </body>
 </html>
