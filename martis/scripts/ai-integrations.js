@@ -51,27 +51,34 @@ function isHuggingFaceConfigured() {
 async function testGeminiAPI() {
   if (!isGeminiConfigured()) {
     API_STATUS.gemini = { configured: false, online: false, lastCheck: Date.now() };
+    updateAPIStatus();
     return false;
   }
 
+  // Se a chave esta configurada, assume online ate testar
+  API_STATUS.gemini = { configured: true, online: true, lastCheck: Date.now() };
+  updateAPIStatus();
+
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_CONFIG.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${AI_CONFIG.GEMINI_API_KEY}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: 'Responda apenas: OK' }] }],
-          generationConfig: { maxOutputTokens: 10 }
+          contents: [{ parts: [{ text: 'OK' }] }],
+          generationConfig: { maxOutputTokens: 5 }
         })
       }
     );
 
     const isOnline = response.ok;
     API_STATUS.gemini = { configured: true, online: isOnline, lastCheck: Date.now() };
+    updateAPIStatus();
     return isOnline;
   } catch (error) {
     API_STATUS.gemini = { configured: true, online: false, lastCheck: Date.now(), error: error.message };
+    updateAPIStatus();
     return false;
   }
 }
@@ -80,40 +87,54 @@ async function testGeminiAPI() {
 async function testHuggingFaceAPI() {
   if (!isHuggingFaceConfigured()) {
     API_STATUS.huggingface = { configured: false, online: false, lastCheck: Date.now() };
+    updateAPIStatus();
     return false;
   }
 
+  // Se o token esta configurado, assume online ate testar
+  API_STATUS.huggingface = { configured: true, online: true, lastCheck: Date.now() };
+  updateAPIStatus();
+
   try {
-    // Testa com uma requisicao simples de info do modelo
+    // Testa verificando o status do modelo (GET request mais leve)
     const response = await fetch(
-      'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',
+      'https://api-inference.huggingface.co/status/stabilityai/stable-diffusion-xl-base-1.0',
       {
-        method: 'POST',
+        method: 'GET',
         headers: {
-          'Authorization': `Bearer ${AI_CONFIG.HUGGINGFACE_TOKEN}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ inputs: 'test', parameters: { num_inference_steps: 1 } })
+          'Authorization': `Bearer ${AI_CONFIG.HUGGINGFACE_TOKEN}`
+        }
       }
     );
 
     // Status 200 ou 503 (modelo carregando) significa que o token esta valido
     const isOnline = response.ok || response.status === 503;
     API_STATUS.huggingface = { configured: true, online: isOnline, lastCheck: Date.now() };
+    updateAPIStatus();
     return isOnline;
   } catch (error) {
     API_STATUS.huggingface = { configured: true, online: false, lastCheck: Date.now(), error: error.message };
+    updateAPIStatus();
     return false;
   }
 }
 
 // Verifica todas as APIs
 async function checkAllAPIs() {
+  // Primeiro, marca como configurado se as chaves existem (mostra online imediatamente)
+  if (isGeminiConfigured()) {
+    API_STATUS.gemini = { configured: true, online: true, lastCheck: Date.now() };
+  }
+  if (isHuggingFaceConfigured()) {
+    API_STATUS.huggingface = { configured: true, online: true, lastCheck: Date.now() };
+  }
+  updateAPIStatus();
+  
+  // Depois verifica de fato se as APIs respondem
   const results = await Promise.all([
     testGeminiAPI(),
     testHuggingFaceAPI()
   ]);
-  updateAPIStatus();
   return results;
 }
 
@@ -131,7 +152,7 @@ async function callGeminiAPI(prompt, systemPrompt = '') {
     : prompt;
 
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_CONFIG.GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${AI_CONFIG.GEMINI_API_KEY}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -195,7 +216,7 @@ async function callImageGenerationAPI(prompt) {
 
 /* ══════════════════════════════════════════════════════
    HERO CHAT PREVIEW - FUNCIONALIDADE DE IA
-══════════════════════════════════════════════════════ */
+════════════════���═════════════════════════════════════ */
 
 // System prompt para o chat do hero
 const MARTIS_SYSTEM_PROMPT = `Voce e a Martis AI, uma assistente de inteligencia artificial amigavel e prestativa.
@@ -596,36 +617,9 @@ function updateAPIStatus() {
       statusSpan.textContent = 'Offline';
     }
   });
-  
-  // Adiciona indicador visual de carregamento se necessario
-  updateLoadingIndicators();
 }
 
-// Mostra indicadores de carregamento enquanto verifica APIs
-function updateLoadingIndicators() {
-  const heroStatus = document.getElementById('heroStatusIndicator');
-  const textModelStatus = document.getElementById('textModelStatus');
-  const imageModelStatus = document.getElementById('imageModelStatus');
-  
-  // Se ainda nao verificou, mostra "Verificando..."
-  if (!API_STATUS.gemini.lastCheck) {
-    if (heroStatus) {
-      heroStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
-      heroStatus.className = 'cp-online checking';
-    }
-    if (textModelStatus) {
-      textModelStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
-      textModelStatus.className = 'model-status checking';
-    }
-  }
-  
-  if (!API_STATUS.huggingface.lastCheck) {
-    if (imageModelStatus) {
-      imageModelStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
-      imageModelStatus.className = 'model-status checking';
-    }
-  }
-}
+// Funcao removida - status agora e atualizado imediatamente baseado na configuracao
 
 /* ══════════════════════════════════════════════════════
    UTILIDADES
@@ -658,17 +652,24 @@ function heroSelectModel(el, modelId, modelLabel) {
 ══════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Mostra indicadores de carregamento iniciais
-  updateLoadingIndicators();
+  // Primeiro, mostra status baseado na configuracao (se chave existe = online)
+  if (isGeminiConfigured()) {
+    API_STATUS.gemini = { configured: true, online: true, lastCheck: Date.now() };
+  }
+  if (isHuggingFaceConfigured()) {
+    API_STATUS.huggingface = { configured: true, online: true, lastCheck: Date.now() };
+  }
+  updateAPIStatus();
   
-  // Verifica todas as APIs em tempo real
+  // Verifica as APIs em background para confirmar
   console.log('[Martis] Verificando status das APIs...');
-  await checkAllAPIs();
-  console.log('[Martis] Status Gemini:', API_STATUS.gemini);
-  console.log('[Martis] Status HuggingFace:', API_STATUS.huggingface);
+  checkAllAPIs().then(() => {
+    console.log('[Martis] Status Gemini:', API_STATUS.gemini);
+    console.log('[Martis] Status HuggingFace:', API_STATUS.huggingface);
+  });
   
-  // Re-verifica a cada 60 segundos para manter status atualizado
-  setInterval(async () => {
-    await checkAllAPIs();
-  }, 60000);
+  // Re-verifica a cada 2 minutos para manter status atualizado
+  setInterval(() => {
+    checkAllAPIs();
+  }, 120000);
 });
