@@ -1,273 +1,183 @@
-# Martis AI — Platform Website
+# Martis AI — Plataforma de IA
 
-> *Inspired by Britomartis, the Cretan goddess of fishing nets — where gods wove nets, we weave intelligence.*
+> *Onde deuses teciam redes, nos tecemos inteligencia.*
 
-A complete frontend website for **Martis AI**, a fictional AI model platform (similar to LM Studio) that lets users chat with AI models directly in the browser or download them for local use with full privacy.
+Uma plataforma frontend completa para **Martis AI**, um hub de modelos de IA que permite aos usuarios conversar com modelos de IA diretamente no navegador ou baixa-los para uso local com total privacidade.
 
 ---
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 martis/
-├── index.html              # Main landing page
-├── README.md               # This file
+├── index.html              # Pagina principal
+├── README.md               # Este arquivo
 │
 ├── styles/
-│   ├── tokens.css          # Design tokens (colors, fonts, shared components)
-│   └── main.css            # Main page layout styles
-│   └── model.css           # Model detail page styles
+│   ├── tokens.css          # Design tokens (cores, fontes, componentes)
+│   └── main.css            # Estilos de layout da pagina principal
+│   └── model.css           # Estilos das paginas de modelos
 │
 ├── scripts/
-│   └── shared.js           # All JavaScript: theme, language, catalog, tabs
+│   ├── shared.js           # JavaScript: tema, idioma, catalogo, tabs
+│   └── ai-integrations.js  # Integracoes com APIs de IA (Puter.js)
 │
 ├── pages/
-│   ├── martis-model-70b.html     # Martis-70B Instruct detail page
-│   ├── martis-model-code.html    # Martis-Code 34B detail page
-│   ├── martis-model-think.html   # Martis-Think 13B detail page
-│   ├── martis-model-write.html   # Martis-Write 7B detail page
-│   ├── martis-model-vision.html  # Martis-Vision 13B detail page
-│   └── martis-model-voice.html   # Martis-Voice 3B detail page
+│   ├── martis-model-70b.html     # Pagina do Martis-70B Instruct
+│   ├── martis-model-code.html    # Pagina do Martis-Code 34B
+│   ├── martis-model-think.html   # Pagina do Martis-Think 13B
+│   ├── martis-model-write.html   # Pagina do Martis-Write 7B
+│   ├── martis-model-vision.html  # Pagina do Martis-Vision 13B
+│   ├── martis-model-voice.html   # Pagina do Martis-Voice 3B
+│   ├── docs.html                 # Documentacao
+│   └── login.html                # Pagina de login
 │
-└── assets/                 # (empty — for future icons, images, fonts)
+└── assets/                 # (para futuros icones, imagens, fontes)
 ```
 
 ---
 
-## Pages Overview
+## Funcionalidades Principais
 
-### `index.html` — Main Landing Page
+### 1. Chat com IA em Tempo Real
+- Conversacao interativa usando **Puter.js** (API 100% gratuita)
+- Suporte a multiplos modelos: GPT-4, Claude, Gemini e +400 modelos
+- Sem necessidade de chaves de API ou configuracao
+- Status online/offline em tempo real
 
-The main marketing and product page. Contains:
+### 2. Showcase de Modelos
+- **Martis-70B**: Raciocinio profundo e analise complexa
+- **Martis-Summary**: Resumo inteligente de textos
+- **Martis-Code**: Programacao avancada (40+ linguagens)
+- **Martis-Think**: Matematica e logica passo a passo
+- **Martis-Write**: Escrita criativa e copywriting
+- **Martis-Vision**: Analise visual e OCR
+- **Martis-Voice**: Transcricao e sintese de voz
 
-1. **Navigation bar** — Logo (SVG fishing net), nav links, language toggle (EN/PT), theme toggle (dark/light), Sign In and Start Free buttons.
+### 3. Catalogo de Modelos
+- 14 modelos de IA para diferentes casos de uso
+- Comparacoes com concorrentes reais (GPT-4o, Claude, Gemini, etc.)
+- Filtros por categoria (Chat, Code, Vision, etc.)
+- Download local para uso offline
 
-2. **Hero section** — Left: headline *"Where the net becomes divine"*, tagline referencing Britomartis, stats (47+ models, 128K context, 100% private, 0 setup), CTA buttons. Right: live chat preview with model tabs (7B, 13B, 70B, Code), sample conversation with Python code example.
+### 4. Sistema Bilingue
+- Suporte completo a Portugues e Ingles
+- Preferencia salva em localStorage
+- Troca instantanea de idioma
 
-3. **Model Showcase section** (`#chat-full`) — 6 clickable tabs, one per model. Each tab reveals a two-column panel: left side has model description, 4 strengths, and a visual benchmark bar chart comparing against real competitors (GPT-4o, Gemini, Claude, DeepSeek, Copilot, Whisper, etc.). Right side shows a realistic demo conversation specific to that model.
-
-4. **Catalog section** (`#catalog`) — Two-column vertical list of 14 AI models. First 5 per column are visible; remaining cards hidden behind a "Show more models" button. Each card is fully clickable and navigates to the model's detail page. Cards show: colored stripe by category, emoji icon, model name, metadata (params/context/size/quantization), description comparing to real AI competitors, rival badges (vs GPT-4o, Claude, DeepSeek, etc.), and a download button.
-
-5. **How It Works section** (`#how`) — 3 steps: Use in Browser → Download Locally → Integrate via API.
-
-6. **Footer** — Brand info, product/model/company link columns, mythology tagline.
-
----
-
-### `pages/martis-model-[id].html` — Individual Model Pages
-
-Each of the 6 models has its own detail page with:
-
-1. **Breadcrumb** — Martis AI / Catalog / [Model Name]
-2. **Hero** — Model name, tagline (bilingual), spec pills (params/context/size/quantization), How to Download and See Demo CTAs, benchmark score card.
-3. **What it does** — Detailed description + use case list (bilingual).
-4. **Why it's better** — Competitive advantage text + visual benchmark bar chart comparing to 3 named real-world AI competitors.
-5. **Demo** — A realistic sample conversation specific to that model's specialty.
-6. **Installation Tutorial** — 4 steps: Install Martis CLI → Download model → Run model (terminal or API) → Integrate with Python (OpenAI-compatible).
-
----
-
-## Design System (`styles/tokens.css`)
-
-### Color Palette
-
-| Token | Dark | Light | Purpose |
-|-------|------|-------|---------|
-| `--bg` | `#0c0f1a` | `#f9f7f3` | Page background |
-| `--surface` | `#161b2e` | `#fefdfb` | Card/panel background |
-| `--accent` | `#4f82c4` | `#2b6ab4` | Primary blue accent |
-| `--purple` | `#7c5cbf` | `#6040a8` | Secondary purple |
-| `--grad` | blue→purple | blue→purple | Gradient (buttons, highlights) |
-| `--green` | `#3ab89a` | `#1b9472` | Success / new badges |
-| `--amber` | `#c49d4a` | `#9c7624` | Warning / write model |
-| `--rose` | `#b05f88` | `#8f3a62` | Vision model / alerts |
-| `--sky` | `#3d8ec4` | `#2278b0` | Code model |
-
-**Light mode** uses warm parchment tones (`#f9f7f3` base) — intentionally warm and low-contrast to avoid eye strain when switching from dark mode.
-
-### Typography
-
-- **Fraunces** (serif, Google Fonts) — Headlines, numbers, logo. Weights: 300 (italic), 700, 900.
-- **DM Sans** (sans-serif, Google Fonts) — Body text, UI elements. Weights: 300, 400, 500, 600.
-
-### Category Colors (model card stripes)
-
-| Category | Gradient |
-|----------|----------|
-| Chat | blue → purple |
-| Code | sky → green |
-| Think/Math | green → blue |
-| Write | amber → orange |
-| Vision | rose → amber |
-| Voice | purple → rose |
+### 5. Tema Claro/Escuro
+- Modo escuro (padrao): fundo navy profundo
+- Modo claro: tons de pergaminho quente
+- Preferencia salva em localStorage
 
 ---
 
-## JavaScript (`scripts/shared.js`)
+## Design System
 
-All JavaScript lives in a single shared file loaded by every page.
+### Tipografia
 
-### Features
+| Fonte | Uso |
+|-------|-----|
+| **Orbitron** | Logo (futurista, tech) |
+| **Rajdhani** | Slogan e subtitulos (moderno, tech) |
+| **Fraunces** | Titulos e numeros (serifada elegante) |
+| **DM Sans** | Corpo de texto e UI |
 
-**Language system** (`setLang(lang)`)
-- Switches between `'en'` (English, no accents) and `'pt'` (Portuguese with full accents: Catálogo, Início, Britomártis, etc.)
-- Saves selection to `localStorage` under key `martis_lang`
-- On page load, reads saved preference — user never needs to re-select when navigating between pages
-- All translatable text uses `data-pt="..."` and `data-en="..."` attributes; JS swaps `textContent` on every matching element
+### Paleta de Cores
 
-**Theme system** (`toggleTheme()`)
-- Toggles `data-theme="dark"` / `data-theme="light"` on `<html>`
-- Saves to `localStorage` under key `martis_theme`
-- Restored on every page load — preference persists across navigation
+| Token | Escuro | Claro | Uso |
+|-------|--------|-------|-----|
+| `--bg` | `#0c0f1a` | `#f9f7f3` | Fundo da pagina |
+| `--surface` | `#161b2e` | `#fefdfb` | Fundo de cards |
+| `--accent` | `#4f82c4` | `#2b6ab4` | Azul primario |
+| `--purple` | `#7c5cbf` | `#6040a8` | Roxo secundario |
+| `--green` | `#3ab89a` | `#1b9472` | Sucesso/novo |
+| `--amber` | `#c49d4a` | `#9c7624` | Alertas |
+| `--rose` | `#b05f88` | `#8f3a62` | Erros |
+| `--sky` | `#3d8ec4` | `#2278b0` | Codigo |
 
-**Catalog show-more** (`showMoreModels()`)
-- Shows/hides cards with class `lcard-extra`
-- Button label updates in both languages
-- Cards animate in with `fadeInSlide` CSS keyframe
+### Logo
 
-**Showcase tabs** (`showModel(id)`)
-- Activates the correct `.sc-panel` and `.sc-tab` by model ID
-- IDs: `chat70b`, `code`, `think`, `write`, `vision`, `voice`
+A logo representa uma **rede neural futurista**, combinando o conceito de:
+- Rede de pesca (referencia a Britomartis, deusa grega das redes)
+- Rede neural (conexoes de IA)
+- Forma hexagonal (tecnologia, futurismo)
 
-**Init on DOMContentLoaded**
-- Restores saved theme
-- Restores saved language (default `'en'`)
+Inclui animacoes sutis nos nos centrais para indicar "atividade neural".
 
 ---
 
-## Models in the Catalog
+## Integracoes de IA
 
-| Model | Category | Size | Compared Against |
-|-------|----------|------|-----------------|
-| Martis-70B Instruct | Chat | 41 GB | GPT-4o, Claude 3.5, Gemini 1.5 Pro |
-| Martis-Code 34B | Code | 20 GB | GitHub Copilot, DeepSeek-Coder, CodeLlama |
-| Martis-Think 13B | Reasoning | 8.5 GB | DeepSeek-R1, o1-mini, Gemini Thinking |
-| Martis-Write 7B | Writing | 4.1 GB | Gemini Flash, Copilot, Claude Haiku |
-| Martis-Vision 13B | Vision | 9.2 GB | GPT-4V, Gemini Vision, Claude Vision |
-| Martis-Voice 3B | Audio | 1.8 GB | Whisper v3, ElevenLabs, Azure Speech |
-| Martis-7B Flash | Chat | 4.8 GB | GPT-4o-mini, Gemini Flash, Llama 3.1 8B |
-| Martis-13B Chat | Chat | 8.2 GB | Llama 3.1 8B, Mistral Medium, Gemma 2 9B |
-| Martis-Science 34B | Reasoning | 22 GB | Med-PaLM 2, Galactica, BioMedLM |
-| Martis-Translate 7B | Writing | 4.3 GB | DeepL, Google Translate, NLLB-200 |
-| Martis-Art 7B | Vision | 5.6 GB | SDXL, Midjourney v5, DALL-E 3 |
-| Martis-Security 13B | Code | 8.8 GB | ChatGPT, Copilot, Codex |
-| Martis-Agent 34B | Chat | 22 GB | GPT-4 Turbo, Claude Agent, Gemini Ultra |
-| Martis-Audio 7B | Audio | 4.9 GB | Suno v3, Udio, MusicGen |
+### Puter.js (API Principal)
+
+A plataforma usa **Puter.js** como API de IA:
+
+- **100% gratuito** - Sem limites de uso
+- **Sem chaves de API** - Nada para configurar
+- **Sem problemas de CORS** - Funciona direto no navegador
+- **+400 modelos** - GPT-4, Claude, Gemini, etc.
+
+```html
+<!-- Incluir no HTML -->
+<script src="https://js.puter.com/v2/"></script>
+```
+
+```javascript
+// Exemplo de uso
+const response = await puter.ai.chat('Sua pergunta aqui', {
+  model: 'gpt-4.1-nano'
+});
+```
+
+---
+
+## Como Executar
+
+### Opcao 1: Abrir Diretamente
+Simplesmente abra o `index.html` no navegador. A primeira vez que usar o chat, o Puter.js pode pedir login com Google (gratuito).
+
+### Opcao 2: Servidor Local (Recomendado)
+```bash
+# Python
+cd martis
+python -m http.server 8000
+# Acesse: http://localhost:8000
+
+# Node.js
+npx serve martis
+# Acesse: http://localhost:3000
+
+# VS Code
+# Instale a extensao "Live Server" e clique em "Go Live"
+```
+
+---
+
+## Historico de Versoes
+
+| Versao | Mudancas |
+|--------|----------|
+| v1 | Site inicial "Tot AI", tema escuro, 8 modelos |
+| v2 | Renomeado para Martis, logo SVG de rede de pesca |
+| v3 | Logo melhorada, toggle de tema mais visivel |
+| v4 | Showcase de modelos com tabs, catalogo redesenhado |
+| v5 | Sistema bilingue PT/EN, paginas individuais de modelos |
+| v6 | Estrutura de pastas, localStorage para preferencias |
+| v7 | Integracao com Puter.js (API gratuita), remocao de chaves |
+| v8 (atual) | Logo futurista (rede neural), fontes Orbitron/Rajdhani, modelo de resumo substituindo imagem, status online em tempo real |
 
 ---
 
 ## Slogan
 
-**English:** *"Where gods wove nets, we weave intelligence."*  
-**Portuguese:** *"Onde deuses teciam redes, nós tecemos inteligência."*
+**Portugues:** *"Onde deuses teciam redes, nos tecemos inteligencia."*  
+**Ingles:** *"Where gods wove nets, we weave intelligence."*
 
-**Mythology reference:** Britomartis (Βριτόμαρτις) was a Cretan goddess known for inventing fishing nets. The name "Martis" is taken from the second half of her name. The platform's logo is a SVG fishing net viewed from above — an arc (head rope), horizontal base (lead line with weights), vertical strands, horizontal mesh rows, diagonal weave threads, and knot nodes at every intersection.
-
----
-
-## Deploying to Vercel / v0
-
-### Option A — Vercel (static site)
-1. Put all files in a GitHub repository maintaining the folder structure above
-2. Go to [vercel.com](https://vercel.com) → New Project → Import your repo
-3. Framework Preset: **Other** (static site)
-4. Root directory: `/` (or the `martis/` folder if it's nested)
-5. Deploy — no build step needed, all files are plain HTML/CSS/JS
-
-### Option B — v0 Recreation Prompt
-If you want v0 or another AI to recreate this site exactly, use this prompt:
-
-```
-Create a complete frontend website for an AI model platform called "Martis AI".
-The platform has two features: chat with AI in the browser, and download models locally.
-
-DESIGN SYSTEM:
-- Fonts: Fraunces (serif, for headlines) + DM Sans (sans-serif, for body)
-- Dark mode (default): deep navy background #0c0f1a, blue accent #4f82c4, purple #7c5cbf
-- Light mode: warm parchment #f9f7f3 (not blue-white — must be easy on eyes)
-- Gradient: linear-gradient(135deg, #4f82c4, #7c5cbf) used on all primary buttons
-- Logo: SVG fishing net — arc top rope, lead line with 5 rectangular weights at bottom,
-  vertical strands, horizontal mesh rows, diagonal weave, knot nodes at intersections
-
-FEATURES TO IMPLEMENT:
-1. Sticky navbar: logo, nav links, EN/PT language toggle (saves to localStorage),
-   dark/light theme toggle pill (saves to localStorage), Sign In + Start Free buttons
-2. Hero section: left=headline + slogan "Where gods wove nets, we weave intelligence" 
-   + stats + CTA buttons. Right=live chat preview with model tabs
-3. Model showcase section: 6 tabs (70B/Code/Think/Write/Vision/Voice), each showing
-   left=description+strengths+benchmark bars vs real AI names, right=demo conversation
-4. Catalog: 2-column vertical list, 5 cards per column visible, "show more" button
-   reveals 4 more cards. Cards are fully clickable → navigate to model page
-5. How it works: 3 steps
-6. Footer with mythology tagline
-
-LANGUAGE SYSTEM:
-- All UI text has data-pt="..." data-en="..." attributes
-- PT uses full Portuguese accents (Catálogo, Início, Começar Grátis, Britomártis)  
-- EN has no accents
-- Default: English. setLang() function swaps textContent on all [data-pt] elements
-- Saved to localStorage key 'martis_lang', restored on every page load
-
-MODEL PAGES (6 separate HTML files):
-Each has: breadcrumb, hero with specs, what-it-does + use cases, why-better + benchmark
-chart vs 3 real AI competitors (GPT-4o/Claude/Gemini/DeepSeek/Copilot/Whisper etc.),
-demo conversation, 4-step install tutorial (CLI install → download → run → Python API)
-
-FILE STRUCTURE:
-index.html, styles/tokens.css, styles/main.css, styles/model.css,
-scripts/shared.js, pages/martis-model-[id].html (x6)
-```
+**Referencia mitologica:** Britomartis (Βριτόμαρτις) era uma deusa cretense conhecida por inventar as redes de pesca. O nome "Martis" vem da segunda metade de seu nome.
 
 ---
 
-## Integrating Real AI APIs (Free, for demos)
+## Licenca
 
-### Text — Google Gemini Flash
-1. Get a free API key at [aistudio.google.com](https://aistudio.google.com)
-2. Call directly from the browser (no backend needed):
-
-```javascript
-const res = await fetch(
-  `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=YOUR_KEY`,
-  {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-  }
-);
-const data = await res.json();
-const reply = data.candidates[0].content.parts[0].text;
-```
-
-### Image — Hugging Face (Stable Diffusion XL)
-1. Create a free account at [huggingface.co](https://huggingface.co)
-2. Go to Settings → Access Tokens → New Token (free tier)
-3. Call the Inference API from the browser:
-
-```javascript
-const res = await fetch(
-  "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
-  {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer YOUR_HF_TOKEN' },
-    body: JSON.stringify({ inputs: "your image prompt here" })
-  }
-);
-const blob = await res.blob();
-document.getElementById('result-img').src = URL.createObjectURL(blob);
-```
-
-Both APIs work from plain HTML with no backend server. Free tiers are sufficient for demos and learning projects.
-
----
-
-## What Was Built (Session Summary)
-
-| Iteration | What Changed |
-|-----------|-------------|
-| v1 "Tot AI" | First dark-theme site, purple palette, 8 models, static chat UI |
-| v2 "Mártis" | Renamed to Mártis, SVG fishing net logo, dark/light toggle, blue-grey palette |
-| v3 | Logo improved to open spread fishing net, toggle more visible, accent removed from name (Martis), colors more vibrant with blue+purple, chat preview moved to hero |
-| v4 | Model showcase with 6 tabs + demo per model, catalog redesigned as 2-col vertical list with show-more, real AI competitors named (GPT-4o/Claude/Gemini/DeepSeek/Copilot) |
-| v5 | Slogan refined, light mode softened (warm parchment), EN/PT language selector, individual model pages (6 HTML files), catalog cards link to model pages |
-| v6 (current) | Full project restructure into folders (styles/scripts/pages/assets), external CSS/JS files, localStorage for theme+language persistence, clickable cards, even softer light mode, shorter slogan, this README |
+Projeto experimental para fins educacionais.

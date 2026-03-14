@@ -3,7 +3,11 @@
    Import this file first in every page.
 ═══════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* ── CUSTOM FONTS ── */
+/* Orbitron: Futuristic font for logo */
+/* Rajdhani: Tech/modern font for slogan */
 
 /* ── DARK (default) ── */
 :root, [data-theme="dark"] {
