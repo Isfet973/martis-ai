@@ -6,18 +6,41 @@
 ═══════════════════════════════════════════════════════ */
 
 /* ══════════════════════════════════════════════════════
-   CONFIGURACAO DAS APIs - COLOQUE SUAS CHAVES AQUI
+   CONFIGURACAO DAS APIs
+   As chaves sao salvas no localStorage do navegador
+   Configure pelo botao de engrenagem no site
 ══════════════════════════════════════════════════════ */
 
 const AI_CONFIG = {
-  // ═══ IA DE TEXTO: Google Gemini ═══
-  // Obtenha sua chave gratuita em: https://aistudio.google.com
-  GEMINI_API_KEY: 'AIzaSyCxYHNP0Kypu8zlWSBV335Wb2XJS7VsowY',
-  
-  // ═══ IA DE IMAGEM: Hugging Face ═══
-  // Obtenha seu token gratuito em: https://huggingface.co/settings/tokens
-  HUGGINGFACE_TOKEN: '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'
+  // Chaves sao carregadas do localStorage
+  // Use o botao de configuracao no site para inserir suas chaves
+  GEMINI_API_KEY: '',
+  HUGGINGFACE_TOKEN: ''
 };
+
+// Carrega chaves do localStorage ao iniciar
+function loadAPIKeys() {
+  const savedGemini = localStorage.getItem('martis_gemini_key');
+  const savedHuggingFace = localStorage.getItem('martis_huggingface_token');
+  
+  if (savedGemini) AI_CONFIG.GEMINI_API_KEY = savedGemini;
+  if (savedHuggingFace) AI_CONFIG.HUGGINGFACE_TOKEN = savedHuggingFace;
+}
+
+// Salva chaves no localStorage
+function saveAPIKeys(geminiKey, huggingfaceToken) {
+  if (geminiKey !== undefined) {
+    localStorage.setItem('martis_gemini_key', geminiKey);
+    AI_CONFIG.GEMINI_API_KEY = geminiKey;
+  }
+  if (huggingfaceToken !== undefined) {
+    localStorage.setItem('martis_huggingface_token', huggingfaceToken);
+    AI_CONFIG.HUGGINGFACE_TOKEN = huggingfaceToken;
+  }
+}
+
+// Carrega as chaves imediatamente
+loadAPIKeys();
 
 /* ══════════════════════════════════════════════════════
    VERIFICACAO DE STATUS DAS APIs
