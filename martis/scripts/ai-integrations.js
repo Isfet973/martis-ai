@@ -23,16 +23,98 @@ const AI_CONFIG = {
    VERIFICACAO DE STATUS DAS APIs
 ══════════════════════════════════════════════════════ */
 
+// Status das APIs (verificado em tempo real)
+const API_STATUS = {
+  gemini: { configured: false, online: false, lastCheck: null },
+  huggingface: { configured: false, online: false, lastCheck: null }
+};
+
+// Verifica se a chave Gemini parece valida (formato basico)
 function isGeminiConfigured() {
-  return AI_CONFIG.GEMINI_API_KEY && 
-         AI_CONFIG.GEMINI_API_KEY !== 'AIzaSyCxYHNP0Kypu8zlWSBV335Wb2XJS7VsowY' &&
-         AI_CONFIG.GEMINI_API_KEY.length > 10;
+  const key = AI_CONFIG.GEMINI_API_KEY;
+  return key && 
+         typeof key === 'string' && 
+         key.length > 10 &&
+         key.startsWith('AIza');
 }
 
+// Verifica se o token HuggingFace parece valido (formato basico)
 function isHuggingFaceConfigured() {
-  return AI_CONFIG.HUGGINGFACE_TOKEN && 
-         AI_CONFIG.HUGGINGFACE_TOKEN !== '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' &&
-         AI_CONFIG.HUGGINGFACE_TOKEN.length > 10;
+  const token = AI_CONFIG.HUGGINGFACE_TOKEN;
+  return token && 
+         typeof token === 'string' && 
+         token.length > 10 &&
+         token.startsWith('hf_');
+}
+
+// Testa a API do Gemini em tempo real
+async function testGeminiAPI() {
+  if (!isGeminiConfigured()) {
+    API_STATUS.gemini = { configured: false, online: false, lastCheck: Date.now() };
+    return false;
+  }
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_CONFIG.GEMINI_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: 'Responda apenas: OK' }] }],
+          generationConfig: { maxOutputTokens: 10 }
+        })
+      }
+    );
+
+    const isOnline = response.ok;
+    API_STATUS.gemini = { configured: true, online: isOnline, lastCheck: Date.now() };
+    return isOnline;
+  } catch (error) {
+    API_STATUS.gemini = { configured: true, online: false, lastCheck: Date.now(), error: error.message };
+    return false;
+  }
+}
+
+// Testa a API do HuggingFace em tempo real
+async function testHuggingFaceAPI() {
+  if (!isHuggingFaceConfigured()) {
+    API_STATUS.huggingface = { configured: false, online: false, lastCheck: Date.now() };
+    return false;
+  }
+
+  try {
+    // Testa com uma requisicao simples de info do modelo
+    const response = await fetch(
+      'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${AI_CONFIG.HUGGINGFACE_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inputs: 'test', parameters: { num_inference_steps: 1 } })
+      }
+    );
+
+    // Status 200 ou 503 (modelo carregando) significa que o token esta valido
+    const isOnline = response.ok || response.status === 503;
+    API_STATUS.huggingface = { configured: true, online: isOnline, lastCheck: Date.now() };
+    return isOnline;
+  } catch (error) {
+    API_STATUS.huggingface = { configured: true, online: false, lastCheck: Date.now(), error: error.message };
+    return false;
+  }
+}
+
+// Verifica todas as APIs
+async function checkAllAPIs() {
+  const results = await Promise.all([
+    testGeminiAPI(),
+    testHuggingFaceAPI()
+  ]);
+  updateAPIStatus();
+  return results;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -163,9 +245,22 @@ async function heroSend() {
   try {
     let aiResponse;
     
-    if (isGeminiConfigured()) {
+    // Usa API real se estiver online, caso contrario usa resposta simulada
+    if (API_STATUS.gemini.online) {
       // Usa a API real do Gemini
       aiResponse = await callGeminiAPI(userMessage, MARTIS_SYSTEM_PROMPT);
+    } else if (isGeminiConfigured()) {
+      // Chave configurada mas API offline - tenta mesmo assim
+      try {
+        aiResponse = await callGeminiAPI(userMessage, MARTIS_SYSTEM_PROMPT);
+        // Se funcionou, atualiza o status
+        API_STATUS.gemini.online = true;
+        updateAPIStatus();
+      } catch (apiError) {
+        // Se falhou, usa resposta simulada
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        aiResponse = getSimulatedResponse(userMessage);
+      }
     } else {
       // Resposta simulada quando API nao esta configurada
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -266,8 +361,19 @@ async function sendShowcaseMessage(panelId) {
 
   try {
     let response;
-    if (isGeminiConfigured()) {
-      response = await callGeminiAPI(userMessage, 'Voce e o Martis-70B, um modelo de IA avancado. Responda de forma detalhada e profissional.');
+    // Usa API real se estiver online ou configurada
+    if (API_STATUS.gemini.online || isGeminiConfigured()) {
+      try {
+        response = await callGeminiAPI(userMessage, 'Voce e o Martis-70B, um modelo de IA avancado. Responda de forma detalhada e profissional.');
+        // Atualiza status se funcionou
+        if (!API_STATUS.gemini.online) {
+          API_STATUS.gemini.online = true;
+          updateAPIStatus();
+        }
+      } catch (apiError) {
+        await new Promise(r => setTimeout(r, 1200));
+        response = `Erro ao conectar com a API: ${apiError.message}\n\nPara respostas reais, verifique sua chave Gemini API em:\nscripts/ai-integrations.js`;
+      }
     } else {
       await new Promise(r => setTimeout(r, 1200));
       response = `Esta e uma demonstracao do Martis-70B.\n\nPara respostas reais, configure sua chave Gemini API em:\nscripts/ai-integrations.js\n\nObtenha gratuitamente em: aistudio.google.com`;
@@ -324,24 +430,40 @@ async function generateShowcaseImage() {
   try {
     let imageUrl;
     
-    if (isHuggingFaceConfigured()) {
-      imageUrl = await callImageGenerationAPI(prompt);
-      resultContainer.innerHTML = `
-        <div class="generated-image-container">
-          <img src="${imageUrl}" alt="Imagem gerada: ${escapeHtml(prompt)}" class="generated-image"/>
-          <div class="image-caption">
-            <strong>Prompt:</strong> ${escapeHtml(prompt)}
+    // Usa API real se estiver online ou configurada
+    if (API_STATUS.huggingface.online || isHuggingFaceConfigured()) {
+      try {
+        imageUrl = await callImageGenerationAPI(prompt);
+        // Atualiza status se funcionou
+        if (!API_STATUS.huggingface.online) {
+          API_STATUS.huggingface.online = true;
+          updateAPIStatus();
+        }
+        resultContainer.innerHTML = `
+          <div class="generated-image-container">
+            <img src="${imageUrl}" alt="Imagem gerada: ${escapeHtml(prompt)}" class="generated-image"/>
+            <div class="image-caption">
+              <strong>Prompt:</strong> ${escapeHtml(prompt)}
+            </div>
+            <a href="${imageUrl}" download="martis-generated.png" class="btn btn-sm btn-ghost" style="margin-top:.75rem">
+              Baixar imagem
+            </a>
           </div>
-          <a href="${imageUrl}" download="martis-generated.png" class="btn btn-sm btn-ghost" style="margin-top:.75rem">
-            ↓ Baixar imagem
-          </a>
-        </div>
-      `;
+        `;
+      } catch (apiError) {
+        resultContainer.innerHTML = `
+          <div class="image-error">
+            <div class="error-icon">!</div>
+            <p style="color:var(--rose)"><strong>Erro na API</strong></p>
+            <p style="font-size:.8rem;color:var(--text2);margin-top:.5rem">${escapeHtml(apiError.message)}</p>
+          </div>
+        `;
+      }
     } else {
       await new Promise(r => setTimeout(r, 2000));
       resultContainer.innerHTML = `
         <div class="image-placeholder">
-          <div class="placeholder-icon">🖼️</div>
+          <div class="placeholder-icon">IMG</div>
           <p><strong>Demonstracao</strong></p>
           <p style="font-size:.8rem;color:var(--text2);margin-top:.5rem">
             Para gerar imagens reais, configure seu token Hugging Face em:<br>
@@ -373,10 +495,13 @@ async function generateShowcaseImage() {
 ══════════════════════════════════════════════════════ */
 
 function updateAPIStatus() {
+  const geminiOnline = API_STATUS.gemini.online;
+  const huggingfaceOnline = API_STATUS.huggingface.online;
+  
   // Status do Hero Chat
   const heroStatus = document.getElementById('heroStatusIndicator');
   if (heroStatus) {
-    if (isGeminiConfigured()) {
+    if (geminiOnline) {
       heroStatus.innerHTML = '<span class="status-dot online"></span> Online';
       heroStatus.className = 'cp-online online';
     } else {
@@ -388,7 +513,7 @@ function updateAPIStatus() {
   // Status do modelo de texto no Showcase
   const textModelStatus = document.getElementById('textModelStatus');
   if (textModelStatus) {
-    if (isGeminiConfigured()) {
+    if (geminiOnline) {
       textModelStatus.innerHTML = '<span class="status-dot online"></span> Online';
       textModelStatus.className = 'model-status online';
     } else {
@@ -400,7 +525,7 @@ function updateAPIStatus() {
   // Status do modelo de imagem no Showcase
   const imageModelStatus = document.getElementById('imageModelStatus');
   if (imageModelStatus) {
-    if (isHuggingFaceConfigured()) {
+    if (huggingfaceOnline) {
       imageModelStatus.innerHTML = '<span class="status-dot online"></span> Online';
       imageModelStatus.className = 'model-status online';
     } else {
@@ -409,20 +534,97 @@ function updateAPIStatus() {
     }
   }
 
-  // Atualiza tabs do showcase com indicadores
+  // Status dos outros modelos de texto (Code, Think, Write) - usam Gemini
+  const codeModelStatus = document.getElementById('codeModelStatus');
+  const thinkModelStatus = document.getElementById('thinkModelStatus');
+  const writeModelStatus = document.getElementById('writeModelStatus');
+  
+  [codeModelStatus, thinkModelStatus, writeModelStatus].forEach(el => {
+    if (el) {
+      if (geminiOnline) {
+        el.innerHTML = '<span class="status-dot online"></span> Online';
+        el.className = 'model-status online';
+      } else {
+        el.innerHTML = '<span class="status-dot offline"></span> Offline';
+        el.className = 'model-status offline';
+      }
+    }
+  });
+
+  // Status do modelo Vision - usa HuggingFace
+  const visionModelStatus = document.getElementById('visionModelStatus');
+  if (visionModelStatus) {
+    if (huggingfaceOnline) {
+      visionModelStatus.innerHTML = '<span class="status-dot online"></span> Online';
+      visionModelStatus.className = 'model-status online';
+    } else {
+      visionModelStatus.innerHTML = '<span class="status-dot offline"></span> Offline';
+      visionModelStatus.className = 'model-status offline';
+    }
+  }
+
+  // Status do modelo Voice - ainda sem API (sempre offline)
+  const voiceModelStatus = document.getElementById('voiceModelStatus');
+  if (voiceModelStatus) {
+    voiceModelStatus.innerHTML = '<span class="status-dot offline"></span> Offline';
+    voiceModelStatus.className = 'model-status offline';
+  }
+
+  // Atualiza TODAS as tabs do showcase com indicadores baseados na API disponivel
   document.querySelectorAll('.sc-tab').forEach(tab => {
     const model = tab.dataset.model;
     const statusSpan = tab.querySelector('.tab-status');
     
-    if (model === 'chat70b' && statusSpan) {
-      statusSpan.className = isGeminiConfigured() ? 'tab-status online' : 'tab-status offline';
-      statusSpan.textContent = isGeminiConfigured() ? 'Online' : 'Offline';
-    }
-    if (model === 'image' && statusSpan) {
-      statusSpan.className = isHuggingFaceConfigured() ? 'tab-status online' : 'tab-status offline';
-      statusSpan.textContent = isHuggingFaceConfigured() ? 'Online' : 'Offline';
+    if (!statusSpan) return;
+    
+    // Modelos que usam Gemini (texto)
+    const geminiModels = ['chat70b', 'code', 'think', 'write'];
+    // Modelos que usam HuggingFace (imagem/visao)
+    const huggingfaceModels = ['image', 'vision'];
+    // Modelos que usam outras APIs (voz - ainda nao implementado)
+    const otherModels = ['voice'];
+    
+    if (geminiModels.includes(model)) {
+      statusSpan.className = geminiOnline ? 'tab-status online' : 'tab-status offline';
+      statusSpan.textContent = geminiOnline ? 'Online' : 'Offline';
+    } else if (huggingfaceModels.includes(model)) {
+      statusSpan.className = huggingfaceOnline ? 'tab-status online' : 'tab-status offline';
+      statusSpan.textContent = huggingfaceOnline ? 'Online' : 'Offline';
+    } else if (otherModels.includes(model)) {
+      // Voice ainda nao tem API configurada
+      statusSpan.className = 'tab-status offline';
+      statusSpan.textContent = 'Offline';
     }
   });
+  
+  // Adiciona indicador visual de carregamento se necessario
+  updateLoadingIndicators();
+}
+
+// Mostra indicadores de carregamento enquanto verifica APIs
+function updateLoadingIndicators() {
+  const heroStatus = document.getElementById('heroStatusIndicator');
+  const textModelStatus = document.getElementById('textModelStatus');
+  const imageModelStatus = document.getElementById('imageModelStatus');
+  
+  // Se ainda nao verificou, mostra "Verificando..."
+  if (!API_STATUS.gemini.lastCheck) {
+    if (heroStatus) {
+      heroStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
+      heroStatus.className = 'cp-online checking';
+    }
+    if (textModelStatus) {
+      textModelStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
+      textModelStatus.className = 'model-status checking';
+    }
+  }
+  
+  if (!API_STATUS.huggingface.lastCheck) {
+    if (imageModelStatus) {
+      imageModelStatus.innerHTML = '<span class="status-dot checking"></span> Verificando...';
+      imageModelStatus.className = 'model-status checking';
+    }
+  }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -455,10 +657,18 @@ function heroSelectModel(el, modelId, modelLabel) {
    INICIALIZACAO
 ══════════════════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Atualiza status das APIs
-  updateAPIStatus();
+document.addEventListener('DOMContentLoaded', async () => {
+  // Mostra indicadores de carregamento iniciais
+  updateLoadingIndicators();
   
-  // Re-verifica a cada 5 segundos (caso o usuario atualize as chaves)
-  setInterval(updateAPIStatus, 5000);
+  // Verifica todas as APIs em tempo real
+  console.log('[Martis] Verificando status das APIs...');
+  await checkAllAPIs();
+  console.log('[Martis] Status Gemini:', API_STATUS.gemini);
+  console.log('[Martis] Status HuggingFace:', API_STATUS.huggingface);
+  
+  // Re-verifica a cada 60 segundos para manter status atualizado
+  setInterval(async () => {
+    await checkAllAPIs();
+  }, 60000);
 });
