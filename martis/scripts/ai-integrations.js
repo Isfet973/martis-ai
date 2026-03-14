@@ -6,17 +6,40 @@
 ═══════════════════════════════════════════════════════ */
 
 /* ══════════════════════════════════════════════════════
-   CONFIGURACAO DAS APIs - COLOQUE SUAS CHAVES AQUI
+   CONFIGURACAO DAS APIs
+   
+   IMPORTANTE: As chaves reais ficam em config.local.js
+   que NAO vai para o GitHub (esta no .gitignore)
+   
+   Para configurar:
+   1. Abra o arquivo: scripts/config.local.js
+   2. Substitua os placeholders pelas suas chaves reais
+   3. O arquivo config.local.js NUNCA sera enviado ao GitHub
 ══════════════════════════════════════════════════════ */
+
+// Tenta carregar chaves do arquivo local (que nao vai para o GitHub)
+// Se nao existir, usa placeholders
+let LOCAL_API_KEYS = {
+  GEMINI_API_KEY: '',
+  HUGGINGFACE_TOKEN: ''
+};
+
+// Carrega as chaves do config.local.js se disponivel
+// Este script e carregado ANTES de ai-integrations.js no HTML
+if (typeof window !== 'undefined' && window.LOCAL_API_KEYS) {
+  LOCAL_API_KEYS = window.LOCAL_API_KEYS;
+}
 
 const AI_CONFIG = {
   // ═══ IA DE TEXTO: Google Gemini ═══
+  // Configure em: scripts/config.local.js
   // Obtenha sua chave gratuita em: https://aistudio.google.com
-  GEMINI_API_KEY: 'AIzaSyCxYHNP0Kypu8zlWSBV335Wb2XJS7VsowY',
+  GEMINI_API_KEY: LOCAL_API_KEYS.GEMINI_API_KEY || '',
   
   // ═══ IA DE IMAGEM: Hugging Face ═══
+  // Configure em: scripts/config.local.js
   // Obtenha seu token gratuito em: https://huggingface.co/settings/tokens
-  HUGGINGFACE_TOKEN: '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'
+  HUGGINGFACE_TOKEN: LOCAL_API_KEYS.HUGGINGFACE_TOKEN || ''
 };
 
 /* ══════════════════════════════════════════════════════

@@ -1,0 +1,22 @@
+# ══════════════════════════════════════════════════════
+# ARQUIVOS IGNORADOS PELO GIT - Martis AI
+# ══════════════════════════════════════════════════════
+
+# Variáveis de ambiente (IMPORTANTE: suas API keys ficam aqui)
+.env
+.env.local
+.env.*.local
+config.local.js
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build
+dist/
+build/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
