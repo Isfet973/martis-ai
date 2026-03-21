@@ -6,309 +6,6 @@
   <title>Docs — Martis AI</title>
   <link rel="stylesheet" href="../styles/tokens.css"/>
   <link rel="stylesheet" href="../styles/model.css"/>
-  <style>
-    /* ── DOCS-SPECIFIC LAYOUT ── */
-    .docs-layout {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 2.5rem;
-      padding: 3rem 0 5rem;
-      align-items: start;
-    }
-
-    /* Sidebar */
-    .docs-sidebar {
-      position: sticky;
-      top: 80px;
-    }
-
-    .docs-sidebar-section {
-      margin-bottom: 1.75rem;
-    }
-
-    .sidebar-heading {
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: .6rem;
-      padding-left: .6rem;
-    }
-
-    .sidebar-link {
-      display: block;
-      padding: .38rem .6rem;
-      border-radius: 6px;
-      font-size: .82rem;
-      color: var(--text2);
-      text-decoration: none;
-      transition: all .18s;
-      border-left: 2px solid transparent;
-    }
-
-    .sidebar-link:hover { color: var(--text); background: var(--surface2); }
-    .sidebar-link.active {
-      color: var(--accent-lt);
-      border-left-color: var(--accent);
-      background: var(--accent-dim);
-    }
-
-    /* Main content */
-    .docs-content { min-width: 0; }
-
-    .doc-section {
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .doc-section:last-child { border-bottom: none; }
-
-    .doc-section h2 {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--text);
-      letter-spacing: -.4px;
-      margin-bottom: .5rem;
-    }
-
-    .doc-section h3 {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-      margin: 1.75rem 0 .5rem;
-    }
-
-    .doc-section p, .doc-section li {
-      font-size: .88rem;
-      color: var(--text2);
-      line-height: 1.85;
-      font-weight: 300;
-    }
-
-    .doc-section ul, .doc-section ol {
-      padding-left: 1.4rem;
-      margin: .6rem 0;
-    }
-
-    .doc-section li { margin-bottom: .3rem; }
-
-    .doc-intro {
-      font-size: .95rem;
-      color: var(--text2);
-      line-height: 1.75;
-      border-left: 3px solid var(--accent);
-      padding-left: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Code blocks */
-    .code-block {
-      background: var(--bg);
-      border: 1px solid var(--border2);
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 1rem 0;
-    }
-
-    .code-block-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .55rem 1rem;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      font-size: .7rem;
-      color: var(--text3);
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .copy-btn {
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: .18rem .55rem;
-      font-size: .65rem;
-      color: var(--text3);
-      cursor: pointer;
-      transition: all .18s;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .copy-btn:hover { border-color: var(--accent); color: var(--accent-lt); }
-    .copy-btn.copied { border-color: var(--green); color: var(--green); }
-
-    .code-block pre {
-      padding: 1rem 1.2rem;
-      font-family: 'Courier New', monospace;
-      font-size: .78rem;
-      line-height: 1.75;
-      color: var(--purple-lt);
-      overflow-x: auto;
-      margin: 0;
-    }
-
-    .code-block pre .c  { color: var(--text3); }       /* comment */
-    .code-block pre .k  { color: var(--accent-lt); }   /* keyword */
-    .code-block pre .s  { color: var(--green); }       /* string */
-    .code-block pre .n  { color: var(--text); }        /* name */
-    .code-block pre .o  { color: var(--amber); }       /* output/highlight */
-
-    /* Callout boxes */
-    .callout {
-      display: flex;
-      gap: .85rem;
-      padding: .9rem 1.1rem;
-      border-radius: 9px;
-      margin: 1rem 0;
-      font-size: .83rem;
-      line-height: 1.65;
-    }
-
-    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
-    .callout-text { color: var(--text2); }
-    .callout-text strong { color: var(--text); }
-
-    .callout-info    { background: var(--accent-dim); border: 1px solid rgba(79,130,196,.25); }
-    .callout-warn    { background: var(--amber-dim);  border: 1px solid rgba(196,157,74,.25); }
-    .callout-success { background: var(--green-dim);  border: 1px solid rgba(58,184,154,.25); }
-    .callout-tip     { background: var(--purple-dim); border: 1px solid rgba(124,92,191,.25); }
-
-    /* API endpoint table */
-    .endpoint-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      font-size: .82rem;
-    }
-
-    .endpoint-table th {
-      text-align: left;
-      padding: .5rem .75rem;
-      font-size: .67rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text3);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .endpoint-table td {
-      padding: .65rem .75rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text2);
-      vertical-align: top;
-    }
-
-    .endpoint-table tr:last-child td { border-bottom: none; }
-
-    .method {
-      display: inline-block;
-      padding: .15rem .5rem;
-      border-radius: 4px;
-      font-size: .68rem;
-      font-weight: 700;
-      font-family: 'Courier New', monospace;
-    }
-    .method-get  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(58,184,154,.3); }
-    .method-post { background: var(--accent-dim); color: var(--accent-lt); border: 1px solid rgba(79,130,196,.3); }
-
-    /* Model grid for quick ref */
-    .model-ref-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .75rem;
-      margin-top: 1rem;
-    }
-
-    .model-ref-card {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: .85rem;
-    }
-
-    .model-ref-name {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: .92rem;
-      color: var(--text);
-      margin-bottom: .2rem;
-    }
-
-    .model-ref-id {
-      font-family: 'Courier New', monospace;
-      font-size: .7rem;
-      color: var(--accent-lt);
-      margin-bottom: .4rem;
-    }
-
-    .model-ref-meta {
-      font-size: .68rem;
-      color: var(--text3);
-    }
-
-    /* Hero banner at top of docs */
-    .docs-hero {
-      padding: 2.5rem 0 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0;
-    }
-
-    .docs-hero-inner {
-      max-width: 620px;
-      padding-bottom: 2.5rem;
-    }
-
-    .docs-hero h1 {
-      font-family: 'Fraunces', serif;
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--text);
-      letter-spacing: -1px;
-      line-height: 1.05;
-      margin-bottom: .7rem;
-    }
-
-    .docs-hero p {
-      color: var(--text2);
-      font-size: .92rem;
-      line-height: 1.75;
-      font-weight: 300;
-    }
-
-    .docs-hero-chips {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      margin-top: 1.25rem;
-    }
-
-    .docs-hero-chip {
-      padding: .35rem .9rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: .75rem;
-      color: var(--text2);
-      text-decoration: none;
-      transition: all .18s;
-    }
-
-    .docs-hero-chip:hover {
-      border-color: var(--accent);
-      color: var(--accent-lt);
-      background: var(--accent-dim);
-    }
-
-    @media (max-width: 760px) {
-      .docs-layout { grid-template-columns: 1fr; }
-      .docs-sidebar { position: static; }
-      .model-ref-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
 </head>
 <body>
 
@@ -316,11 +13,37 @@
   <div class="wrap nav-inner">
     <a href="../index.html" class="logo-link">
       <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-        <path d="M3 34 Q20 1 37 34" stroke="var(--accent)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
-        <line x1="3" y1="34" x2="37" y2="34" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/>
-        <line x1="20" y1="2" x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.1" opacity=".7"/>
-        <circle cx="20" cy="2" r="2.2" fill="var(--accent)" opacity=".95"/>
-        <circle cx="20" cy="22" r="1.3" fill="var(--purple)" opacity=".6"/>
+        <defs>
+          <linearGradient id="net-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)"/>
+            <stop offset="100%" stop-color="var(--purple)"/>
+          </linearGradient>
+        </defs>
+        <line x1="4" y1="12" x2="36" y2="12" stroke="var(--accent)"  stroke-width=".8" opacity=".45"/>
+        <line x1="4" y1="20" x2="36" y2="20" stroke="var(--accent)"  stroke-width=".8" opacity=".55"/>
+        <line x1="4" y1="28" x2="36" y2="28" stroke="var(--accent)"  stroke-width=".8" opacity=".45"/>
+        <line x1="8"  y1="4"  x2="36" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="32" y1="4"  x2="4"  y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="20" y1="4"  x2="36" y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="20" y1="4"  x2="4"  y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="4"  y1="16" x2="24" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="36" y1="16" x2="16" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <circle cx="12" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="12" r="1.8" fill="var(--accent)"    opacity=".75"/>
+        <circle cx="28" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="8"  cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <circle cx="14" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="20" cy="20" r="3.2" fill="url(#net-grad)"   opacity="1"/>
+        <circle cx="26" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="32" cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <circle cx="12" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="28" r="1.8" fill="var(--accent)"    opacity=".75"/>
+        <circle cx="28" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="8"  cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="8"  cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="20" cy="20" r="1.5" fill="var(--purple-lt)" opacity=".7"/>
       </svg>
       <div class="logo-text">Martis</div>
     </a>

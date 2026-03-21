@@ -1,15 +1,11 @@
 /* ═══════════════════════════════════════════════════════
    tokens.css — Martis AI Design System
-   Import this file first in every page.
+   Importar este arquivo primeiro em todas as páginas.
 ═══════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-/* ── CUSTOM FONTS ── */
-/* Orbitron: Futuristic font for logo */
-/* Rajdhani: Tech/modern font for slogan */
-
-/* ── DARK (default) ── */
+/* ── DARK (padrão) ── */
 :root, [data-theme="dark"] {
   --bg:          #0c0f1a;
   --bg2:         #111422;
@@ -56,7 +52,7 @@
   --toggle-glow:   rgba(139,104,216,.45);
 }
 
-/* ── LIGHT — warm parchment, easy on the eyes ── */
+/* ── LIGHT — tons pergaminho quente, suave para os olhos ── */
 [data-theme="light"] {
   --bg:          #f9f7f3;
   --bg2:         #f1ede5;
@@ -116,7 +112,9 @@ body {
   transition: background .35s, color .35s;
 }
 
-/* ── SHARED COMPONENTS ── */
+/* ── COMPONENTES COMPARTILHADOS ── */
+
+/* Lang toggle */
 .lang-toggle {
   display:flex; align-items:center; gap:.2rem;
   background:var(--surface2); border:1px solid var(--border);
@@ -132,6 +130,7 @@ body {
 .lang-btn:hover:not(.active) { color:var(--text); }
 .lang-sep { color:var(--border2); font-size:.72rem; }
 
+/* Theme toggle */
 .theme-toggle {
   display:flex; align-items:center; gap:.5rem;
   padding:.36rem 1rem .36rem .48rem; border-radius:100px;
@@ -142,13 +141,13 @@ body {
   transition:all .25s; white-space:nowrap;
 }
 .theme-toggle:hover { box-shadow:0 0 26px var(--toggle-glow); transform:scale(1.05); }
-
 .toggle-orb {
   width:24px; height:24px; border-radius:50%;
   background:var(--grad); display:grid; place-items:center;
   font-size:.82rem; flex-shrink:0; box-shadow:0 0 10px var(--purple-glow);
 }
 
+/* Buttons */
 .btn {
   display:inline-flex; align-items:center; gap:.45rem;
   padding:.45rem 1.1rem; border-radius:7px;
@@ -162,9 +161,34 @@ body {
 .btn-lg { padding:.72rem 1.8rem; font-size:.92rem; border-radius:9px; }
 .btn-sm { padding:.46rem .9rem; font-size:.77rem; border-radius:7px; }
 
+/* Badges */
 .bdg { font-size:.6rem; padding:.17rem .5rem; border-radius:4px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
 .bdg-new  { background:var(--green-dim);  color:var(--green);     border:1px solid rgba(58,184,154,.3); }
 .bdg-pop  { background:var(--amber-dim);  color:var(--amber);     border:1px solid rgba(196,157,74,.3); }
 .bdg-beta { background:var(--sky-dim);    color:var(--sky);       border:1px solid rgba(61,142,196,.3); }
 .bdg-free { background:var(--purple-dim); color:var(--purple-lt); border:1px solid rgba(124,92,191,.3); }
 .bdg-local{ background:var(--accent-dim); color:var(--accent-lt); border:1px solid rgba(79,130,196,.3); }
+
+/* API Status indicators */
+.status-dot {
+  width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:6px;
+}
+.status-dot.online   { background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2s ease-in-out infinite; }
+.status-dot.offline  { background:var(--rose);  box-shadow:0 0 8px var(--rose); }
+.status-dot.checking { background:var(--amber); box-shadow:0 0 8px var(--amber); animation:pulse 1s ease-in-out infinite; }
+
+.cp-online.online   { color:var(--green); }
+.cp-online.offline  { color:var(--rose); }
+.cp-online.checking { color:var(--amber); }
+
+.model-status { display:inline-flex; align-items:center; font-size:.65rem; font-weight:600; padding:.2rem .5rem; border-radius:4px; margin-left:.75rem; }
+.model-status.online   { background:var(--green-dim); color:var(--green); }
+.model-status.offline  { background:var(--rose-dim);  color:var(--rose); }
+.model-status.checking { background:var(--amber-dim); color:var(--amber); }
+
+.tab-status { display:block; font-size:.6rem; font-weight:700; margin-top:.25rem; letter-spacing:.05em; }
+.tab-status.online   { color:var(--green); }
+.tab-status.offline  { color:var(--rose); }
+.tab-status.checking { color:var(--amber); }
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }

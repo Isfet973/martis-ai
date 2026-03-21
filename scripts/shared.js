@@ -1,16 +1,14 @@
 /* ═══════════════════════════════════════════════════════
    shared.js — Martis AI
-   Theme toggle · Language switcher (with localStorage)
-   · Catalog show-more · Showcase tabs
+   Tema · Idioma (localStorage) · Showcase tabs · Catálogo
 ═══════════════════════════════════════════════════════ */
 
-/* ── CONSTANTS ── */
 const STORAGE_LANG  = 'martis_lang';
 const STORAGE_THEME = 'martis_theme';
 
-/* ── LANGUAGE ── */
 let currentLang = 'en';
 
+/* ── IDIOMA ── */
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem(STORAGE_LANG, lang);
@@ -26,20 +24,20 @@ function setLang(lang) {
     if (val) el.textContent = val;
   });
 
-  // keep show-more button label in sync
+  // Sincroniza label do show-more
   const showMoreLabel = document.getElementById('showMoreLabel');
   if (showMoreLabel) {
-    const extras = document.querySelectorAll('.lcard-extra');
+    const extras  = document.querySelectorAll('.lcard-extra');
     const anyHidden = Array.from(extras).some(el => el.style.display === 'none');
     showMoreLabel.textContent = anyHidden
       ? (lang === 'pt' ? 'Ver mais modelos' : 'Show more models')
-      : (lang === 'pt' ? 'Ver menos' : 'Show less');
+      : (lang === 'pt' ? 'Ver menos'        : 'Show less');
   }
 
   syncThemeLabel();
 }
 
-/* ── THEME ── */
+/* ── TEMA ── */
 function toggleTheme() {
   const html = document.documentElement;
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -51,15 +49,32 @@ function toggleTheme() {
 }
 
 function syncThemeLabel() {
-  const lbl     = document.getElementById('toggleLabel');
+  const lbl = document.getElementById('toggleLabel');
   if (!lbl) return;
-  const isDark  = document.documentElement.getAttribute('data-theme') === 'dark';
-  const lang    = currentLang;
-  if (isDark) lbl.textContent = lang === 'pt' ? 'Modo Escuro' : 'Dark Mode';
-  else        lbl.textContent = lang === 'pt' ? 'Modo Claro'  : 'Light Mode';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) lbl.textContent = currentLang === 'pt' ? 'Modo Escuro' : 'Dark Mode';
+  else        lbl.textContent = currentLang === 'pt' ? 'Modo Claro'  : 'Light Mode';
 }
 
-/* ── CATALOG SHOW MORE ── */
+/* ── SHOWCASE TABS ── */
+function showModel(id) {
+  document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sc-tab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('sc-' + id);
+  const tab   = document.querySelector('.sc-tab[data-model="' + id + '"]');
+  if (panel) panel.classList.add('active');
+  if (tab)   tab.classList.add('active');
+}
+
+/* ── HERO — troca de modelo ── */
+function heroSelectModel(el, modelId, label) {
+  document.querySelectorAll('.cp-tab').forEach(t => t.classList.remove('sel'));
+  el.classList.add('sel');
+  const lbl = document.getElementById('heroModelLabel');
+  if (lbl) lbl.textContent = label;
+}
+
+/* ── CATÁLOGO — mostrar mais ── */
 function showMoreModels() {
   const extras = document.querySelectorAll('.lcard-extra');
   const icon   = document.getElementById('showMoreIcon');
@@ -77,27 +92,15 @@ function showMoreModels() {
   }
 }
 
-/* ── SHOWCASE TABS (model demo section) ── */
-function showModel(id) {
-  document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sc-tab').forEach(t => t.classList.remove('active'));
-  const panel = document.getElementById('sc-' + id);
-  const tab   = document.querySelector('.sc-tab[data-model="' + id + '"]');
-  if (panel) panel.classList.add('active');
-  if (tab)   tab.classList.add('active');
-}
-
-/* ── INIT on DOMContentLoaded ── */
+/* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* restore saved theme */
+  // Restaura tema salvo
   const savedTheme = localStorage.getItem(STORAGE_THEME) || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
   const orb = document.getElementById('toggleOrb');
   if (orb) orb.textContent = savedTheme === 'light' ? '☀' : '☽';
 
-  /* restore saved language (default: 'en') */
+  // Restaura idioma salvo (padrão: 'en')
   const savedLang = localStorage.getItem(STORAGE_LANG) || 'en';
   setLang(savedLang);
-
 });

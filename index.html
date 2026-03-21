@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="styles/tokens.css"/>
   <link rel="stylesheet" href="styles/main.css"/>
 </head>
+<body>
 
-<!-- NET BACKGROUND -->
+<!-- ═══ NET BACKGROUND ═══ -->
 <div class="net-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="grd" cx="60%" cy="35%" r="65%">
-        <stop offset="0%" stop-color="#7c5cbf" stop-opacity=".07"/>
-        <stop offset="55%" stop-color="#4f82c4" stop-opacity=".03"/>
+        <stop offset="0%"   stop-color="#7c5cbf" stop-opacity=".07"/>
+        <stop offset="55%"  stop-color="#4f82c4" stop-opacity=".03"/>
         <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
       </radialGradient>
     </defs>
@@ -30,12 +31,12 @@
       <line x1="440"  y1="0" x2="-160" y2="900"/> <line x1="260"  y1="0" x2="-340" y2="900"/>
     </g>
     <g fill="var(--net-node)">
-      <circle cx="210" cy="150" r="2" opacity=".22"/>  <circle cx="570" cy="150" r="3" opacity=".38"/>
-      <circle cx="930" cy="150" r="2" opacity=".22"/>  <circle cx="1290" cy="150" r="3" opacity=".38"/>
-      <circle cx="300" cy="300" r="3" opacity=".38"/>  <circle cx="660" cy="300" r="2" opacity=".22"/>
-      <circle cx="840" cy="300" r="3" opacity=".42"/>  <circle cx="1200" cy="300" r="2" opacity=".22"/>
-      <circle cx="390" cy="450" r="2" opacity=".2"/>   <circle cx="570" cy="450" r="3" opacity=".32"/>
-      <circle cx="930" cy="450" r="2" opacity=".2"/>   <circle cx="1110" cy="450" r="2" opacity=".2"/>
+      <circle cx="210" cy="150" r="2" opacity=".22"/> <circle cx="570" cy="150" r="3" opacity=".38"/>
+      <circle cx="930" cy="150" r="2" opacity=".22"/> <circle cx="1290" cy="150" r="3" opacity=".38"/>
+      <circle cx="300" cy="300" r="3" opacity=".38"/> <circle cx="660" cy="300" r="2" opacity=".22"/>
+      <circle cx="840" cy="300" r="3" opacity=".42"/> <circle cx="1200" cy="300" r="2" opacity=".22"/>
+      <circle cx="390" cy="450" r="2" opacity=".2"/>  <circle cx="570" cy="450" r="3" opacity=".32"/>
+      <circle cx="930" cy="450" r="2" opacity=".2"/>  <circle cx="1110" cy="450" r="2" opacity=".2"/>
     </g>
   </svg>
 </div>
@@ -44,71 +45,70 @@
 <nav>
   <div class="wrap nav-inner">
 
-    <!-- LOGO: futuristic neural network / fishing net hybrid -->
+    <!-- Logo: rede neural futurista -->
     <a href="#" class="logo-link">
       <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- outer hexagonal frame (futuristic net boundary) -->
-        <path d="M20 2 L35 10 L35 30 L20 38 L5 30 L5 10 Z" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity=".4"/>
-        
-        <!-- neural network connections (data flow lines) -->
-        <line x1="20" y1="8" x2="10" y2="16" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
-        <line x1="20" y1="8" x2="30" y2="16" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
-        <line x1="10" y1="16" x2="10" y2="26" stroke="var(--purple)" stroke-width=".8" opacity=".5"/>
-        <line x1="30" y1="16" x2="30" y2="26" stroke="var(--purple)" stroke-width=".8" opacity=".5"/>
-        <line x1="10" y1="16" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
-        <line x1="30" y1="16" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
-        <line x1="10" y1="26" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
-        <line x1="30" y1="26" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
-        <line x1="10" y1="26" x2="20" y2="32" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
-        <line x1="30" y1="26" x2="20" y2="32" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
-        
-        <!-- cross connections (net mesh effect) -->
-        <line x1="10" y1="16" x2="30" y2="26" stroke="var(--purple)" stroke-width=".5" opacity=".3"/>
-        <line x1="30" y1="16" x2="10" y2="26" stroke="var(--purple)" stroke-width=".5" opacity=".3"/>
-        
-        <!-- neural nodes (glowing circles) -->
-        <circle cx="20" cy="8" r="3" fill="var(--accent)" opacity=".9">
-          <animate attributeName="opacity" values=".9;.6;.9" dur="2s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="10" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
-        <circle cx="30" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
-        <circle cx="20" cy="20" r="3.5" fill="var(--accent)" opacity="1">
-          <animate attributeName="r" values="3.5;4;3.5" dur="1.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="10" cy="26" r="2.5" fill="var(--purple)" opacity=".8"/>
-        <circle cx="30" cy="26" r="2.5" fill="var(--purple)" opacity=".8"/>
-        <circle cx="20" cy="32" r="3" fill="var(--accent)" opacity=".9">
-          <animate attributeName="opacity" values=".9;.6;.9" dur="2s" repeatCount="indefinite" begin=".5s"/>
-        </circle>
-        
-        <!-- inner glow effect on center node -->
-        <circle cx="20" cy="20" r="2" fill="var(--purple-lt)" opacity=".6"/>
-        
-        <!-- gradient definition -->
         <defs>
-          <linearGradient id="neural-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="net-grad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="var(--accent)"/>
             <stop offset="100%" stop-color="var(--purple)"/>
           </linearGradient>
         </defs>
+        <!-- Fios horizontais da rede -->
+        <line x1="4" y1="12" x2="36" y2="12" stroke="var(--accent)" stroke-width=".8" opacity=".45"/>
+        <line x1="4" y1="20" x2="36" y2="20" stroke="var(--accent)" stroke-width=".8" opacity=".55"/>
+        <line x1="4" y1="28" x2="36" y2="28" stroke="var(--accent)" stroke-width=".8" opacity=".45"/>
+        <!-- Fios diagonais (textura de rede) -->
+        <line x1="8"  y1="4"  x2="36" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="20" y1="4"  x2="36" y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="4"  y1="16" x2="24" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="32" y1="4"  x2="4"  y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="20" y1="4"  x2="4"  y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="36" y1="16" x2="16" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <!-- Nós da rede — fileira do topo -->
+        <circle cx="12" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="12" r="1.8" fill="var(--accent)"    opacity=".75"/>
+        <circle cx="28" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <!-- Nós do meio (mais brilhantes) -->
+        <circle cx="8"  cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <circle cx="14" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="20" cy="20" r="3.2" fill="url(#net-grad)"   opacity="1">
+          <animate attributeName="r"       values="3.2;3.8;3.2" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;.75;1"      dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="26" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="32" cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <!-- Nós da base -->
+        <circle cx="12" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="28" r="1.8" fill="var(--accent)"    opacity=".75">
+          <animate attributeName="opacity" values=".75;.45;.75"  dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+        </circle>
+        <circle cx="28" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <!-- Nós diagonais (roxo) -->
+        <circle cx="8"  cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="8"  cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <!-- Brilho central -->
+        <circle cx="20" cy="20" r="1.5" fill="var(--purple-lt)" opacity=".7"/>
       </svg>
       <div>
         <div class="logo-text">Martis</div>
-        <div class="logo-sub">Plataforma de IA</div>
+        <div class="logo-sub" data-pt="Plataforma de IA" data-en="AI Platform">AI Platform</div>
       </div>
     </a>
 
     <ul class="nav-links">
-      <li><a href="#hero" class="active" data-pt="Início" data-en="Home">Home</a></li>
-      <li><a href="#chat-full" data-pt="Conversar" data-en="Chat">Chat</a></li>
-      <li><a href="#catalog" data-pt="Catálogo" data-en="Catalog">Catalog</a></li>
-      <li><a href="#how" data-pt="Como Funciona" data-en="How It Works">How It Works</a></li>
-      <li><a href="pages/docs.html" data-pt="Docs" data-en="Docs">Docs</a></li>
+      <li><a href="#hero"      class="active" data-pt="Início"        data-en="Home">Home</a></li>
+      <li><a href="#chat-full"             data-pt="Conversar"      data-en="Chat">Chat</a></li>
+      <li><a href="#catalog"               data-pt="Catálogo"       data-en="Catalog">Catalog</a></li>
+      <li><a href="#how"                   data-pt="Como Funciona"  data-en="How It Works">How It Works</a></li>
+      <li><a href="pages/docs.html"        data-pt="Docs"           data-en="Docs">Docs</a></li>
     </ul>
 
     <div class="nav-right">
       <div class="lang-toggle" id="langToggle">
-        <button class="lang-btn" id="btnPT" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn"        id="btnPT" onclick="setLang('pt')">PT</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
       </div>
@@ -116,75 +116,94 @@
         <div class="toggle-orb" id="toggleOrb">☽</div>
         <span id="toggleLabel" data-pt="Modo Escuro" data-en="Dark Mode">Dark Mode</span>
       </button>
-      <a href="pages/login.html" class="btn btn-ghost" data-pt="Entrar" data-en="Sign In">Sign In</a>
-      <a href="pages/login.html#register" class="btn btn-primary" data-pt="Começar Grátis" data-en="Start Free">Start Free</a>
+      <a href="pages/login.html"          class="btn btn-ghost"   data-pt="Entrar"          data-en="Sign In">Sign In</a>
+      <a href="pages/login.html#register" class="btn btn-primary" data-pt="Começar Grátis"  data-en="Start Free">Start Free</a>
     </div>
   </div>
 </nav>
 
-<!-- ═══ HERO — chat preview first ═══ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
   <div class="wrap">
     <div class="hero-layout">
 
       <div class="hero-left">
-        <div class="hero-pill"><span class="pill-dot"></span><span data-pt="v2.0 disponível · 12 modelos novos" data-en="v2.0 available · 12 new models">v2.0 disponível · 12 modelos novos</span></div>
-        <h1 class="hero-title"><span data-pt="Onde a rede" data-en="Where the net">Onde a rede</span><br><span data-pt="se torna " data-en="becomes ">se torna </span><em data-pt="divina." data-en="divine.">divina.</em></h1>
-        <p class="hero-desc slogan-sub" data-pt="Onde deuses teciam redes, nós tecemos inteligência." data-en="Where gods wove nets, we weave intelligence.">Where gods wove nets, we weave intelligence.</p>
+        <div class="hero-pill">
+          <span class="pill-dot"></span>
+          <span data-pt="v2.0 disponível · 12 modelos novos" data-en="v2.0 available · 12 new models">v2.0 available · 12 new models</span>
+        </div>
+        <h1 class="hero-title">
+          <span data-pt="Onde a rede"  data-en="Where the net">Where the net</span><br>
+          <span data-pt="se torna "    data-en="becomes ">becomes </span><em data-pt="divina." data-en="divine.">divine.</em>
+        </h1>
+        <p class="hero-desc slogan-sub"
+           data-pt="Onde deuses teciam redes, nós tecemos inteligência."
+           data-en="Where gods wove nets, we weave intelligence.">Where gods wove nets, we weave intelligence.</p>
         <div class="hero-actions">
           <a href="#chat-full" class="btn btn-primary btn-lg" data-pt="▶ Experimentar agora" data-en="▶ Try it now">▶ Try it now</a>
-          <a href="#catalog"   class="btn btn-ghost   btn-lg" data-pt="Ver catálogo" data-en="View catalog">View catalog</a>
+          <a href="#catalog"   class="btn btn-ghost   btn-lg" data-pt="Ver catálogo"         data-en="View catalog">View catalog</a>
         </div>
         <div class="hero-stats">
-          <div><div class="stat-val">47+</div><div class="stat-lbl" data-pt="Modelos" data-en="Models">Models</div></div>
+          <div><div class="stat-val">47+</div><div class="stat-lbl" data-pt="Modelos"  data-en="Models">Models</div></div>
           <div><div class="stat-val">128K</div><div class="stat-lbl" data-pt="Contexto" data-en="Context">Context</div></div>
-          <div><div class="stat-val">100%</div><div class="stat-lbl" data-pt="Privado" data-en="Private">Private</div></div>
-          <div><div class="stat-val">0</div><div class="stat-lbl" data-pt="Setup" data-en="Setup">Setup</div></div>
+          <div><div class="stat-val">100%</div><div class="stat-lbl" data-pt="Privado"  data-en="Private">Private</div></div>
+          <div><div class="stat-val">0</div><div class="stat-lbl"    data-pt="Setup"    data-en="Setup">Setup</div></div>
         </div>
       </div>
 
+      <!-- Chat preview (live, via Puter.js) -->
       <div class="hero-right">
         <div class="chat-preview">
           <div class="cp-header">
             <div class="cp-avatar">
               <svg width="17" height="17" viewBox="0 0 40 40" fill="none">
-                <path d="M3 34 Q20 1 37 34" stroke="var(--purple-lt)" stroke-width="1.8" fill="none"/>
-                <line x1="3" y1="34" x2="37" y2="34" stroke="var(--purple-lt)" stroke-width="1.8"/>
-                <line x1="20" y1="2" x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.2" opacity=".7"/>
-                <line x1="12" y1="6" x2="12" y2="34" stroke="var(--accent-lt)" stroke-width="1" opacity=".6"/>
-                <line x1="28" y1="6" x2="28" y2="34" stroke="var(--accent-lt)" stroke-width="1" opacity=".6"/>
-                <circle cx="20" cy="2"  r="2" fill="var(--purple-lt)"/>
-                <circle cx="20" cy="22" r="1.5" fill="var(--accent-lt)" opacity=".7"/>
+                <defs>
+                  <linearGradient id="net-grad-sm" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--accent)"/>
+                    <stop offset="100%" stop-color="var(--purple)"/>
+                  </linearGradient>
+                </defs>
+                <line x1="4" y1="12" x2="36" y2="12" stroke="var(--accent)"  stroke-width="1" opacity=".5"/>
+                <line x1="4" y1="20" x2="36" y2="20" stroke="var(--accent)"  stroke-width="1" opacity=".6"/>
+                <line x1="4" y1="28" x2="36" y2="28" stroke="var(--accent)"  stroke-width="1" opacity=".5"/>
+                <line x1="8"  y1="4"  x2="36" y2="36" stroke="var(--purple)" stroke-width="1" opacity=".4"/>
+                <line x1="32" y1="4"  x2="4"  y2="36" stroke="var(--purple)" stroke-width="1" opacity=".4"/>
+                <circle cx="20" cy="20" r="4.5" fill="url(#net-grad-sm)" opacity="1"/>
+                <circle cx="12" cy="12" r="2"   fill="var(--accent)"     opacity=".7"/>
+                <circle cx="28" cy="12" r="2"   fill="var(--accent)"     opacity=".7"/>
+                <circle cx="12" cy="28" r="2"   fill="var(--accent)"     opacity=".7"/>
+                <circle cx="28" cy="28" r="2"   fill="var(--accent)"     opacity=".7"/>
+                <circle cx="20" cy="20" r="1.8" fill="var(--purple-lt)"  opacity=".6"/>
               </svg>
             </div>
             <div>
               <div class="cp-name">Martis AI</div>
-              <div class="cp-sub" id="heroModelLabel">Martis-7B · Rapido</div>
+              <div class="cp-sub" id="heroModelLabel">Martis-7B · Rápido</div>
             </div>
-            <div class="cp-online" id="heroStatusIndicator"><span class="status-dot offline"></span> Offline</div>
+            <div class="cp-online" id="heroStatusIndicator">
+              <span class="status-dot offline"></span> Offline
+            </div>
           </div>
 
-          <!-- model selector tabs -->
           <div class="cp-tabs" id="heroTabs">
-            <div class="cp-tab sel" onclick="heroSelectModel(this,'martis-7b','Martis-7B · Rapido')">Martis-7B · Rapido</div>
-            <div class="cp-tab"    onclick="heroSelectModel(this,'martis-13b','Martis-13B · Balanceado')">Martis-13B</div>
+            <div class="cp-tab sel" onclick="heroSelectModel(this,'martis-7b','Martis-7B · Rápido')">Martis-7B · Rápido</div>
+            <div class="cp-tab"    onclick="heroSelectModel(this,'martis-13b','Martis-13B')">Martis-13B</div>
             <div class="cp-tab"    onclick="heroSelectModel(this,'martis-70b','Martis-70B · Poderoso')">Martis-70B</div>
             <div class="cp-tab"    onclick="heroSelectModel(this,'martis-code','Martis-Code')">Martis-Code</div>
           </div>
 
-          <!-- message area -->
           <div class="cp-msgs" id="heroMessages">
             <div class="cm cm-ai">
               <div class="cm-av">M</div>
-              <div class="bub">Ola! Sou a <strong>Martis</strong>. Pergunte qualquer coisa — estou aqui para ajudar. 🌐</div>
+              <div class="bub" data-pt="Olá! Sou a Martis. Pergunte qualquer coisa — estou aqui para ajudar." data-en="Hello! I'm Martis. Ask me anything — I'm here to help.">Hello! I'm Martis. Ask me anything — I'm here to help.</div>
             </div>
           </div>
 
-          <!-- input -->
           <div class="cp-foot">
             <input class="cp-in" id="heroInput" type="text"
-              placeholder="Pergunte qualquer coisa…"
-              onkeydown="if(event.key==='Enter')heroSend()"/>
+                   data-pt-placeholder="Pergunte qualquer coisa..."
+                   placeholder="Ask anything..."
+                   onkeydown="if(event.key==='Enter') heroSend()"/>
             <button class="cp-send" id="heroSendBtn" onclick="heroSend()">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -192,8 +211,9 @@
             </button>
           </div>
 
-          <div style="padding:.45rem 1rem;font-size:.63rem;color:var(--text3);text-align:center;border-top:1px solid var(--border)">
-            Demonstracao ao vivo · Alimentado pela API Anthropic Claude
+          <div style="padding:.45rem 1rem;font-size:.63rem;color:var(--text3);text-align:center;border-top:1px solid var(--border)"
+               data-pt="Demonstração ao vivo · Powered by Claude (Anthropic)" data-en="Live demo · Powered by Claude (Anthropic)">
+            Live demo · Powered by Claude (Anthropic)
           </div>
         </div>
       </div>
@@ -203,139 +223,364 @@
 </section>
 
 <!-- ═══ MODEL SHOWCASE ═══ -->
+<style>
+  /* ── STATUS BADGE ── */
+  .sc-status-bar {
+    display:flex; align-items:center; gap:.55rem;
+    padding:.55rem 1rem; border-radius:8px; margin-bottom:.5rem;
+    font-size:.72rem; font-weight:600; width:fit-content;
+    transition:all .35s;
+  }
+  .sc-status-bar.offline { background:var(--rose-dim);  color:var(--rose);  border:1px solid rgba(176,95,136,.25); }
+  .sc-status-bar.online  { background:var(--green-dim); color:var(--green); border:1px solid rgba(58,184,154,.25); }
+  .sc-status-bar.demo    { background:var(--amber-dim); color:var(--amber); border:1px solid rgba(196,157,74,.25); }
+  .sc-status-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .offline .sc-status-dot { background:var(--rose);  box-shadow:0 0 6px var(--rose); }
+  .online  .sc-status-dot { background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 2s ease-in-out infinite; }
+  .demo    .sc-status-dot { background:var(--amber); box-shadow:0 0 6px var(--amber); animation:pulse 1.5s ease-in-out infinite; }
+
+  /* ── CODE PANEL (Martis-Code) ── */
+  .code-editor-wrap {
+    display:flex; flex-direction:column; height:100%; min-height:360px;
+  }
+  .code-toolbar {
+    display:flex; align-items:center; gap:.5rem; padding:.6rem 1rem;
+    background:var(--bg); border-bottom:1px solid var(--border);
+    font-size:.7rem; color:var(--text3);
+  }
+  .code-lang-dot { width:8px; height:8px; border-radius:50%; }
+  .code-area {
+    flex:1; background:var(--bg2); padding:1rem 1.1rem;
+    font-family:'Courier New',monospace; font-size:.78rem;
+    color:var(--text2); line-height:1.75; overflow-y:auto;
+    white-space:pre; min-height:200px;
+  }
+  .code-area .kw  { color:var(--accent-lt); }
+  .code-area .str { color:var(--green); }
+  .code-area .cmt { color:var(--text3); font-style:italic; }
+  .code-area .fn  { color:var(--purple-lt); }
+  .code-area .num { color:var(--amber); }
+  .code-result {
+    padding:.75rem 1.1rem; border-top:1px solid var(--border);
+    font-size:.75rem; background:var(--surface2);
+    font-family:'Courier New',monospace; min-height:52px;
+  }
+  .code-result .err { color:var(--rose); }
+  .code-result .ok  { color:var(--green); }
+  .code-result .neutral { color:var(--text2); }
+  .code-actions {
+    display:flex; gap:.5rem; padding:.65rem 1rem;
+    border-top:1px solid var(--border); background:var(--surface2);
+  }
+  .code-chip {
+    padding:.28rem .75rem; border-radius:6px; font-size:.72rem;
+    border:1px solid var(--border); color:var(--text2);
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    transition:all .18s; background:var(--surface);
+  }
+  .code-chip:hover { border-color:var(--sky); color:var(--sky); background:var(--sky-dim); }
+
+  /* ── MATH PANEL (Martis-Think) ── */
+  .think-panel { display:flex; flex-direction:column; height:100%; }
+  .think-problem {
+    padding:1rem 1.25rem; border-bottom:1px solid var(--border);
+    background:var(--bg2);
+  }
+  .think-problem-label {
+    font-size:.62rem; color:var(--text3); letter-spacing:.12em;
+    text-transform:uppercase; font-weight:600; margin-bottom:.4rem;
+  }
+  .think-steps {
+    flex:1; padding:1.1rem 1.25rem;
+    display:flex; flex-direction:column; gap:.75rem;
+    overflow-y:auto; min-height:220px;
+  }
+  .think-step {
+    display:flex; gap:.75rem; align-items:flex-start;
+    opacity:0; transform:translateY(6px);
+    animation:fadeInStep .35s ease forwards;
+  }
+  @keyframes fadeInStep { to { opacity:1; transform:translateY(0); } }
+  .think-step-num {
+    width:22px; height:22px; border-radius:50%; flex-shrink:0;
+    background:var(--green-dim); border:1px solid rgba(58,184,154,.3);
+    display:grid; place-items:center;
+    font-size:.65rem; font-weight:700; color:var(--green);
+  }
+  .think-step-body { font-size:.8rem; color:var(--text2); line-height:1.7; }
+  .think-formula {
+    display:inline-block; background:var(--bg); border:1px solid var(--border2);
+    border-radius:5px; padding:.2rem .6rem; margin:.2rem 0;
+    font-family:'Courier New',monospace; font-size:.78rem; color:var(--accent-lt);
+  }
+  .think-answer {
+    margin:.75rem 1.25rem; padding:.75rem 1rem;
+    background:var(--green-dim); border:1px solid rgba(58,184,154,.3);
+    border-radius:8px; font-size:.85rem; color:var(--green); font-weight:700;
+  }
+  .think-problem-chips {
+    display:flex; gap:.4rem; flex-wrap:wrap; padding:.65rem 1.25rem;
+    border-top:1px solid var(--border); background:var(--surface2);
+  }
+  .think-chip {
+    padding:.28rem .75rem; border-radius:6px; font-size:.72rem;
+    border:1px solid var(--border); color:var(--text2);
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    transition:all .18s; background:var(--surface);
+  }
+  .think-chip:hover { border-color:var(--green); color:var(--green); background:var(--green-dim); }
+
+  /* ── WRITE PANEL (Martis-Write) ── */
+  .write-panel { display:flex; flex-direction:column; height:100%; }
+  .write-toolbar {
+    display:flex; gap:.4rem; padding:.65rem 1rem;
+    border-bottom:1px solid var(--border); background:var(--surface2);
+    flex-wrap:wrap;
+  }
+  .write-style-btn {
+    padding:.25rem .65rem; border-radius:6px; font-size:.7rem; font-weight:600;
+    border:1px solid var(--border); color:var(--text3);
+    cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .18s;
+    background:transparent;
+  }
+  .write-style-btn.active { background:var(--amber-dim); border-color:var(--amber); color:var(--amber); }
+  .write-style-btn:hover:not(.active) { color:var(--text); border-color:var(--border2); }
+  .write-output {
+    flex:1; padding:1.25rem; overflow-y:auto; min-height:240px;
+    font-size:.85rem; line-height:1.85; color:var(--text);
+  }
+  .write-output .placeholder-text { color:var(--text3); font-style:italic; font-size:.82rem; }
+  .write-cursor { display:inline-block; width:2px; height:.85em; background:var(--amber); vertical-align:text-bottom; animation:blink .7s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .write-actions {
+    display:flex; gap:.6rem; padding:.7rem 1rem;
+    border-top:1px solid var(--border); background:var(--surface2);
+  }
+  .write-prompt-in {
+    flex:1; background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; padding:.55rem .9rem;
+    color:var(--text); font-family:'DM Sans',sans-serif; font-size:.8rem; outline:none;
+    transition:border-color .2s;
+  }
+  .write-prompt-in:focus { border-color:var(--amber); }
+  .write-prompt-in::placeholder { color:var(--text3); }
+  .write-send-btn {
+    width:36px; height:36px; border-radius:8px; flex-shrink:0;
+    background:linear-gradient(135deg,var(--amber),#c47a4b); border:none; color:#fff;
+    display:grid; place-items:center; cursor:pointer; transition:transform .15s;
+  }
+  .write-send-btn:hover { transform:scale(1.06); }
+  .write-send-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+  /* ── VISION PANEL (Martis-Vision) ── */
+  .vision-panel { display:flex; flex-direction:column; height:100%; }
+  .vision-upload-area {
+    margin:1rem; border:1.5px dashed var(--border2); border-radius:12px;
+    padding:1.5rem; text-align:center; cursor:pointer;
+    transition:all .2s; background:var(--bg2);
+  }
+  .vision-upload-area:hover { border-color:var(--rose); background:var(--rose-dim); }
+  .vision-upload-area.has-image { border-style:solid; border-color:var(--rose); padding:.5rem; }
+  .vision-upload-icon { font-size:2rem; margin-bottom:.5rem; opacity:.6; }
+  .vision-upload-label { font-size:.78rem; color:var(--text3); }
+  .vision-upload-sub { font-size:.67rem; color:var(--text3); margin-top:.25rem; }
+  .vision-preview-img { max-width:100%; max-height:160px; border-radius:8px; display:block; margin:0 auto; }
+  .vision-actions-bar {
+    display:flex; gap:.4rem; padding:.65rem 1rem; flex-wrap:wrap;
+    border-top:1px solid var(--border); background:var(--surface2);
+  }
+  .vision-action-btn {
+    padding:.3rem .8rem; border-radius:6px; font-size:.72rem; font-weight:600;
+    border:1px solid var(--border); color:var(--text2); cursor:pointer;
+    font-family:'DM Sans',sans-serif; transition:all .18s; background:var(--surface);
+  }
+  .vision-action-btn:hover { border-color:var(--rose); color:var(--rose); background:var(--rose-dim); }
+  .vision-result {
+    flex:1; padding:.85rem 1.25rem; font-size:.8rem;
+    color:var(--text2); line-height:1.75; overflow-y:auto;
+  }
+
+  /* ── VOICE PANEL (Martis-Voice) ── */
+  .voice-panel { display:flex; flex-direction:column; height:100%; }
+  .voice-waveform {
+    padding:1.25rem 1.25rem .5rem; display:flex; align-items:center;
+    gap:3px; justify-content:center; min-height:80px;
+  }
+  .wave-bar {
+    width:4px; border-radius:2px;
+    background:linear-gradient(180deg,var(--purple),var(--rose));
+    transition:height .12s ease;
+  }
+  .voice-transcript-area {
+    flex:1; padding:0 1.25rem 1rem; overflow-y:auto; min-height:180px;
+  }
+  .voice-transcript-line {
+    display:flex; gap:.65rem; margin-bottom:.85rem; align-items:flex-start;
+    opacity:0; animation:fadeInStep .3s ease forwards;
+  }
+  .speaker-badge {
+    flex-shrink:0; font-size:.62rem; font-weight:700;
+    padding:.15rem .5rem; border-radius:4px; margin-top:.1rem;
+    white-space:nowrap; letter-spacing:.04em;
+  }
+  .speaker-a { background:var(--accent-dim); color:var(--accent-lt); border:1px solid rgba(79,130,196,.25); }
+  .speaker-b { background:var(--purple-dim); color:var(--purple-lt); border:1px solid rgba(124,92,191,.25); }
+  .speaker-c { background:var(--green-dim);  color:var(--green);     border:1px solid rgba(58,184,154,.25); }
+  .transcript-text { font-size:.8rem; color:var(--text); line-height:1.65; }
+  .transcript-time { font-size:.65rem; color:var(--text3); margin-top:.1rem; }
+  .voice-controls {
+    display:flex; align-items:center; gap:.75rem; padding:.85rem 1.25rem;
+    border-top:1px solid var(--border); background:var(--surface2);
+  }
+  .voice-rec-btn {
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    border:none; cursor:pointer; display:grid; place-items:center;
+    font-size:1rem; transition:all .2s;
+  }
+  .voice-rec-btn.idle    { background:var(--rose-dim);   color:var(--rose); border:1.5px solid var(--rose); }
+  .voice-rec-btn.recording { background:var(--rose);     color:#fff; box-shadow:0 0 18px var(--rose); animation:pulse 1s ease-in-out infinite; }
+  .voice-status-text { font-size:.75rem; color:var(--text3); }
+  .voice-demo-chips {
+    display:flex; gap:.4rem; flex-wrap:wrap; flex:1; justify-content:flex-end;
+  }
+  .voice-chip {
+    padding:.25rem .65rem; border-radius:6px; font-size:.7rem;
+    border:1px solid var(--border); color:var(--text2);
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    transition:all .18s; background:var(--surface);
+  }
+  .voice-chip:hover { border-color:var(--purple); color:var(--purple-lt); background:var(--purple-dim); }
+</style>
+
 <section class="section" id="chat-full">
   <div class="wrap">
-    <div class="eyebrow">⬡ <span data-pt="Modelos em Ação" data-en="Models in Action">Models in Action</span></div>
+    <div class="eyebrow"><span data-pt="Modelos em Ação" data-en="Models in Action">Models in Action</span></div>
     <h2 class="sec-title" data-pt="Cada modelo, um superpoder diferente." data-en="Each model, a different superpower.">Each model, a different superpower.</h2>
-    <p class="sec-desc" data-pt="Clique em cada modelo abaixo para ver exemplos reais do que ele é capaz — e entender quando usar cada um." data-en="Click each model below to see real examples of what it can do — and understand when to use each one.">Click each model below to see real examples of what it can do — and understand when to use each one.</p>
+    <p class="sec-desc" data-pt="Clique em cada modelo abaixo para ver exemplos reais do que ele é capaz." data-en="Click each model below to see real examples of what it can do.">Click each model below to see real examples of what it can do.</p>
 
-    <!-- model picker tabs -->
+    <!-- Status global da API -->
+    <div id="globalApiStatus" class="sc-status-bar offline" style="margin-bottom:1.5rem">
+      <span class="sc-status-dot"></span>
+      <span id="globalApiLabel">Verificando conexão com a IA...</span>
+    </div>
+
     <div class="showcase-tabs" id="showcaseTabs">
-      <button class="sc-tab active" onclick="showModel('chat70b')"   data-model="chat70b">
+      <button class="sc-tab active" onclick="showModel('chat70b')" data-model="chat70b">
         <span class="sc-tab-icon">🧠</span>
         <span class="sc-tab-name">Martis-70B</span>
-        <span class="sc-tab-sub">Raciocinio profundo</span>
+        <span class="sc-tab-sub" data-pt="Raciocínio profundo" data-en="Deep reasoning">Deep reasoning</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('summary')"    data-model="summary">
+      <button class="sc-tab" onclick="showModel('summary')" data-model="summary">
         <span class="sc-tab-icon">📝</span>
         <span class="sc-tab-name">Martis-Summary</span>
-        <span class="sc-tab-sub">Resumo inteligente</span>
+        <span class="sc-tab-sub" data-pt="Resumo inteligente" data-en="Smart summary">Smart summary</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('code')"    data-model="code">
+      <button class="sc-tab" onclick="showModel('code')" data-model="code">
         <span class="sc-tab-icon">💻</span>
         <span class="sc-tab-name">Martis-Code</span>
-        <span class="sc-tab-sub">Programacao avancada</span>
+        <span class="sc-tab-sub" data-pt="Programação avançada" data-en="Advanced coding">Advanced coding</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('think')"   data-model="think">
+      <button class="sc-tab" onclick="showModel('think')" data-model="think">
         <span class="sc-tab-icon">🔢</span>
         <span class="sc-tab-name">Martis-Think</span>
-        <span class="sc-tab-sub">Matematica & logica</span>
+        <span class="sc-tab-sub" data-pt="Matemática e lógica" data-en="Math &amp; logic">Math &amp; logic</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('write')"   data-model="write">
+      <button class="sc-tab" onclick="showModel('write')" data-model="write">
         <span class="sc-tab-icon">✍️</span>
         <span class="sc-tab-name">Martis-Write</span>
-        <span class="sc-tab-sub">Escrita criativa</span>
+        <span class="sc-tab-sub" data-pt="Escrita criativa" data-en="Creative writing">Creative writing</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('vision')"  data-model="vision">
+      <button class="sc-tab" onclick="showModel('vision')" data-model="vision">
         <span class="sc-tab-icon">👁️</span>
         <span class="sc-tab-name">Martis-Vision</span>
-        <span class="sc-tab-sub">Analise visual</span>
+        <span class="sc-tab-sub" data-pt="Análise visual" data-en="Visual analysis">Visual analysis</span>
         <span class="tab-status offline">Offline</span>
       </button>
-      <button class="sc-tab" onclick="showModel('voice')"   data-model="voice">
+      <button class="sc-tab" onclick="showModel('voice')" data-model="voice">
         <span class="sc-tab-icon">🎙️</span>
         <span class="sc-tab-name">Martis-Voice</span>
-        <span class="sc-tab-sub">Fala & audio</span>
+        <span class="sc-tab-sub" data-pt="Fala e áudio" data-en="Speech &amp; audio">Speech &amp; audio</span>
         <span class="tab-status offline">Offline</span>
       </button>
     </div>
 
-    <!-- ─ PANEL: Martis-70B (IA de Texto - Interativo) ─ -->
+    <!-- ═══ PANEL: Martis-70B — Chat livre ═══ -->
     <div class="sc-panel active" id="sc-chat70b">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">
-            🧠 Martis-70B Instruct
-            <span id="textModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-          </div>
-          <h3 class="sc-title">Raciocinio que vai alem da superficie.</h3>
-          <p class="sc-desc">Com 70B parametros e contexto de 128K tokens, o Martis-70B analisa situacoes complexas, conecta ideias distantes e elabora respostas com profundidade que modelos menores simplesmente nao conseguem.</p>
+          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">🧠 Martis-70B Instruct</div>
+          <h3 class="sc-title" data-pt="Raciocínio que vai além da superfície." data-en="Reasoning that goes beyond the surface.">Reasoning that goes beyond the surface.</h3>
+          <p class="sc-desc" data-pt="Com 70B parâmetros e contexto de 128K tokens, o Martis-70B analisa situações complexas, conecta ideias distantes e elabora respostas com profundidade." data-en="With 70B parameters and 128K context, Martis-70B analyzes complex situations, connects distant ideas and produces in-depth responses.">With 70B parameters and 128K context, Martis-70B analyzes complex situations, connects distant ideas and produces in-depth responses.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> Analise critica e argumentacao</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Sumarizacao de documentos longos</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Planejamento estrategico</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Respostas nuancadas e contextuais</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Análise crítica e argumentação" data-en="Critical analysis &amp; argumentation">Critical analysis &amp; argumentation</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Sumarização de documentos longos" data-en="Long-document summarization">Long-document summarization</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Planejamento estratégico" data-en="Strategic planning">Strategic planning</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Respostas nuançadas e contextuais" data-en="Nuanced, contextual responses">Nuanced, contextual responses</span></div>
           </div>
-          <div class="api-info-box">
-            <div class="api-info-title">API: Puter.js (Gratuito)</div>
-            <p>IA 100% gratuita, sem chaves, sem configuracao!</p>
-            <p style="margin-top:.5rem;font-size:.7rem">Powered by <a href="https://puter.com" target="_blank" style="color:var(--accent-lt)">Puter.com</a> - GPT-4, Claude, Gemini e +400 modelos</p>
+          <div class="sc-compare">
+            <div class="cmp-row"><span class="cmp-label">Martis-7B</span><div class="cmp-bar"><div class="cmp-fill" style="width:32%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">32%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-13B</span><div class="cmp-bar"><div class="cmp-fill" style="width:55%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">55%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-70B</span><div class="cmp-bar"><div class="cmp-fill" style="width:97%;background:var(--grad)"></div></div><span class="cmp-val" style="color:var(--purple-lt)">97%</span></div>
+            <div class="cmp-legend" data-pt="Benchmark: MMLU Raciocínio Complexo" data-en="Benchmark: MMLU Complex Reasoning">Benchmark: MMLU Complex Reasoning</div>
           </div>
         </div>
         <div class="sc-demo">
           <div class="demo-header">
             <div class="demo-model-dot" style="background:var(--purple)"></div>
             <span class="demo-model-name">Martis-70B</span>
-            <span class="demo-tag">Chat interativo</span>
+            <span class="demo-tag" data-pt="Chat ao vivo" data-en="Live chat">Live chat</span>
           </div>
-          <div class="demo-msgs" style="height:280px;">
-            <div class="dm dm-ai"><div class="dm-av">70</div><div class="dm-bub">Ola! Sou o Martis-70B, especializado em raciocinio profundo e analise complexa. Pergunte-me sobre estrategia, analise de dados, ou qualquer topico que exija reflexao detalhada.</div></div>
+          <div class="demo-msgs" id="demo-msgs-chat70b">
+            <div class="dm dm-ai">
+              <div class="dm-av">70</div>
+              <div class="dm-bub" data-pt="Olá! Sou o Martis-70B. Faça-me uma pergunta complexa — estratégia, filosofia, análise de negócios ou qualquer tema que exija raciocínio profundo." data-en="Hello! I'm Martis-70B. Ask me a complex question — strategy, philosophy, business analysis, or any topic that requires deep reasoning.">Hello! I'm Martis-70B. Ask me a complex question — strategy, philosophy, business analysis, or any topic that requires deep reasoning.</div>
+            </div>
           </div>
           <div class="showcase-input-area">
-            <input type="text" class="showcase-input" placeholder="Pergunte algo complexo..." onkeydown="if(event.key==='Enter')sendShowcaseMessage('sc-chat70b')"/>
+            <input class="showcase-input" type="text" placeholder="Ask Martis-70B..." onkeydown="if(event.key==='Enter') sendShowcaseMessage('sc-chat70b')"/>
             <button class="showcase-send-btn" onclick="sendShowcaseMessage('sc-chat70b')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Summary (IA de Resumo - Interativo) ─ -->
+    <!-- ═══ PANEL: Martis-Summary — Colar e resumir ═══ -->
     <div class="sc-panel" id="sc-summary">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">
-            📝 Martis-Summary
-            <span id="summaryModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-          </div>
-          <h3 class="sc-title">Resuma qualquer texto em segundos.</h3>
-          <p class="sc-desc">O Martis-Summary analisa textos longos e extrai os pontos principais de forma clara e concisa. Ideal para artigos, documentos, emails e qualquer conteudo extenso.</p>
+          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">📝 Martis-Summary</div>
+          <h3 class="sc-title" data-pt="Resuma qualquer texto em segundos." data-en="Summarize any text in seconds.">Summarize any text in seconds.</h3>
+          <p class="sc-desc" data-pt="O Martis-Summary analisa textos longos e extrai os pontos principais de forma clara e concisa." data-en="Martis-Summary analyzes long texts and extracts the key points clearly and concisely.">Martis-Summary analyzes long texts and extracts the key points clearly and concisely.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> Resumo de artigos e documentos</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Extracao de pontos-chave</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Multiplos idiomas suportados</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Preserva informacoes essenciais</div>
-          </div>
-          <div class="api-info-box">
-            <div class="api-info-title">API: Puter.js (Gratuito)</div>
-            <p>Resumo inteligente 100% gratuito, sem chaves!</p>
-            <p style="margin-top:.5rem;font-size:.7rem">Powered by <a href="https://puter.com" target="_blank" style="color:var(--accent-lt)">Puter.com</a></p>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Resumo de artigos e documentos" data-en="Article &amp; document summarization">Article &amp; document summarization</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Extração de pontos-chave" data-en="Key point extraction">Key point extraction</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Múltiplos idiomas suportados" data-en="Multiple languages supported">Multiple languages supported</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Preserva informações essenciais" data-en="Preserves essential information">Preserves essential information</span></div>
           </div>
         </div>
         <div class="sc-demo">
           <div class="demo-header">
             <div class="demo-model-dot" style="background:var(--green)"></div>
             <span class="demo-model-name">Martis-Summary</span>
-            <span class="demo-tag">Resumo interativo</span>
+            <span class="demo-tag" data-pt="Resumo interativo" data-en="Interactive summary">Interactive summary</span>
           </div>
           <div class="summary-generator">
             <div class="summary-input-area">
-              <textarea class="summary-input" rows="6" placeholder="Cole aqui o texto que deseja resumir...&#10;&#10;Pode ser um artigo, documento, email, ou qualquer texto longo."></textarea>
-              <button class="generate-summary-btn" onclick="generateShowcaseSummary()">📝 Resumir Texto</button>
+              <textarea class="summary-input" rows="6" placeholder="Paste any text here to summarize..."></textarea>
+              <button class="generate-summary-btn" onclick="generateShowcaseSummary()">📝 <span data-pt="Resumir Texto" data-en="Summarize Text">Summarize Text</span></button>
             </div>
             <div class="summary-result">
               <div class="summary-placeholder">
                 <div class="placeholder-icon">📋</div>
-                <p>O resumo aparecera aqui</p>
-                <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem">Cole um texto acima e clique em "Resumir Texto"</p>
+                <p data-pt="O resumo aparecerá aqui" data-en="Your summary will appear here">Your summary will appear here</p>
+                <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem" data-pt="Cole um texto acima e clique em Resumir" data-en="Paste text above and click Summarize">Paste text above and click Summarize</p>
               </div>
             </div>
           </div>
@@ -343,342 +588,234 @@
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Code ─ -->
+    <!-- ═══ PANEL: Martis-Code — Editor de código ═══ -->
     <div class="sc-panel" id="sc-code">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--sky-dim);color:var(--sky);border-color:rgba(61,142,196,.3)">
-  💻 Martis-Code 34B
-  <span id="codeModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-</div>
-          <h3 class="sc-title">Codigo limpo, seguro e explicado.</h3>
-          <p class="sc-desc">Fine-tuned em milhoes de repositorios reais, o Martis-Code nao so escreve codigo — ele entende contexto, detecta bugs, sugere refatoracoes e gera testes automaticamente.</p>
+          <div class="sc-badge" style="background:var(--sky-dim);color:var(--sky);border-color:rgba(61,142,196,.3)">💻 Martis-Code 34B</div>
+          <h3 class="sc-title" data-pt="Código limpo, seguro e explicado." data-en="Clean, secure code — explained.">Clean, secure code — explained.</h3>
+          <p class="sc-desc" data-pt="Fine-tuned em milhões de repositórios reais. Detecta bugs, gera testes e explica como um senior developer." data-en="Fine-tuned on millions of real repos. Detects bugs, generates tests, explains like a senior developer.">Fine-tuned on millions of real repos. Detects bugs, generates tests, explains like a senior developer.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> 40+ linguagens de programacao</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Geracao de testes unitarios</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Deteccao de vulnerabilidades</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Documentacao automatica</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="40+ linguagens de programação" data-en="40+ programming languages">40+ programming languages</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Geração de testes unitários" data-en="Unit test generation">Unit test generation</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Detecção de vulnerabilidades" data-en="Vulnerability detection">Vulnerability detection</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Documentação automática" data-en="Auto documentation">Auto documentation</span></div>
           </div>
           <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">GPT-4o</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:71%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">71%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:58%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--accent-lt)">58%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-Code</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:94%;background:linear-gradient(90deg,var(--sky),var(--green))"></div></div>
-              <span class="cmp-val" style="color:var(--green)">94%</span>
-            </div>
+            <div class="cmp-row"><span class="cmp-label">GitHub Copilot</span><div class="cmp-bar"><div class="cmp-fill" style="width:71%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">71%</span></div>
+            <div class="cmp-row"><span class="cmp-label">DeepSeek-Coder</span><div class="cmp-bar"><div class="cmp-fill" style="width:79%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">79%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-Code</span><div class="cmp-bar"><div class="cmp-fill" style="width:94%;background:linear-gradient(90deg,var(--sky),var(--green))"></div></div><span class="cmp-val" style="color:var(--green)">94%</span></div>
             <div class="cmp-legend">Benchmark: HumanEval Pass@1</div>
           </div>
         </div>
-        <div class="sc-demo">
-          <div class="demo-header">
-            <div class="demo-model-dot" style="background:var(--sky)"></div>
-            <span class="demo-model-name">Martis-Code</span>
-            <span class="demo-tag">Exemplo real</span>
-          </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u"><div class="dm-av">U</div><div class="dm-bub">Crie uma API REST em Python com FastAPI para um sistema de autenticacao JWT com refresh token.</div></div>
-            <div class="dm dm-ai"><div class="dm-av">C</div><div class="dm-bub">
-              <div class="demo-code">from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
-from passlib.context import CryptContext
+        <div class="sc-demo" style="display:flex;flex-direction:column;">
+          <div class="code-editor-wrap">
+            <div class="code-toolbar">
+              <span class="code-lang-dot" style="background:#e06c75"></span>
+              <span class="code-lang-dot" style="background:#e5c07b"></span>
+              <span class="code-lang-dot" style="background:#98c379"></span>
+              <span style="margin-left:.5rem" id="code-filename">review.py</span>
+              <span style="margin-left:auto;color:var(--sky);font-weight:600">Python</span>
+            </div>
+            <div class="code-area" id="code-display"><span class="kw">def</span> <span class="fn">calcular_media</span>(notas):
+    total = <span class="num">0</span>
+    <span class="kw">for</span> n <span class="kw">in</span> notas:
+        total += n
+    <span class="kw">return</span> total / len(notas)  <span class="cmt"># ← bug aqui?</span>
 
-SECRET_KEY = "sua-chave-secreta"
-ALGORITHM  = "HS256"
-
-app   = FastAPI()
-pwd_ctx    = CryptContext(schemes=["bcrypt"])
-oauth2     = OAuth2PasswordBearer(tokenUrl="login")
-
-def create_token(data: dict, expires: timedelta):
-    payload = data.copy()
-    payload["exp"] = datetime.utcnow() + expires
-    return jwt.encode(payload, SECRET_KEY, ALGORITHM)
-
-@app.post("/login")
-def login(username: str, password: str):
-    # validar usuario no banco aqui
-    access  = create_token({"sub": username}, timedelta(minutes=15))
-    refresh = create_token({"sub": username}, timedelta(days=7))
-    return {"access_token": access, "refresh_token": refresh}
-
-@app.post("/refresh")
-def refresh(token: str):
-    try:
-        data = jwt.decode(token, SECRET_KEY, [ALGORITHM])
-        new_access = create_token({"sub": data["sub"]},
-                                  timedelta(minutes=15))
-        return {"access_token": new_access}
-    except JWTError:
-        raise HTTPException(401, "Token invalido")</div>
-              <div style="margin-top:.6rem;font-size:.75rem;color:var(--green)">✓ Access token (15min) + Refresh token (7 dias) + Validacao automatica</div>
-            </div></div>
+resultado = calcular_media([<span class="num">8</span>, <span class="num">9</span>, <span class="num">7</span>, <span class="num">10</span>])
+<span class="fn">print</span>(<span class="str">f"Média: {resultado}"</span>)</div>
+            <div class="code-result" id="code-result">
+              <span class="neutral" data-pt="↳ Clique em um botão abaixo para o Martis-Code analisar este código." data-en="↳ Click a button below and Martis-Code will analyze this code.">↳ Click a button below and Martis-Code will analyze this code.</span>
+            </div>
+            <div class="code-actions">
+              <button class="code-chip" onclick="codeAction('review')" data-pt="🔍 Revisar bugs" data-en="🔍 Review bugs">🔍 Review bugs</button>
+              <button class="code-chip" onclick="codeAction('test')"   data-pt="🧪 Gerar testes" data-en="🧪 Generate tests">🧪 Generate tests</button>
+              <button class="code-chip" onclick="codeAction('doc')"    data-pt="📄 Documentar" data-en="📄 Document">📄 Document</button>
+              <button class="code-chip" onclick="codeAction('refactor')" data-pt="♻️ Refatorar" data-en="♻️ Refactor">♻️ Refactor</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Think ─ -->
+    <!-- ═══ PANEL: Martis-Think — Resolução passo a passo ═══ -->
     <div class="sc-panel" id="sc-think">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">
-  🔢 Martis-Think 13B
-  <span id="thinkModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-</div>
-          <h3 class="sc-title">Raciocinio passo a passo, sem pular etapas.</h3>
-          <p class="sc-desc">O Martis-Think usa Chain-of-Thought nativo para resolver problemas matematicos, logicos e cientificos mostrando cada etapa do raciocinio — como um professor explicando no quadro.</p>
+          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">🔢 Martis-Think 13B</div>
+          <h3 class="sc-title" data-pt="Raciocínio passo a passo, sem pular etapas." data-en="Step-by-step reasoning, no shortcuts.">Step-by-step reasoning, no shortcuts.</h3>
+          <p class="sc-desc" data-pt="Chain-of-Thought nativo para matemática, lógica e ciências. Mostra cada etapa do raciocínio." data-en="Native Chain-of-Thought for math, logic and science. Shows every reasoning step.">Native Chain-of-Thought for math, logic and science. Shows every reasoning step.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> Calculo e algebra avancada</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Problemas de logica e combinatoria</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Fisica e quimica quantitativa</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Raciocinio dedutivo e inferencial</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Cálculo e álgebra avançada" data-en="Advanced calculus &amp; algebra">Advanced calculus &amp; algebra</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Problemas de lógica e combinatória" data-en="Logic &amp; combinatorics problems">Logic &amp; combinatorics problems</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Física e química quantitativa" data-en="Quantitative physics &amp; chemistry">Quantitative physics &amp; chemistry</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Raciocínio dedutivo e inferencial" data-en="Deductive &amp; inferential reasoning">Deductive &amp; inferential reasoning</span></div>
           </div>
           <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:28%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">28%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-70B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:61%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--accent-lt)">61%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-Think</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:91%;background:linear-gradient(90deg,var(--green),var(--accent))"></div></div>
-              <span class="cmp-val" style="color:var(--green)">91%</span>
-            </div>
-            <div class="cmp-legend">Benchmark: MATH Dataset (nivel competicao)</div>
+            <div class="cmp-row"><span class="cmp-label">o1-mini</span><div class="cmp-bar"><div class="cmp-fill" style="width:73%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">73%</span></div>
+            <div class="cmp-row"><span class="cmp-label">DeepSeek-R1</span><div class="cmp-bar"><div class="cmp-fill" style="width:84%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">84%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-Think</span><div class="cmp-bar"><div class="cmp-fill" style="width:91%;background:linear-gradient(90deg,var(--green),var(--accent))"></div></div><span class="cmp-val" style="color:var(--green)">91%</span></div>
+            <div class="cmp-legend">Benchmark: MATH Dataset (competition level)</div>
           </div>
         </div>
-        <div class="sc-demo">
-          <div class="demo-header">
-            <div class="demo-model-dot" style="background:var(--green)"></div>
-            <span class="demo-model-name">Martis-Think</span>
-            <span class="demo-tag">Exemplo real</span>
-          </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u"><div class="dm-av">U</div><div class="dm-bub">Uma bola e lancada verticalmente com velocidade inicial de 20 m/s. Qual a altura maxima e o tempo total de voo? (g = 10 m/s²)</div></div>
-            <div class="dm dm-ai"><div class="dm-av">T</div><div class="dm-bub">
-              <strong>Raciocinio passo a passo:</strong><br><br>
-              <strong>Etapa 1 — Altura maxima</strong><br>
-              Na altura maxima, a velocidade e zero. Uso a equacao:<br>
-              <code class="inline-code">v² = v₀² − 2g·h</code><br>
-              <code class="inline-code">0 = 20² − 2 × 10 × h</code><br>
-              <code class="inline-code">h = 400 / 20 = <strong>20 metros</strong></code><br><br>
-              <strong>Etapa 2 — Tempo para atingir o pico</strong><br>
-              <code class="inline-code">v = v₀ − g·t → 0 = 20 − 10t → t_subida = 2s</code><br><br>
-              <strong>Etapa 3 — Tempo total</strong><br>
-              Por simetria, o tempo de descida = tempo de subida.<br>
-              <code class="inline-code">t_total = 2 × 2s = <strong>4 segundos</strong></code><br><br>
-              <div style="background:var(--green-dim);border:1px solid rgba(58,184,154,.25);border-radius:6px;padding:.5rem .75rem;margin-top:.4rem;font-size:.78rem">
-                ✓ Altura maxima: <strong>20 m</strong> &nbsp;|&nbsp; Tempo de voo: <strong>4 s</strong>
+        <div class="sc-demo" style="display:flex;flex-direction:column;">
+          <div class="think-panel">
+            <div class="think-problem">
+              <div class="think-problem-label" data-pt="Problema ativo" data-en="Active problem">Active problem</div>
+              <div id="think-current-problem" style="font-size:.88rem;color:var(--text);font-weight:500;line-height:1.5">
+                <span data-pt="Escolha um problema abaixo para ver o raciocínio passo a passo →" data-en="Choose a problem below to see step-by-step reasoning →">Choose a problem below to see step-by-step reasoning →</span>
               </div>
-            </div></div>
+            </div>
+            <div class="think-steps" id="think-steps-container">
+              <div style="color:var(--text3);font-size:.8rem;font-style:italic;margin:auto;text-align:center;padding:2rem">
+                <span data-pt="O Martis-Think mostrará cada etapa do raciocínio aqui" data-en="Martis-Think will show each reasoning step here">Martis-Think will show each reasoning step here</span>
+              </div>
+            </div>
+            <div class="think-problem-chips">
+              <button class="think-chip" onclick="thinkSolve('factorial')" data-pt="0! a 10! →" data-en="0! to 10! →">0! to 10! →</button>
+              <button class="think-chip" onclick="thinkSolve('probability')" data-pt="Prob. 2 ases" data-en="Prob. 2 aces">Prob. 2 aces</button>
+              <button class="think-chip" onclick="thinkSolve('physics')" data-pt="Queda livre 80m" data-en="Free fall 80m">Free fall 80m</button>
+              <button class="think-chip" onclick="thinkSolve('logic')" data-pt="Charada lógica" data-en="Logic riddle">Logic riddle</button>
+              <button class="think-chip" onclick="thinkSolve('custom')" data-pt="✏️ Problema meu" data-en="✏️ My problem">✏️ My problem</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Write ─ -->
+    <!-- ═══ PANEL: Martis-Write — Editor com estilos ═══ -->
     <div class="sc-panel" id="sc-write">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--amber-dim);color:var(--amber);border-color:rgba(196,157,74,.3)">
-  ✍️ Martis-Write 7B
-  <span id="writeModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-</div>
-          <h3 class="sc-title">Escreve como humano, pensa como editor.</h3>
-          <p class="sc-desc">O Martis-Write foi treinado em milhoes de textos editoriais, literarios e publicitarios. Adapta tom, estilo e vocabulario para cada contexto — de email corporativo a conto de ficcao.</p>
+          <div class="sc-badge" style="background:var(--amber-dim);color:var(--amber);border-color:rgba(196,157,74,.3)">✍️ Martis-Write 7B</div>
+          <h3 class="sc-title" data-pt="Escreve como humano, pensa como editor." data-en="Writes like a human, thinks like an editor.">Writes like a human, thinks like an editor.</h3>
+          <p class="sc-desc" data-pt="Treinado em textos editoriais, literários e publicitários. Adapta tom e estilo para cada contexto." data-en="Trained on editorial, literary and advertising texts. Adapts tone and style to any context.">Trained on editorial, literary and advertising texts. Adapts tone and style to any context.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> Adaptacao de tom e voz da marca</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Escrita criativa e narrativa</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Copywriting e textos de vendas</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Traducao com contexto cultural</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Escrita criativa e narrativa" data-en="Creative writing &amp; narrative">Creative writing &amp; narrative</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Copywriting e textos de vendas" data-en="Copywriting &amp; sales text">Copywriting &amp; sales text</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Tradução com contexto cultural" data-en="Culturally-aware translation">Culturally-aware translation</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Adaptação de tom de marca" data-en="Brand tone adaptation">Brand tone adaptation</span></div>
           </div>
           <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:44%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">44%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-70B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:68%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--accent-lt)">68%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-Write</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:93%;background:linear-gradient(90deg,var(--amber),#c47a4b)"></div></div>
-              <span class="cmp-val" style="color:var(--amber)">93%</span>
-            </div>
-            <div class="cmp-legend">Benchmark: WritingBench (qualidade humana percebida)</div>
+            <div class="cmp-row"><span class="cmp-label">Claude Haiku</span><div class="cmp-bar"><div class="cmp-fill" style="width:44%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">44%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Gemini Flash</span><div class="cmp-bar"><div class="cmp-fill" style="width:68%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">68%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-Write</span><div class="cmp-bar"><div class="cmp-fill" style="width:93%;background:linear-gradient(90deg,var(--amber),#c47a4b)"></div></div><span class="cmp-val" style="color:var(--amber)">93%</span></div>
+            <div class="cmp-legend">Benchmark: WritingBench (perceived human quality)</div>
           </div>
         </div>
-        <div class="sc-demo">
-          <div class="demo-header">
-            <div class="demo-model-dot" style="background:var(--amber)"></div>
-            <span class="demo-model-name">Martis-Write</span>
-            <span class="demo-tag">Exemplo real</span>
-          </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u"><div class="dm-av">U</div><div class="dm-bub">Escreva dois paragrafos de abertura para um thriller urbano passado em Sao Paulo, com tom tenso e cinematografico.</div></div>
-            <div class="dm dm-ai"><div class="dm-av">W</div><div class="dm-bub">
-              <div style="font-style:italic;line-height:1.85;color:var(--text)">
-                A Marginal Pinheiros nao dorme — ela apenas finge. As 3h47 da manha de uma sexta-feira qualquer, o transito engoliu o silencio e cuspiu fumaraca de tubo de escape e neon de posto de gasolina. Marta Vasconcelos acelerou o Gol enferrujado pelo acostamento, as maos brancas no volante, os olhos no retrovisor. O carro cinza ainda estava la. Ainda na mesma distancia. Como se soubesse que nao precisava se apressar.<br><br>
-                Ela havia saido do escritorio com uma pasta que nao deveria existir, assinada por um ministro que ja estava morto ha seis horas — e a cidade toda ainda fingia que nao sabia.
-              </div>
-              <div style="margin-top:.7rem;font-size:.73rem;color:var(--amber);opacity:.8">Tom: tenso · Genero: thriller urbano · Cenario: Sao Paulo noturno</div>
-            </div></div>
+        <div class="sc-demo" style="display:flex;flex-direction:column;">
+          <div class="write-panel">
+            <div class="write-toolbar">
+              <span style="font-size:.67rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-right:.25rem" data-pt="Tom:" data-en="Tone:">Tone:</span>
+              <button class="write-style-btn active" data-style="creative" onclick="writeSetStyle(this)" data-pt="Criativo" data-en="Creative">Creative</button>
+              <button class="write-style-btn" data-style="professional" onclick="writeSetStyle(this)" data-pt="Profissional" data-en="Professional">Professional</button>
+              <button class="write-style-btn" data-style="persuasive" onclick="writeSetStyle(this)" data-pt="Persuasivo" data-en="Persuasive">Persuasive</button>
+              <button class="write-style-btn" data-style="poetic" onclick="writeSetStyle(this)" data-pt="Poético" data-en="Poetic">Poetic</button>
+              <button class="write-style-btn" data-style="technical" onclick="writeSetStyle(this)" data-pt="Técnico" data-en="Technical">Technical</button>
+            </div>
+            <div class="write-output" id="write-output">
+              <span class="placeholder-text" data-pt="Digite um tema abaixo e o Martis-Write criará um texto no tom selecionado..." data-en="Type a topic below and Martis-Write will craft text in the selected tone...">Type a topic below and Martis-Write will craft text in the selected tone...</span>
+            </div>
+            <div class="write-actions">
+              <input class="write-prompt-in" id="write-prompt" type="text"
+                     placeholder="Topic or writing prompt..."
+                     onkeydown="if(event.key==='Enter') writeGenerate()"/>
+              <button class="write-send-btn" id="write-send-btn" onclick="writeGenerate()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Vision ─ -->
+    <!-- ═══ PANEL: Martis-Vision — Upload + análise ═══ -->
     <div class="sc-panel" id="sc-vision">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--rose-dim);color:var(--rose);border-color:rgba(176,95,136,.3)">
-  👁️ Martis-Vision 13B
-  <span id="visionModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-</div>
-          <h3 class="sc-title">Ve, interpreta e extrai dados de imagens.</h3>
-          <p class="sc-desc">O Martis-Vision combina visao computacional com linguagem natural. Analisa fotos, graficos, documentos escaneados e capturas de tela — e devolve insights estruturados ou texto editavel.</p>
+          <div class="sc-badge" style="background:var(--rose-dim);color:var(--rose);border-color:rgba(176,95,136,.3)">👁️ Martis-Vision 13B</div>
+          <h3 class="sc-title" data-pt="Vê, interpreta e extrai dados de imagens." data-en="Sees, interprets, and extracts data from images.">Sees, interprets, and extracts data from images.</h3>
+          <p class="sc-desc" data-pt="Analisa fotos, gráficos, capturas de tela e documentos digitalizados, extraindo insights estruturados." data-en="Analyzes photos, charts, screenshots and scanned documents, extracting structured insights.">Analyzes photos, charts, screenshots and scanned documents, extracting structured insights.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> OCR de documentos e notas fiscais</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Leitura de graficos e dashboards</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Descricao detalhada de imagens</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Analise de layouts de interface</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="OCR de notas fiscais e recibos" data-en="Invoice &amp; receipt OCR">Invoice &amp; receipt OCR</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Leitura de gráficos e dashboards" data-en="Chart &amp; dashboard reading">Chart &amp; dashboard reading</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Descrição detalhada de imagens" data-en="Detailed image description">Detailed image description</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="100% local, dados privados" data-en="100% local, private data">100% local, private data</span></div>
           </div>
           <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:0%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">sem visao</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-70B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:0%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">sem visao</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-Vision</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:89%;background:linear-gradient(90deg,var(--rose),var(--amber))"></div></div>
-              <span class="cmp-val" style="color:var(--rose)">89%</span>
-            </div>
-            <div class="cmp-legend">Benchmark: DocVQA (leitura de documentos)</div>
+            <div class="cmp-row"><span class="cmp-label">Gemini Vision</span><div class="cmp-bar"><div class="cmp-fill" style="width:78%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">78%</span></div>
+            <div class="cmp-row"><span class="cmp-label">GPT-4V</span><div class="cmp-bar"><div class="cmp-fill" style="width:85%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">85%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-Vision</span><div class="cmp-bar"><div class="cmp-fill" style="width:89%;background:linear-gradient(90deg,var(--rose),var(--amber))"></div></div><span class="cmp-val" style="color:var(--rose)">89%</span></div>
+            <div class="cmp-legend">Benchmark: DocVQA (document reading)</div>
           </div>
         </div>
-        <div class="sc-demo">
-          <div class="demo-header">
-            <div class="demo-model-dot" style="background:var(--rose)"></div>
-            <span class="demo-model-name">Martis-Vision</span>
-            <span class="demo-tag">Exemplo real</span>
-          </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u">
-              <div class="dm-av">U</div>
-              <div class="dm-bub">
-                <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
-                  <div style="width:36px;height:36px;border-radius:6px;background:var(--rose-dim);border:1px solid var(--rose);display:grid;place-items:center;font-size:.85rem;flex-shrink:0">📊</div>
-                  <div style="font-size:.75rem;color:var(--text2)">grafico_vendas_q3.png · 148 KB<br><span style="color:var(--text3)">Imagem enviada</span></div>
-                </div>
-                Extraia os dados do grafico e diga qual mes teve melhor desempenho.
+        <div class="sc-demo" style="display:flex;flex-direction:column;">
+          <div class="vision-panel">
+            <!-- Área de upload -->
+            <div class="vision-upload-area" id="vision-drop-zone" onclick="document.getElementById('vision-file-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--rose)'" ondragleave="this.style.borderColor=''" ondrop="visionHandleDrop(event)">
+              <input type="file" id="vision-file-input" accept="image/*" style="display:none" onchange="visionHandleFile(this.files[0])"/>
+              <div id="vision-upload-content">
+                <div class="vision-upload-icon">🖼️</div>
+                <div class="vision-upload-label" data-pt="Arraste uma imagem ou clique para fazer upload" data-en="Drag an image or click to upload">Drag an image or click to upload</div>
+                <div class="vision-upload-sub" data-pt="PNG, JPG, WEBP · ou use uma cena de exemplo abaixo" data-en="PNG, JPG, WEBP · or use a sample scene below">PNG, JPG, WEBP · or use a sample scene below</div>
               </div>
             </div>
-            <div class="dm dm-ai"><div class="dm-av">V</div><div class="dm-bub">
-              <strong>Dados extraidos do grafico de barras:</strong><br><br>
-              <div class="demo-code" style="color:var(--text2)">Jan  R$ 82.400   ▓▓▓▓▓▓▓▓░░░░
-Fev  R$ 74.100   ▓▓▓▓▓▓▓░░░░░░
-Mar  R$ 91.800   ▓▓▓▓▓▓▓▓▓░░░░
-Ago  R$ 134.200  ▓▓▓▓▓▓▓▓▓▓▓▓▓  ← pico
-Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
-              <br><strong>Analise:</strong> <strong>Agosto</strong> foi o mes com maior receita (R$ 134.200), representando crescimento de <strong>+63%</strong> em relacao a fevereiro (minimo do periodo). O Q3 mostrou tendencia de alta consistente com pico em agosto.
-            </div></div>
+            <!-- Resultado da análise -->
+            <div class="vision-result" id="vision-result">
+              <span style="color:var(--text3);font-size:.8rem;font-style:italic" data-pt="A análise da imagem aparecerá aqui após o upload e a seleção de um modo." data-en="Image analysis will appear here after uploading and selecting a mode.">Image analysis will appear here after uploading and selecting a mode.</span>
+            </div>
+            <!-- Ações -->
+            <div class="vision-actions-bar">
+              <button class="vision-action-btn" onclick="visionAnalyze('describe')" data-pt="🔍 Descrever" data-en="🔍 Describe">🔍 Describe</button>
+              <button class="vision-action-btn" onclick="visionAnalyze('ocr')"      data-pt="📋 Extrair texto (OCR)" data-en="📋 Extract text (OCR)">📋 Extract text (OCR)</button>
+              <button class="vision-action-btn" onclick="visionAnalyze('chart')"    data-pt="📊 Ler gráfico" data-en="📊 Read chart">📊 Read chart</button>
+              <button class="vision-action-btn" onclick="visionAnalyze('sample')"   data-pt="▶ Cena de exemplo" data-en="▶ Sample scene">▶ Sample scene</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─ PANEL: Martis-Voice ─ -->
+    <!-- ═══ PANEL: Martis-Voice — Simulação de transcrição ═══ -->
     <div class="sc-panel" id="sc-voice">
       <div class="sc-layout">
         <div class="sc-info">
-          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">
-  🎙️ Martis-Voice 3B
-  <span id="voiceModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
-</div>
-          <h3 class="sc-title">Transcreve, sintetiza e entende tom de voz.</h3>
-          <p class="sc-desc">Especializado em audio, o Martis-Voice converte fala em texto com precisao de 97%, sintetiza voz natural em 15 idiomas e detecta sentimento emocional em conversas gravadas.</p>
+          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">🎙️ Martis-Voice 3B</div>
+          <h3 class="sc-title" data-pt="Transcreve, sintetiza e entende tom de voz." data-en="Transcribes, synthesizes, and reads vocal tone.">Transcribes, synthesizes, and reads vocal tone.</h3>
+          <p class="sc-desc" data-pt="97% de precisão em Português Brasileiro. Diarização de speakers, TTS natural em 15 idiomas." data-en="97% accuracy in Brazilian Portuguese. Speaker diarization, natural TTS in 15 languages.">97% accuracy in Brazilian Portuguese. Speaker diarization, natural TTS in 15 languages.</p>
           <div class="sc-strengths">
-            <div class="strength-item"><span class="s-icon">✓</span> Transcricao em tempo real (STT)</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Sintese de voz expressiva (TTS)</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Identificacao de speaker diarization</div>
-            <div class="strength-item"><span class="s-icon">✓</span> Analise de sentimento em audio</div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Transcrição em tempo real (STT)" data-en="Real-time transcription (STT)">Real-time transcription (STT)</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Síntese de voz expressiva (TTS)" data-en="Expressive voice synthesis (TTS)">Expressive voice synthesis (TTS)</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Identificação de speakers" data-en="Speaker diarization">Speaker diarization</span></div>
+            <div class="strength-item"><span class="s-icon">✓</span> <span data-pt="Análise de sentimento em áudio" data-en="Audio sentiment analysis">Audio sentiment analysis</span></div>
           </div>
           <div class="sc-compare">
-            <div class="cmp-row">
-              <span class="cmp-label">Whisper v3</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:88%;background:var(--border2)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">88%</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-7B</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:0%;background:var(--accent-dim)"></div></div>
-              <span class="cmp-val" style="color:var(--text3)">sem audio</span>
-            </div>
-            <div class="cmp-row">
-              <span class="cmp-label">Martis-Voice</span>
-              <div class="cmp-bar"><div class="cmp-fill" style="width:97%;background:linear-gradient(90deg,var(--purple),var(--rose))"></div></div>
-              <span class="cmp-val" style="color:var(--purple-lt)">97%</span>
-            </div>
-            <div class="cmp-legend">Benchmark: Precisao STT Portugues Brasileiro</div>
+            <div class="cmp-row"><span class="cmp-label">Whisper v3</span><div class="cmp-bar"><div class="cmp-fill" style="width:88%;background:var(--border2)"></div></div><span class="cmp-val" style="color:var(--text3)">88%</span></div>
+            <div class="cmp-row"><span class="cmp-label">ElevenLabs</span><div class="cmp-bar"><div class="cmp-fill" style="width:91%;background:var(--accent-dim)"></div></div><span class="cmp-val" style="color:var(--accent-lt)">91%</span></div>
+            <div class="cmp-row"><span class="cmp-label">Martis-Voice</span><div class="cmp-bar"><div class="cmp-fill" style="width:97%;background:linear-gradient(90deg,var(--purple),var(--rose))"></div></div><span class="cmp-val" style="color:var(--purple-lt)">97%</span></div>
+            <div class="cmp-legend" data-pt="Precisão STT Português Brasileiro" data-en="STT Accuracy — Brazilian Portuguese">STT Accuracy — Brazilian Portuguese</div>
           </div>
         </div>
-        <div class="sc-demo">
-          <div class="demo-header">
-            <div class="demo-model-dot" style="background:var(--purple)"></div>
-            <span class="demo-model-name">Martis-Voice</span>
-            <span class="demo-tag">Exemplo real</span>
-          </div>
-          <div class="demo-msgs">
-            <div class="dm dm-u">
-              <div class="dm-av">U</div>
-              <div class="dm-bub">
-                <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
-                  <div style="width:36px;height:36px;border-radius:6px;background:var(--purple-dim);border:1px solid var(--purple);display:grid;place-items:center;font-size:.85rem;flex-shrink:0">🎙️</div>
-                  <div style="font-size:.75rem;color:var(--text2)">reuniao_equipe_22min.mp3 · 18.4 MB<br><span style="color:var(--text3)">Audio enviado</span></div>
-                </div>
-                Transcreva e identifique quem falou cada parte.
+        <div class="sc-demo" style="display:flex;flex-direction:column;">
+          <div class="voice-panel">
+            <!-- Waveform animada -->
+            <div class="voice-waveform" id="voice-waveform"></div>
+            <!-- Transcrição com diarização -->
+            <div class="voice-transcript-area" id="voice-transcript">
+              <div style="color:var(--text3);font-size:.8rem;font-style:italic;text-align:center;padding:1rem" data-pt="Clique em 'Simular transcrição' ou escolha um cenário abaixo." data-en="Click 'Simulate transcription' or choose a scenario below.">Click 'Simulate transcription' or choose a scenario below.</div>
+            </div>
+            <!-- Controles -->
+            <div class="voice-controls">
+              <button class="voice-rec-btn idle" id="voice-rec-btn" onclick="voiceSimulate('meeting')" title="Simular transcrição">🎙️</button>
+              <span class="voice-status-text" id="voice-status" data-pt="Pronto para transcrever" data-en="Ready to transcribe">Ready to transcribe</span>
+              <div class="voice-demo-chips">
+                <button class="voice-chip" onclick="voiceSimulate('meeting')"   data-pt="🤝 Reunião" data-en="🤝 Meeting">🤝 Meeting</button>
+                <button class="voice-chip" onclick="voiceSimulate('podcast')"   data-pt="🎧 Podcast" data-en="🎧 Podcast">🎧 Podcast</button>
+                <button class="voice-chip" onclick="voiceSimulate('interview')" data-pt="💼 Entrevista" data-en="💼 Interview">💼 Interview</button>
+                <button class="voice-chip" onclick="voiceSimulate('lecture')"   data-pt="📚 Aula" data-en="📚 Lecture">📚 Lecture</button>
               </div>
             </div>
-            <div class="dm dm-ai"><div class="dm-av">V</div><div class="dm-bub">
-              <strong>Transcricao com diarizacao de speakers:</strong><br><br>
-              <div class="demo-code" style="color:var(--text2);line-height:1.9">
-[00:00] <span style="color:var(--accent-lt)">Speaker A (Carlos):</span> Bom, vamos comecar. O relatorio do Q3 ficou abaixo do esperado...
-[00:18] <span style="color:var(--green)">Speaker B (Ana):</span> Concordo, mas preciso destacar que o setor de SaaS cresceu 34%...
-[00:41] <span style="color:var(--amber)">Speaker C (Pedro):</span> O problema central e a churn rate. Subiu de 4 para 7%...
-[01:12] <span style="color:var(--accent-lt)">Speaker A (Carlos):</span> Entao precisamos revisar o onboarding completo.</div>
-              <br>
-              <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-                <span style="font-size:.72rem;background:var(--green-dim);color:var(--green);padding:.2rem .55rem;border-radius:4px;border:1px solid rgba(58,184,154,.25)">✓ 3 speakers identificados</span>
-                <span style="font-size:.72rem;background:var(--purple-dim);color:var(--purple-lt);padding:.2rem .55rem;border-radius:4px;border:1px solid rgba(124,92,191,.25)">Tom: profissional</span>
-                <span style="font-size:.72rem;background:var(--accent-dim);color:var(--accent-lt);padding:.2rem .55rem;border-radius:4px;border:1px solid rgba(79,130,196,.25)">97.2% precisao</span>
-              </div>
-            </div></div>
           </div>
         </div>
       </div>
@@ -686,6 +823,358 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
 
   </div>
 </section>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   SHOWCASE INTERACTIONS — específicos por modelo
+═══════════════════════════════════════════════════ */
+
+/* ── STATUS GLOBAL ── */
+function updateGlobalStatus(state) {
+  const bar   = document.getElementById('globalApiStatus');
+  const label = document.getElementById('globalApiLabel');
+  if (!bar || !label) return;
+  bar.className = `sc-status-bar ${state}`;
+  if (state === 'online') label.textContent = '3 providers ativos — IA respondendo normalmente';
+  if (state === 'demo')   label.textContent = 'Modo demo ativo — configure uma API key para IA real';
+  if (state === 'offline') label.textContent = 'Todos os providers offline — verifique suas chaves';
+  // Também atualiza as tabs
+  document.querySelectorAll('.tab-status').forEach(el => {
+    el.textContent = state === 'online' ? 'Online' : state === 'demo' ? 'Demo' : 'Offline';
+    el.className = `tab-status ${state}`;
+  });
+}
+
+// Sobrescreve o updateAPIStatus do ai-integrations.js para atualizar o status global também
+const _origUpdateStatus = window.updateAPIStatus;
+document.addEventListener('DOMContentLoaded', () => {
+  const origFn = window.updateAPIStatus;
+  if (origFn) {
+    window.updateAPIStatus = function() {
+      origFn();
+      const s = (typeof API_STATUS !== 'undefined') ? API_STATUS.text : null;
+      if (s) updateGlobalStatus(s.demo ? 'demo' : (s.online ? 'online' : 'offline'));
+    };
+  }
+});
+
+/* ── MARTIS-CODE: ações no editor ── */
+const CODE_PROMPTS = {
+  review:   'Revise este código Python e liste todos os bugs, problemas de edge case e riscos. Seja específico e direto:\n\ndef calcular_media(notas):\n    total = 0\n    for n in notas:\n        total += n\n    return total / len(notas)\n\nresultado = calcular_media([8, 9, 7, 10])\nprint(f"Média: {resultado}")',
+  test:     'Gere testes unitários Python completos com pytest para esta função, incluindo casos de borda:\n\ndef calcular_media(notas):\n    total = 0\n    for n in notas:\n        total += n\n    return total / len(notas)',
+  doc:      'Adicione docstring completa (Google style) e type hints a esta função Python:\n\ndef calcular_media(notas):\n    total = 0\n    for n in notas:\n        total += n\n    return total / len(notas)',
+  refactor: 'Refatore esta função Python para ser mais Pythonica, segura e eficiente. Explique cada mudança:\n\ndef calcular_media(notas):\n    total = 0\n    for n in notas:\n        total += n\n    return total / len(notas)',
+};
+
+async function codeAction(action) {
+  const resultEl = document.getElementById('code-result');
+  resultEl.innerHTML = '<span class="neutral">⏳ Martis-Code analisando...</span>';
+
+  const chips = document.querySelectorAll('#sc-code .code-chip');
+  chips.forEach(c => c.disabled = true);
+
+  try {
+    const sys = 'Você é o Martis-Code, especializado em revisão de código. Seja preciso, técnico e direto. Use markdown para code blocks.';
+    const reply = await callAI([{ role: 'user', content: CODE_PROMPTS[action] }], sys);
+    const formatted = reply.replace(/```[\w]*\n?([\s\S]*?)```/g, '<div class="demo-code" style="font-size:.72rem;margin:.4rem 0">$1</div>')
+                           .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                           .replace(/\n/g, '<br>');
+    resultEl.innerHTML = `<span class="ok">✓ </span><span style="color:var(--text2)">${formatted}</span>`;
+  } catch (e) {
+    resultEl.innerHTML = `<span class="err">✗ Erro: ${e.message}</span>`;
+  }
+  chips.forEach(c => c.disabled = false);
+}
+
+/* ── MARTIS-THINK: problemas prontos ── */
+const THINK_PROBLEMS = {
+  factorial: {
+    pt: 'Calcule os fatoriais de 0 a 10 e explique o padrão.',
+    en: 'Calculate the factorials from 0 to 10 and explain the pattern.',
+    sys: 'Você é o Martis-Think. Mostre cada cálculo passo a passo de forma clara e didática. Use notação matemática.'
+  },
+  probability: {
+    pt: 'Qual a probabilidade de tirar 2 ases seguidos de um baralho de 52 cartas sem reposição?',
+    en: 'What is the probability of drawing 2 aces in a row from a 52-card deck without replacement?',
+    sys: 'Você é o Martis-Think. Resolva passo a passo, mostrando cada etapa da probabilidade condicional.'
+  },
+  physics: {
+    pt: 'Um objeto cai em queda livre de 80 metros. Qual a velocidade ao tocar o solo e o tempo de queda? (g=9.8)',
+    en: 'An object is in free fall from 80 meters. What is the velocity when it hits the ground and the time of fall? (g=9.8)',
+    sys: 'Você é o Martis-Think. Resolva com cinemática passo a passo, identificando cada variável e equação.'
+  },
+  logic: {
+    pt: 'Três pessoas — Alice, Bob e Carlos — dizem: Alice: "Bob mente". Bob: "Carlos mente". Carlos: "Alice e Bob mentem". Quem fala a verdade?',
+    en: 'Three people — Alice, Bob and Carlos — say: Alice: "Bob lies." Bob: "Carlos lies." Carlos: "Alice and Bob lie." Who tells the truth?',
+    sys: 'Você é o Martis-Think. Resolva por dedução lógica passo a passo, testando cada cenário possível.'
+  },
+};
+
+async function thinkSolve(type) {
+  if (type === 'custom') {
+    const q = prompt('Digite seu problema de matemática ou lógica:');
+    if (!q) return;
+    await thinkRun(q, 'Você é o Martis-Think. Resolva passo a passo de forma clara e didática.', q);
+    return;
+  }
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  const prob = THINK_PROBLEMS[type];
+  await thinkRun(prob[lang], prob.sys, prob[lang]);
+}
+
+async function thinkRun(problem, sys, displayProblem) {
+  const stepsEl   = document.getElementById('think-steps-container');
+  const problemEl = document.getElementById('think-current-problem');
+  problemEl.textContent = displayProblem;
+  stepsEl.innerHTML = '<div style="color:var(--text3);font-size:.8rem;text-align:center;padding:1.5rem">⏳ Martis-Think raciocinando...</div>';
+
+  const chips = document.querySelectorAll('#sc-think .think-chip');
+  chips.forEach(c => c.disabled = true);
+
+  try {
+    const reply = await callAI([{ role: 'user', content: problem }], sys);
+    // Quebra em parágrafos/linhas para simular steps
+    const lines = reply.split('\n').filter(l => l.trim());
+    stepsEl.innerHTML = '';
+    lines.forEach((line, i) => {
+      if (!line.trim()) return;
+      const step = document.createElement('div');
+      step.className = 'think-step';
+      step.style.animationDelay = (i * 0.08) + 's';
+      const isFormula = /[=+\-*/÷×∫∑√²³]/.test(line) || /\d+/.test(line);
+      step.innerHTML = `
+        <div class="think-step-num">${i + 1}</div>
+        <div class="think-step-body">${isFormula
+          ? line.replace(/(\d[\d\s\+\-\*\/\=\.\,\%]+)/g, '<span class="think-formula">$1</span>')
+          : line.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')}</div>`;
+      stepsEl.appendChild(step);
+    });
+  } catch (e) {
+    stepsEl.innerHTML = `<div style="color:var(--rose);font-size:.8rem;padding:1rem">Erro: ${e.message}</div>`;
+  }
+  chips.forEach(c => c.disabled = false);
+}
+
+/* ── MARTIS-WRITE: geração com tom ── */
+let writeCurrentStyle = 'creative';
+
+function writeSetStyle(btn) {
+  document.querySelectorAll('.write-style-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  writeCurrentStyle = btn.dataset.style;
+}
+
+const WRITE_STYLE_PROMPTS = {
+  creative:     'Escreva em estilo criativo e narrativo, com metáforas, ritmo e vivacidade. Evite o óbvio.',
+  professional: 'Escreva em tom profissional, claro e objetivo. Adequado para contexto corporativo.',
+  persuasive:   'Escreva em tom persuasivo, com argumentos fortes, gatilhos emocionais e call to action.',
+  poetic:       'Escreva em estilo poético, com atenção ao ritmo, às imagens e à musicalidade das palavras.',
+  technical:    'Escreva em estilo técnico, preciso e estruturado. Use termos corretos e evite ambiguidades.',
+};
+
+async function writeGenerate() {
+  const input   = document.getElementById('write-prompt');
+  const output  = document.getElementById('write-output');
+  const sendBtn = document.getElementById('write-send-btn');
+  const topic   = input.value.trim();
+  if (!topic) return;
+
+  input.disabled = sendBtn.disabled = true;
+  output.innerHTML = '<span class="write-cursor"></span>';
+
+  const styleInstruction = WRITE_STYLE_PROMPTS[writeCurrentStyle] || WRITE_STYLE_PROMPTS.creative;
+  const sys = `Você é o Martis-Write, especializado em escrita de alta qualidade. ${styleInstruction} Escreva um parágrafo curto mas impactante. Não use introduções do tipo "Aqui está" — vá direto ao texto.`;
+
+  try {
+    const reply = await callAI([{ role: 'user', content: `Escreva sobre: ${topic}` }], sys);
+    // Efeito de digitação
+    output.innerHTML = '';
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'write-cursor';
+    const typeNext = () => {
+      if (i < reply.length) {
+        output.textContent = reply.slice(0, i + 1);
+        output.appendChild(cursor);
+        i++;
+        setTimeout(typeNext, 18);
+      } else {
+        cursor.remove();
+        output.textContent = reply;
+      }
+    };
+    typeNext();
+  } catch (e) {
+    output.innerHTML = `<span style="color:var(--rose)">Erro: ${e.message}</span>`;
+  }
+  input.disabled = sendBtn.disabled = false;
+  input.focus();
+}
+
+/* ── MARTIS-VISION: upload + análise ── */
+let visionImageData = null;
+
+function visionHandleDrop(e) {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) visionHandleFile(file);
+}
+
+function visionHandleFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    visionImageData = e.target.result;
+    const zone = document.getElementById('vision-drop-zone');
+    zone.classList.add('has-image');
+    zone.innerHTML = `<img src="${visionImageData}" class="vision-preview-img" alt="Uploaded image"/>`;
+    document.getElementById('vision-result').innerHTML = '<span style="color:var(--text3);font-size:.8rem" data-pt="Imagem carregada — escolha uma análise abaixo." data-en="Image loaded — choose an analysis below.">Image loaded — choose an analysis below.</span>';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function visionAnalyze(mode) {
+  const resultEl = document.getElementById('vision-result');
+
+  if (mode === 'sample') {
+    // Modo demonstração sem imagem real
+    visionImageData = 'sample';
+  }
+
+  if (!visionImageData) {
+    resultEl.innerHTML = '<span style="color:var(--amber);font-size:.8rem">⚠️ Faça upload de uma imagem primeiro, ou clique em "Cena de exemplo".</span>';
+    return;
+  }
+
+  resultEl.innerHTML = '<span style="color:var(--text3);font-size:.8rem">👁️ Martis-Vision analisando...</span>';
+
+  const VISION_PROMPTS = {
+    describe: visionImageData === 'sample'
+      ? 'Descreva detalhadamente esta cena: uma foto de uma cidade à noite com luzes de carros fazendo rastros de luz e arranha-céus iluminados ao fundo.'
+      : `Descreva detalhadamente o que você vê nesta imagem. Mencione objetos, cores, composição e qualquer detalhe relevante.`,
+    ocr: visionImageData === 'sample'
+      ? 'Simule extrair o texto de uma nota fiscal fictícia com: empresa "TechStore Ltda", data "15/03/2025", produto "Monitor 27" 4K", quantidade 1, valor R$ 2.849,90, total com impostos R$ 3.107,39.'
+      : `Extraia todo o texto visível nesta imagem (OCR). Organize por seções se houver estrutura.`,
+    chart: visionImageData === 'sample'
+      ? 'Analise este gráfico de barras fictício de vendas trimestrais: Q1=R$82k, Q2=R$94k, Q3=R$127k, Q4=R$118k. Extraia os dados, identifique tendências e o melhor trimestre.'
+      : `Analise este gráfico ou dashboard. Extraia os dados, identifique tendências e forneça insights.`,
+  };
+
+  const sys = 'Você é o Martis-Vision, especializado em análise visual. Seja preciso e estruturado na sua análise.';
+
+  try {
+    const prompt = VISION_PROMPTS[mode] || VISION_PROMPTS.describe;
+    const reply = await callAI([{ role: 'user', content: prompt }], sys);
+    const formatted = reply.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    resultEl.innerHTML = `<div style="font-size:.82rem;line-height:1.75;color:var(--text)">${formatted}</div>`;
+  } catch (e) {
+    resultEl.innerHTML = `<span style="color:var(--rose);font-size:.8rem">Erro: ${e.message}</span>`;
+  }
+}
+
+/* ── MARTIS-VOICE: simulação de transcrição ── */
+const VOICE_SCENARIOS = {
+  meeting: {
+    pt: [
+      { speaker: 'A', name: 'Carlos', lines: ['Bom, vamos começar. Os números do Q3 ficaram abaixo do esperado — queda de 12% em relação à meta.', 'Precisamos decidir: ajustamos a meta ou mudamos a estratégia?'] },
+      { speaker: 'B', name: 'Ana',    lines: ['Eu acho que o problema está no onboarding. Perdemos 40% dos usuários na primeira semana.', 'Precisamos redesenhar esse fluxo com urgência.'] },
+      { speaker: 'C', name: 'Pedro',  lines: ['Concordo com a Ana. Tenho dados mostrando que o passo 3 do onboarding tem 68% de abandono.', 'Proposta: reduzir de 6 para 2 campos obrigatórios.'] },
+    ],
+    sentiment: 'Reunião: tom profissional · 3 speakers · Sentimento: construtivo',
+  },
+  podcast: {
+    pt: [
+      { speaker: 'A', name: 'Host',   lines: ['Bem-vindos ao NerdCast! Hoje o tema é inteligência artificial e o mercado de trabalho.', 'Meu convidado é referência na área. Qual sua visão sobre o futuro?'] },
+      { speaker: 'B', name: 'Guest',  lines: ['Obrigado! Bom, eu acredito que IA não vai eliminar empregos — vai transformá-los.', 'As profissões que sobreviverão são as que exigem criatividade e empatia.'] },
+      { speaker: 'A', name: 'Host',   lines: ['Interessante! E o que você recomenda para quem está começando na área agora?'] },
+      { speaker: 'B', name: 'Guest',  lines: ['Aprenda a trabalhar COM a IA, não contra ela. Seja o humano que sabe usar as ferramentas.'] },
+    ],
+    sentiment: 'Podcast: tom descontraído · 2 speakers · Sentimento: otimista',
+  },
+  interview: {
+    pt: [
+      { speaker: 'A', name: 'Entrevistador', lines: ['Olá! Pode se apresentar e contar um pouco da sua trajetória?'] },
+      { speaker: 'B', name: 'Candidato',     lines: ['Claro! Tenho 5 anos de experiência em desenvolvimento frontend, principalmente com React e TypeScript.', 'Meu último projeto foi um dashboard em tempo real que reduziu o tempo de análise em 60%.'] },
+      { speaker: 'A', name: 'Entrevistador', lines: ['Excelente. Como você lida com prazos apertados e mudanças de escopo?'] },
+      { speaker: 'B', name: 'Candidato',     lines: ['Gosto de comunicação proativa. Identifico o problema cedo e proponho soluções antes que vire crise.'] },
+    ],
+    sentiment: 'Entrevista: tom formal · 2 speakers · Sentimento: positivo',
+  },
+  lecture: {
+    pt: [
+      { speaker: 'A', name: 'Prof. Silva', lines: ['Hoje vamos falar sobre redes neurais convolucionais — as CNNs.', 'Uma CNN aprende a detectar padrões visuais de forma hierárquica: bordas, formas, objetos.'] },
+      { speaker: 'B', name: 'Aluno',       lines: ['Professor, qual a diferença entre uma CNN e uma rede totalmente conectada?'] },
+      { speaker: 'A', name: 'Prof. Silva', lines: ['Boa pergunta! Na CNN, cada neurônio só olha para uma região local da imagem — chamamos de campo receptivo.', 'Isso reduz drasticamente o número de parâmetros e melhora a generalização.'] },
+    ],
+    sentiment: 'Aula: tom acadêmico · 2 speakers · Sentimento: engajado',
+  },
+};
+
+let voiceAnimInterval = null;
+
+function voiceSimulate(scenario) {
+  const transcript = document.getElementById('voice-transcript');
+  const statusEl   = document.getElementById('voice-status');
+  const recBtn     = document.getElementById('voice-rec-btn');
+  const waveform   = document.getElementById('voice-waveform');
+
+  // Gera waveform bars
+  waveform.innerHTML = '';
+  const numBars = 32;
+  for (let i = 0; i < numBars; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'wave-bar';
+    bar.style.height = (Math.random() * 24 + 4) + 'px';
+    waveform.appendChild(bar);
+  }
+
+  // Anima waveform
+  if (voiceAnimInterval) clearInterval(voiceAnimInterval);
+  voiceAnimInterval = setInterval(() => {
+    waveform.querySelectorAll('.wave-bar').forEach(b => {
+      b.style.height = (Math.random() * 28 + 4) + 'px';
+    });
+  }, 120);
+
+  recBtn.className = 'voice-rec-btn recording';
+  statusEl.textContent = 'Transcrevendo...';
+  transcript.innerHTML = '';
+
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  const data = VOICE_SCENARIOS[scenario];
+  if (!data) return;
+
+  let delay = 0;
+  data.pt.forEach(speaker => {
+    speaker.lines.forEach((line, li) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = 'voice-transcript-line';
+        div.style.animationDelay = '0s';
+        div.innerHTML = `
+          <div>
+            <span class="speaker-badge speaker-${speaker.speaker.toLowerCase()}">${speaker.name}</span>
+            <div class="transcript-text">${line}</div>
+            <div class="transcript-time">${String(Math.floor(delay/1000/60)).padStart(2,'0')}:${String(Math.floor(delay/1000)%60).padStart(2,'0')}</div>
+          </div>`;
+        transcript.appendChild(div);
+        transcript.scrollTop = transcript.scrollHeight;
+      }, delay);
+      delay += 900 + Math.random() * 400;
+    });
+  });
+
+  // Finaliza
+  setTimeout(() => {
+    clearInterval(voiceAnimInterval);
+    waveform.querySelectorAll('.wave-bar').forEach(b => { b.style.height = '3px'; });
+    recBtn.className = 'voice-rec-btn idle';
+    statusEl.textContent = data.sentiment;
+    // Para o intervalo da waveform
+    voiceAnimInterval = null;
+  }, delay + 400);
+}
+</script>
 
 <!-- ═══ CATALOG ═══ -->
 <section class="section" id="catalog">
@@ -697,322 +1186,212 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
         <p class="sec-desc" style="margin-top:.4rem" data-pt="Modelos otimizados para sua máquina. Privacidade total, sem internet." data-en="Models optimized for your machine. Total privacy, no internet needed.">Models optimized for your machine. Total privacy, no internet needed.</p>
       </div>
       <div class="filters">
-        <a class="filt on">Todos</a><a class="filt">Chat</a><a class="filt">Codigo</a>
-        <a class="filt">Raciocinio</a><a class="filt">Imagem</a><a class="filt">Voz</a>
+        <a class="filt on"  data-pt="Todos"       data-en="All">All</a>
+        <a class="filt"     data-pt="Chat"         data-en="Chat">Chat</a>
+        <a class="filt"     data-pt="Código"       data-en="Code">Code</a>
+        <a class="filt"     data-pt="Raciocínio"   data-en="Reasoning">Reasoning</a>
+        <a class="filt"     data-pt="Imagem"       data-en="Image">Image</a>
+        <a class="filt"     data-pt="Voz"          data-en="Voice">Voice</a>
       </div>
     </div>
     <div class="search-bar">
-      <input class="search-in" type="text" placeholder="🔍  Buscar modelos… ex: codigo, visao, 7B"/>
+      <input class="search-in" type="text" placeholder="🔍  Search models… e.g. code, vision, 7B" data-pt-placeholder="🔍  Buscar modelos… ex: código, visão, 7B"/>
     </div>
+
     <div class="catalog-list" id="catalogList">
-
-      <!-- ══ COL A ══ -->
+      <!-- COL A -->
       <div class="cat-col" id="colA">
-
-        <!-- 1 -->
-        <div class="lcard cat-chat">
+        <div class="lcard cat-chat" onclick="window.location='pages/martis-model-70b.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-70b.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🧠</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-70B Instruct</span>
-                <div class="lcard-badges"><span class="bdg bdg-pop">Popular</span></div>
-              </div>
-              <div class="lcard-meta">70B params · 128K ctx · 41 GB · Q4_K_M</div>
-              <p class="lcard-desc">Raciocinio profundo, analise critica e respostas longas de alta qualidade. Comparavel ao <strong>GPT-4o</strong> e <strong>Claude 3.5 Sonnet</strong> em benchmarks de instrucao.</p>
+              <div class="lcard-head"><span class="lcard-name">Martis-70B Instruct</span><div class="lcard-badges"><span class="bdg bdg-pop">Popular</span></div></div>
+              <div class="lcard-meta">70B · 128K ctx · 41 GB · Q4_K_M</div>
+              <p class="lcard-desc" data-pt="Raciocínio profundo, análise crítica. Comparável ao GPT-4o e Claude 3.5 Sonnet." data-en="Deep reasoning and critical analysis. Comparable to GPT-4o and Claude 3.5 Sonnet.">Deep reasoning and critical analysis. Comparable to GPT-4o and Claude 3.5 Sonnet.</p>
               <div class="lcard-rivals">vs <span class="rival">GPT-4o</span> <span class="rival">Claude 3.5</span> <span class="rival">Gemini 1.5 Pro</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-70b.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 41 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-70b.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 41 GB</a></div>
           </div>
         </div>
-
-        <!-- 2 -->
-        <div class="lcard cat-code">
+        <div class="lcard cat-code" onclick="window.location='pages/martis-model-code.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-code.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">💻</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Code 34B</span>
-                <div class="lcard-badges"><span class="bdg bdg-local">Local</span></div>
-              </div>
-              <div class="lcard-meta">34B params · 16K ctx · 20 GB · Q4_K</div>
-              <p class="lcard-desc">Fine-tuned em milhoes de repositorios. Supera o <strong>GitHub Copilot</strong> em geracao de codigo complexo e o <strong>DeepSeek-Coder</strong> em code review e deteccao de bugs.</p>
-              <div class="lcard-rivals">vs <span class="rival">GitHub Copilot</span> <span class="rival">DeepSeek-Coder</span> <span class="rival">CodeLlama</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Code 34B</span><div class="lcard-badges"><span class="bdg bdg-local">Local</span></div></div>
+              <div class="lcard-meta">34B · 16K ctx · 20 GB · Q4_K</div>
+              <p class="lcard-desc" data-pt="Supera o GitHub Copilot em geração de código complexo." data-en="Outperforms GitHub Copilot on complex code generation.">Outperforms GitHub Copilot on complex code generation.</p>
+              <div class="lcard-rivals">vs <span class="rival">GitHub Copilot</span> <span class="rival">DeepSeek-Coder</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-code.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 20 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-code.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 20 GB</a></div>
           </div>
         </div>
-
-        <!-- 3 -->
-        <div class="lcard cat-think">
+        <div class="lcard cat-think" onclick="window.location='pages/martis-model-think.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-think.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🔢</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Think 13B</span>
-                <div class="lcard-badges"><span class="bdg bdg-new">Novo</span></div>
-              </div>
-              <div class="lcard-meta">13B params · 32K ctx · 8.5 GB · Q5_K</div>
-              <p class="lcard-desc">Chain-of-Thought nativo para matematica, logica e ciencias. Rivaliza com o <strong>DeepSeek-R1</strong> e supera o <strong>o1-mini</strong> em problemas do MATH benchmark.</p>
-              <div class="lcard-rivals">vs <span class="rival">DeepSeek-R1</span> <span class="rival">o1-mini</span> <span class="rival">Gemini Thinking</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Think 13B</span><div class="lcard-badges"><span class="bdg bdg-new">New</span></div></div>
+              <div class="lcard-meta">13B · 32K ctx · 8.5 GB · Q5_K</div>
+              <p class="lcard-desc" data-pt="Chain-of-Thought nativo. Rivaliza com DeepSeek-R1 e o1-mini." data-en="Native Chain-of-Thought. Rivals DeepSeek-R1 and o1-mini.">Native Chain-of-Thought. Rivals DeepSeek-R1 and o1-mini.</p>
+              <div class="lcard-rivals">vs <span class="rival">DeepSeek-R1</span> <span class="rival">o1-mini</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-think.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 8.5 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-think.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 8.5 GB</a></div>
           </div>
         </div>
-
-        <!-- 4 -->
-        <div class="lcard cat-write">
+        <div class="lcard cat-write" onclick="window.location='pages/martis-model-write.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-write.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">✍️</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Write 7B</span>
-                <div class="lcard-badges"><span class="bdg bdg-free">Gratis</span></div>
-              </div>
-              <div class="lcard-meta">7B params · 8K ctx · 4.1 GB · Q8_0</div>
-              <p class="lcard-desc">Escrita criativa, copywriting e traducao cultural. Avaliado como superior ao <strong>Gemini Flash</strong> e ao <strong>Copilot</strong> em textos criativos por avaliadores humanos.</p>
-              <div class="lcard-rivals">vs <span class="rival">Gemini Flash</span> <span class="rival">Copilot</span> <span class="rival">Claude Haiku</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Write 7B</span><div class="lcard-badges"><span class="bdg bdg-free">Free</span></div></div>
+              <div class="lcard-meta">7B · 8K ctx · 4.1 GB · Q8_0</div>
+              <p class="lcard-desc" data-pt="Escrita criativa avaliada superior ao Gemini Flash por escritores profissionais." data-en="Creative writing rated above Gemini Flash by professional writers.">Creative writing rated above Gemini Flash by professional writers.</p>
+              <div class="lcard-rivals">vs <span class="rival">Gemini Flash</span> <span class="rival">Claude Haiku</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-write.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 4.1 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-write.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 4.1 GB</a></div>
           </div>
         </div>
-
-        <!-- 5 -->
-        <div class="lcard cat-vision">
+        <div class="lcard cat-vision" onclick="window.location='pages/martis-model-vision.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-vision.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">👁️</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Vision 13B</span>
-                <div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div>
-              </div>
-              <div class="lcard-meta">13B params · 4K ctx · 9.2 GB · Multimodal</div>
-              <p class="lcard-desc">Analise de imagens, OCR e leitura de graficos. Performance proxima ao <strong>GPT-4V</strong> em DocVQA, rodando 100% local sem enviar dados a servidores externos.</p>
-              <div class="lcard-rivals">vs <span class="rival">GPT-4V</span> <span class="rival">Gemini Vision</span> <span class="rival">Claude Vision</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Vision 13B</span><div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div></div>
+              <div class="lcard-meta">13B · 4K ctx · 9.2 GB · Multimodal</div>
+              <p class="lcard-desc" data-pt="89% no DocVQA. 100% local, sem enviar imagens a servidores." data-en="89% on DocVQA. 100% local, never sends images to servers.">89% on DocVQA. 100% local, never sends images to servers.</p>
+              <div class="lcard-rivals">vs <span class="rival">GPT-4V</span> <span class="rival">Gemini Vision</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-vision.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 9.2 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-vision.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 9.2 GB</a></div>
           </div>
         </div>
-
-        <!-- 6 — oculto inicialmente -->
-        <div class="lcard cat-voice lcard-extra" style="display:none">
+        <!-- extra col A -->
+        <div class="lcard cat-voice lcard-extra" style="display:none" onclick="window.location='pages/martis-model-voice.html'">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-voice.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🎙️</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Voice 3B</span>
-                <div class="lcard-badges"><span class="bdg bdg-new">Novo</span></div>
-              </div>
-              <div class="lcard-meta">3B params · Audio · 1.8 GB · F16</div>
-              <p class="lcard-desc">Transcricao STT e sintese TTS em 15 idiomas. Supera o <strong>Whisper v3</strong> em precisao no Portugues Brasileiro e adiciona diarizacao de speakers em tempo real.</p>
-              <div class="lcard-rivals">vs <span class="rival">Whisper v3</span> <span class="rival">ElevenLabs</span> <span class="rival">Azure Speech</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Voice 3B</span><div class="lcard-badges"><span class="bdg bdg-new">New</span></div></div>
+              <div class="lcard-meta">3B · Audio · 1.8 GB · F16</div>
+              <p class="lcard-desc" data-pt="97% de precisão em PT-BR. 9 pontos acima do Whisper v3." data-en="97% accuracy in PT-BR. 9 points above Whisper v3.">97% accuracy in PT-BR. 9 points above Whisper v3.</p>
+              <div class="lcard-rivals">vs <span class="rival">Whisper v3</span> <span class="rival">ElevenLabs</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="martis-model-voice.html" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 1.8 GB</a>
-            </div>
+            <div class="lcard-actions"><a href="pages/martis-model-voice.html" class="btn btn-sm btn-dl" onclick="event.stopPropagation()">↓ 1.8 GB</a></div>
           </div>
         </div>
-
-        <!-- 7 — oculto inicialmente -->
         <div class="lcard cat-chat lcard-extra" style="display:none">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-70b.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">⚡</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-7B Flash</span>
-                <div class="lcard-badges"><span class="bdg bdg-free">Gratis</span></div>
-              </div>
-              <div class="lcard-meta">7B params · 4K ctx · 4.8 GB · Q8_0</div>
-              <p class="lcard-desc">Versao ultrarapida para aplicacoes em tempo real. Responde 5x mais rapido que o <strong>GPT-4o-mini</strong> em hardware consumer, mantendo qualidade comparavel para tarefas do dia a dia.</p>
-              <div class="lcard-rivals">vs <span class="rival">GPT-4o-mini</span> <span class="rival">Gemini Flash</span> <span class="rival">Llama 3.1 8B</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-7B Flash</span><div class="lcard-badges"><span class="bdg bdg-free">Free</span></div></div>
+              <div class="lcard-meta">7B · 4K ctx · 4.8 GB · Q8_0</div>
+              <p class="lcard-desc" data-pt="5x mais rápido que o GPT-4o-mini em hardware consumer." data-en="5× faster than GPT-4o-mini on consumer hardware.">5× faster than GPT-4o-mini on consumer hardware.</p>
+              <div class="lcard-rivals">vs <span class="rival">GPT-4o-mini</span> <span class="rival">Gemini Flash</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 4.8 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 4.8 GB</a></div>
           </div>
         </div>
-
       </div><!-- /colA -->
 
-      <!-- ══ COL B ══ -->
+      <!-- COL B -->
       <div class="cat-col" id="colB">
-
-        <!-- 1 -->
         <div class="lcard cat-chat">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-70b.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">💬</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-13B Chat</span>
-                <div class="lcard-badges"><span class="bdg bdg-local">Local</span></div>
-              </div>
-              <div class="lcard-meta">13B params · 16K ctx · 8.2 GB · Q5_K_M</div>
-              <p class="lcard-desc">Equilíbrio perfeito entre velocidade e qualidade. Supera o <strong>Llama 3.1 8B</strong> e fica proximo ao <strong>Mistral Medium</strong> em conversas longas e multitarefas.</p>
-              <div class="lcard-rivals">vs <span class="rival">Llama 3.1 8B</span> <span class="rival">Mistral Medium</span> <span class="rival">Gemma 2 9B</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-13B Chat</span><div class="lcard-badges"><span class="bdg bdg-local">Local</span></div></div>
+              <div class="lcard-meta">13B · 16K ctx · 8.2 GB · Q5_K_M</div>
+              <p class="lcard-desc" data-pt="Equilíbrio perfeito entre velocidade e qualidade. Supera o Llama 3.1 8B." data-en="Perfect balance of speed and quality. Beats Llama 3.1 8B.">Perfect balance of speed and quality. Beats Llama 3.1 8B.</p>
+              <div class="lcard-rivals">vs <span class="rival">Llama 3.1 8B</span> <span class="rival">Mistral Medium</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 8.2 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 8.2 GB</a></div>
           </div>
         </div>
-
-        <!-- 2 -->
         <div class="lcard cat-think">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-think.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🔬</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Science 34B</span>
-                <div class="lcard-badges"><span class="bdg bdg-new">Novo</span></div>
-              </div>
-              <div class="lcard-meta">34B params · 64K ctx · 22 GB · Q4_K_M</div>
-              <p class="lcard-desc">Especializado em ciencias naturais, medicina e engenharia. Supera o <strong>Med-PaLM 2</strong> (Google) em QA medica e o <strong>Galactica</strong> (Meta) em papers cientificos.</p>
-              <div class="lcard-rivals">vs <span class="rival">Med-PaLM 2</span> <span class="rival">Galactica</span> <span class="rival">BioMedLM</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Science 34B</span><div class="lcard-badges"><span class="bdg bdg-new">New</span></div></div>
+              <div class="lcard-meta">34B · 64K ctx · 22 GB · Q4_K_M</div>
+              <p class="lcard-desc" data-pt="Especializado em medicina e ciências. Supera o Med-PaLM 2 (Google)." data-en="Specialized in medicine and science. Beats Med-PaLM 2 (Google).">Specialized in medicine and science. Beats Med-PaLM 2 (Google).</p>
+              <div class="lcard-rivals">vs <span class="rival">Med-PaLM 2</span> <span class="rival">Galactica</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 22 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 22 GB</a></div>
           </div>
         </div>
-
-        <!-- 3 -->
         <div class="lcard cat-write">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-write.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🌐</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Translate 7B</span>
-                <div class="lcard-badges"><span class="bdg bdg-free">Gratis</span></div>
-              </div>
-              <div class="lcard-meta">7B params · 8K ctx · 4.3 GB · Q8_0</div>
-              <p class="lcard-desc">Traducao com contexto cultural em 38 idiomas. Supera o <strong>DeepL</strong> em nuances idiomaticas e o <strong>Google Translate</strong> em textos tecnicos e juridicos.</p>
-              <div class="lcard-rivals">vs <span class="rival">DeepL</span> <span class="rival">Google Translate</span> <span class="rival">NLLB-200</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Translate 7B</span><div class="lcard-badges"><span class="bdg bdg-free">Free</span></div></div>
+              <div class="lcard-meta">7B · 8K ctx · 4.3 GB · Q8_0</div>
+              <p class="lcard-desc" data-pt="38 idiomas com contexto cultural. Supera o DeepL em nuances idiomáticas." data-en="38 languages with cultural context. Beats DeepL on idiomatic nuances.">38 languages with cultural context. Beats DeepL on idiomatic nuances.</p>
+              <div class="lcard-rivals">vs <span class="rival">DeepL</span> <span class="rival">Google Translate</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 4.3 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 4.3 GB</a></div>
           </div>
         </div>
-
-        <!-- 4 -->
         <div class="lcard cat-vision">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-vision.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🎨</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Art 7B</span>
-                <div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div>
-              </div>
-              <div class="lcard-meta">7B params · Geracao · 5.6 GB · SDXL</div>
-              <p class="lcard-desc">Geracao de imagens de alta qualidade via texto. Resultados superiores ao <strong>Stable Diffusion XL</strong> em coerencia semantica, com estilo mais refinado que o <strong>Midjourney v5</strong>.</p>
-              <div class="lcard-rivals">vs <span class="rival">SDXL</span> <span class="rival">Midjourney v5</span> <span class="rival">DALL-E 3</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Art 7B</span><div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div></div>
+              <div class="lcard-meta">7B · Geração · 5.6 GB · SDXL</div>
+              <p class="lcard-desc" data-pt="Geração de imagens via texto. Superior ao SDXL em coerência semântica." data-en="Image generation from text. Better semantic coherence than SDXL.">Image generation from text. Better semantic coherence than SDXL.</p>
+              <div class="lcard-rivals">vs <span class="rival">SDXL</span> <span class="rival">DALL-E 3</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 5.6 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 5.6 GB</a></div>
           </div>
         </div>
-
-        <!-- 5 -->
         <div class="lcard cat-code">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-code.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🛡️</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Security 13B</span>
-                <div class="lcard-badges"><span class="bdg bdg-local">Local</span></div>
-              </div>
-              <div class="lcard-meta">13B params · 16K ctx · 8.8 GB · Q5_K</div>
-              <p class="lcard-desc">Analise de seguranca, revisao de vulnerabilidades e deteccao de malware. Especializado onde ferramentas genéricas como <strong>Copilot</strong> e <strong>ChatGPT</strong> ficam aquem.</p>
-              <div class="lcard-rivals">vs <span class="rival">ChatGPT</span> <span class="rival">Copilot</span> <span class="rival">Codex</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Security 13B</span><div class="lcard-badges"><span class="bdg bdg-local">Local</span></div></div>
+              <div class="lcard-meta">13B · 16K ctx · 8.8 GB · Q5_K</div>
+              <p class="lcard-desc" data-pt="Análise de segurança onde Copilot e ChatGPT ficam aquém." data-en="Security analysis where Copilot and ChatGPT fall short.">Security analysis where Copilot and ChatGPT fall short.</p>
+              <div class="lcard-rivals">vs <span class="rival">ChatGPT</span> <span class="rival">Copilot</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 8.8 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 8.8 GB</a></div>
           </div>
         </div>
-
-        <!-- 6 — oculto inicialmente -->
+        <!-- extra col B -->
         <div class="lcard cat-chat lcard-extra" style="display:none">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-70b.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🤝</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Agent 34B</span>
-                <div class="lcard-badges"><span class="bdg bdg-new">Novo</span></div>
-              </div>
-              <div class="lcard-meta">34B params · 128K ctx · 22 GB · Q4_K_M</div>
-              <p class="lcard-desc">Modelo agentivo para execucao de tarefas autonomas: navegar web, executar codigo, chamar APIs. Supera o <strong>GPT-4 Turbo</strong> em benchmarks de agentes do AgentBench.</p>
-              <div class="lcard-rivals">vs <span class="rival">GPT-4 Turbo</span> <span class="rival">Claude Agent</span> <span class="rival">Gemini Ultra</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Agent 34B</span><div class="lcard-badges"><span class="bdg bdg-new">New</span></div></div>
+              <div class="lcard-meta">34B · 128K ctx · 22 GB · Q4_K_M</div>
+              <p class="lcard-desc" data-pt="Modelo agentivo para tarefas autônomas. Supera GPT-4 Turbo no AgentBench." data-en="Agentic model for autonomous tasks. Beats GPT-4 Turbo on AgentBench.">Agentic model for autonomous tasks. Beats GPT-4 Turbo on AgentBench.</p>
+              <div class="lcard-rivals">vs <span class="rival">GPT-4 Turbo</span> <span class="rival">Gemini Ultra</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 22 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 22 GB</a></div>
           </div>
         </div>
-
-        <!-- 7 — oculto inicialmente -->
         <div class="lcard cat-voice lcard-extra" style="display:none">
           <div class="lcard-stripe"></div>
-          <div class="lcard-inner" style="cursor:pointer" onclick="window.location='pages/martis-model-voice.html'">
+          <div class="lcard-inner">
             <div class="lcard-icon">🎵</div>
             <div class="lcard-main">
-              <div class="lcard-head">
-                <span class="lcard-name">Martis-Audio 7B</span>
-                <div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div>
-              </div>
-              <div class="lcard-meta">7B params · Audio multimodal · 4.9 GB · F16</div>
-              <p class="lcard-desc">Geracao e edicao musical via prompt de texto. Cria arranjos mais coerentes que o <strong>Suno v3</strong> e musicas com estrutura mais complexa que o <strong>Udio</strong> em testes comparativos.</p>
-              <div class="lcard-rivals">vs <span class="rival">Suno v3</span> <span class="rival">Udio</span> <span class="rival">MusicGen</span></div>
+              <div class="lcard-head"><span class="lcard-name">Martis-Audio 7B</span><div class="lcard-badges"><span class="bdg bdg-beta">Beta</span></div></div>
+              <div class="lcard-meta">7B · Audio multimodal · 4.9 GB · F16</div>
+              <p class="lcard-desc" data-pt="Geração musical via texto. Arranjos mais coerentes que o Suno v3." data-en="Music generation from text. More coherent arrangements than Suno v3.">Music generation from text. More coherent arrangements than Suno v3.</p>
+              <div class="lcard-rivals">vs <span class="rival">Suno v3</span> <span class="rival">Udio</span></div>
             </div>
-            <div class="lcard-actions">
-              <a href="#" class="btn btn-sm btn-demo">▶ Demo</a>
-              <a href="#" class="btn btn-sm btn-dl">↓ 4.9 GB</a>
-            </div>
+            <div class="lcard-actions"><a class="btn btn-sm btn-dl">↓ 4.9 GB</a></div>
           </div>
         </div>
-
       </div><!-- /colB -->
-
     </div><!-- /catalog-list -->
 
-    <!-- SHOW MORE BTN -->
     <div style="text-align:center;margin-top:1.75rem">
       <button class="btn btn-ghost" id="showMoreBtn" onclick="showMoreModels()" style="padding:.65rem 2rem;font-size:.85rem;gap:.55rem">
         <span id="showMoreIcon">▾</span>
@@ -1026,27 +1405,27 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
 <section class="section" id="how" style="padding-bottom:3rem">
   <div class="wrap">
     <div style="text-align:center;max-width:480px;margin:0 auto">
-      <div class="eyebrow" style="justify-content:center">⬡ <span data-pt="Como Funciona" data-en="How It Works">Como Funciona</span></div>
+      <div class="eyebrow" style="justify-content:center">⬡ <span data-pt="Como Funciona" data-en="How It Works">How It Works</span></div>
       <h2 class="sec-title" data-pt="Simples como lançar uma rede." data-en="Simple as casting a net.">Simple as casting a net.</h2>
     </div>
     <div class="steps">
       <div class="step">
         <div class="step-n">01</div>
         <div class="step-icon">🌐</div>
-        <div class="step-t" data-pt="Use no Navegador" data-en="Use in the Browser">Use in the Browser</div>
-        <p class="step-d" data-pt="Acesse martis.ai, escolha um modelo e converse. Zero instalação — funciona direto no browser com nossos modelos na nuvem." data-en="Go to martis.ai, pick a model and start chatting. Zero install — runs directly in your browser using our cloud models.">Go to martis.ai, pick a model and start chatting. Zero install — runs directly in your browser using our cloud models.</p>
+        <div class="step-t" data-pt="Use no Navegador"   data-en="Use in the Browser">Use in the Browser</div>
+        <p class="step-d" data-pt="Acesse martis.ai, escolha um modelo e converse. Zero instalação." data-en="Go to martis.ai, pick a model and start chatting. Zero install.">Go to martis.ai, pick a model and start chatting. Zero install.</p>
       </div>
       <div class="step">
         <div class="step-n">02</div>
         <div class="step-icon">↓</div>
-        <div class="step-t" data-pt="Baixe Localmente" data-en="Download Locally">Download Locally</div>
-        <p class="step-d" data-pt="Prefere privacidade total? Instale o Martis CLI, escolha no catálogo e baixe com um único comando. 100% offline." data-en="Prefer total privacy? Install Martis CLI, pick from the catalog and download with a single command. 100% offline.">Prefer total privacy? Install Martis CLI, pick from the catalog and download with a single command. 100% offline.</p>
+        <div class="step-t" data-pt="Baixe Localmente"   data-en="Download Locally">Download Locally</div>
+        <p class="step-d" data-pt="Prefere privacidade total? Instale o Martis CLI e baixe com um comando." data-en="Prefer total privacy? Install Martis CLI and download with a single command.">Prefer total privacy? Install Martis CLI and download with a single command.</p>
       </div>
       <div class="step">
         <div class="step-n">03</div>
         <div class="step-icon">⚡</div>
-        <div class="step-t" data-pt="Integre via API" data-en="Integrate via API">Integrate via API</div>
-        <p class="step-d" data-pt="Conecte seus apps através de uma API REST compatível com OpenAI. Funciona com LangChain, Ollama, LiteLLM e mais." data-en="Connect your apps through an OpenAI-compatible REST API. Works with LangChain, Ollama, LiteLLM and more.">Connect your apps through an OpenAI-compatible REST API. Works with LangChain, Ollama, LiteLLM and more.</p>
+        <div class="step-t" data-pt="Integre via API"    data-en="Integrate via API">Integrate via API</div>
+        <p class="step-d" data-pt="Conecte seus apps através de uma API REST compatível com OpenAI." data-en="Connect your apps through an OpenAI-compatible REST API.">Connect your apps through an OpenAI-compatible REST API.</p>
       </div>
     </div>
   </div>
@@ -1058,48 +1437,89 @@ Set  R$ 112.700  ▓▓▓▓▓▓▓▓▓▓▓░░</div>
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#" class="logo-link">
-          <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
-            <path d="M3 34 Q20 1 37 34" stroke="var(--accent)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
-            <line x1="3" y1="34" x2="37" y2="34" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/>
-            <line x1="20" y1="2"  x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.1" opacity=".7"/>
-            <line x1="12" y1="6"  x2="12" y2="34" stroke="var(--accent-lt)" stroke-width=".9"  opacity=".6"/>
-            <line x1="28" y1="6"  x2="28" y2="34" stroke="var(--accent-lt)" stroke-width=".9"  opacity=".6"/>
-            <line x1="6"  y1="16" x2="34" y2="16" stroke="var(--accent)" stroke-width=".8" opacity=".5"/>
-            <line x1="3"  y1="22" x2="37" y2="22" stroke="var(--accent)" stroke-width=".8" opacity=".5"/>
-            <line x1="3"  y1="28" x2="37" y2="28" stroke="var(--accent)" stroke-width=".8" opacity=".5"/>
-            <circle cx="20" cy="2"  r="2.2" fill="var(--accent)"    opacity=".95"/>
-            <circle cx="12" cy="6"  r="1.7" fill="var(--accent)"    opacity=".7"/>
-            <circle cx="28" cy="6"  r="1.7" fill="var(--accent)"    opacity=".7"/>
-            <circle cx="20" cy="22" r="1.3" fill="var(--purple)"    opacity=".6"/>
-          </svg>
-          <div><div class="logo-text">Martis</div><div class="logo-sub">Plataforma de IA</div></div>
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="net-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)"/>
+            <stop offset="100%" stop-color="var(--purple)"/>
+          </linearGradient>
+        </defs>
+        <!-- Fios horizontais da rede -->
+        <line x1="4" y1="12" x2="36" y2="12" stroke="var(--accent)" stroke-width=".8" opacity=".45"/>
+        <line x1="4" y1="20" x2="36" y2="20" stroke="var(--accent)" stroke-width=".8" opacity=".55"/>
+        <line x1="4" y1="28" x2="36" y2="28" stroke="var(--accent)" stroke-width=".8" opacity=".45"/>
+        <!-- Fios diagonais (textura de rede) -->
+        <line x1="8"  y1="4"  x2="36" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="20" y1="4"  x2="36" y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="4"  y1="16" x2="24" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="32" y1="4"  x2="4"  y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".35"/>
+        <line x1="20" y1="4"  x2="4"  y2="24" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <line x1="36" y1="16" x2="16" y2="36" stroke="var(--purple)" stroke-width=".7" opacity=".28"/>
+        <!-- Nós da rede — fileira do topo -->
+        <circle cx="12" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="12" r="1.8" fill="var(--accent)"    opacity=".75"/>
+        <circle cx="28" cy="12" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <!-- Nós do meio (mais brilhantes) -->
+        <circle cx="8"  cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <circle cx="14" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="20" cy="20" r="3.2" fill="url(#net-grad)"   opacity="1">
+          <animate attributeName="r"       values="3.2;3.8;3.2" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;.75;1"      dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="26" cy="20" r="1.8" fill="var(--accent)"    opacity=".8"/>
+        <circle cx="32" cy="20" r="1.4" fill="var(--accent-lt)" opacity=".65"/>
+        <!-- Nós da base -->
+        <circle cx="12" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <circle cx="20" cy="28" r="1.8" fill="var(--accent)"    opacity=".75">
+          <animate attributeName="opacity" values=".75;.45;.75"  dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+        </circle>
+        <circle cx="28" cy="28" r="1.4" fill="var(--accent)"    opacity=".6"/>
+        <!-- Nós diagonais (roxo) -->
+        <circle cx="8"  cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="12" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="8"  cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <circle cx="32" cy="28" r="1.2" fill="var(--purple-lt)" opacity=".5"/>
+        <!-- Brilho central -->
+        <circle cx="20" cy="20" r="1.5" fill="var(--purple-lt)" opacity=".7"/>
+      </svg>
+          <div><div class="logo-text">Martis</div><div class="logo-sub" data-pt="Plataforma de IA" data-en="AI Platform">AI Platform</div></div>
         </a>
-        <p data-pt="Democratizando o acesso à inteligência artificial. Como Britomártis tecia suas redes, Martis tece conexões entre humanos e IA." data-en="Democratizing access to artificial intelligence. Like Britomartis wove nets, Martis weaves connections between humans and AI.">Democratizing access to artificial intelligence. Like Britomartis wove nets, Martis weaves connections between humans and AI.</p>
+        <p data-pt="Democratizando o acesso à inteligência artificial." data-en="Democratizing access to artificial intelligence.">Democratizing access to artificial intelligence.</p>
       </div>
       <div class="foot-col">
         <h5 data-pt="Produto" data-en="Product">Product</h5>
-        <ul><li><a href="#" data-pt="Chat" data-en="Chat">Chat</a></li><li><a href="#" data-pt="Catalogo" data-en="Catalog">Catalog</a></li><li><a href="#">Martis CLI</a></li><li><a href="#">API</a></li><li><a href="#" data-pt="Planos" data-en="Plans">Plans</a></li></ul>
+        <ul>
+          <li><a href="#chat-full" data-pt="Chat"     data-en="Chat">Chat</a></li>
+          <li><a href="#catalog"   data-pt="Catálogo" data-en="Catalog">Catalog</a></li>
+          <li><a href="pages/docs.html">API</a></li>
+        </ul>
       </div>
       <div class="foot-col">
         <h5 data-pt="Modelos" data-en="Models">Models</h5>
-        <ul><li><a href="#">Martis-70B</a></li><li><a href="#">Martis-Code</a></li><li><a href="#">Martis-Think</a></li><li><a href="#">Martis-Vision</a></li><li><a href="#">Martis-Voice</a></li></ul>
+        <ul>
+          <li><a href="pages/martis-model-70b.html">Martis-70B</a></li>
+          <li><a href="pages/martis-model-code.html">Martis-Code</a></li>
+          <li><a href="pages/martis-model-think.html">Martis-Think</a></li>
+        </ul>
       </div>
       <div class="foot-col">
         <h5 data-pt="Empresa" data-en="Company">Company</h5>
-        <ul><li><a href="#" data-pt="Sobre" data-en="About">About</a></li><li><a href="#" data-pt="Blog" data-en="Blog">Blog</a></li><li><a href="#" data-pt="Carreiras" data-en="Careers">Careers</a></li><li><a href="#" data-pt="Privacidade" data-en="Privacy">Privacy</a></li><li><a href="#" data-pt="Termos" data-en="Terms">Terms</a></li></ul>
+        <ul>
+          <li><a href="pages/docs.html" data-pt="Docs" data-en="Docs">Docs</a></li>
+          <li><a href="pages/login.html" data-pt="Entrar" data-en="Sign In">Sign In</a></li>
+          <li><a href="#" data-pt="Blog" data-en="Blog">Blog</a></li>
+        </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <p>© 2025 Martis AI. <span data-pt="Feito com propósito." data-en="Built with purpose.">Feito com propósito.</span></p>
-      <p class="foot-myth" data-pt="Inspirado em Britomártis — a deusa cretense das redes." data-en="Inspired by Britomartis — the Cretan goddess of nets.">Inspirado em Britomártis — a deusa cretense das redes.</p>
+      <p>© 2025 Martis AI. <span data-pt="Feito com propósito." data-en="Built with purpose.">Built with purpose.</span></p>
+      <p class="foot-myth" data-pt="Inspirado em Britomártis — a deusa cretense das redes." data-en="Inspired by Britomartis — the Cretan goddess of nets.">Inspired by Britomartis — the Cretan goddess of nets.</p>
     </div>
   </div>
 </footer>
 
-
+<!-- ═══ SCRIPTS ═══ -->
 <script src="scripts/shared.js"></script>
-<!-- Puter.js - API de IA 100% gratuita, sem chaves, sem CORS -->
-<script src="https://js.puter.com/v2/"></script>
 <script src="scripts/ai-integrations.js"></script>
 </body>
 </html>
