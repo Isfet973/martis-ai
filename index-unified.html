@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Martis AI — AI Platform</title>
+  
+  <!-- ═══════════════════════════════════════════════════════
+       ESTILOS UNIFICADOS (tokens.css + main.css)
+  ═══════════════════════════════════════════════════════ -->
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       tokens.css — Martis AI Design System
+    ═══════════════════════════════════════════════════════ */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+    /* ── CUSTOM FONTS ── */
+    /* Orbitron: Futuristic font for logo */
+    /* Rajdhani: Tech/modern font for slogan */
+
+    /* ═══════════════════════════
+       DARK TOKENS
+    ═══════════════════════════ */
+    :root, [data-theme="dark"] {
+      --bg:          #0c0f1a;
+      --bg2:         #111422;
+      --surface:     #161b2e;
+      --surface2:    #1c2238;
+      --border:      #252d45;
+      --border2:     #303a58;
+
+      --text:        #e0e6f5;
+      --text2:       #8895b8;
+      --text3:       #525d7a;
+
+      --accent:      #4f82c4;
+      --accent-lt:   #74a6e0;
+      --accent-dim:  rgba(79,130,196,.2);
+      --accent-glow: rgba(79,130,196,.3);
+
+      --purple:      #7c5cbf;
+      --purple-lt:   #9e7fd8;
+      --purple-dim:  rgba(124,92,191,.2);
+      --purple-glow: rgba(124,92,191,.28);
+
+      --grad: linear-gradient(135deg, var(--accent), var(--purple));
+
+      --net-line: rgba(79,130,196,.16);
+      --net-node: #4f82c4;
+
+      --green:      #3ab89a;
+      --green-dim:  rgba(58,184,154,.15);
+      --amber:      #c49d4a;
+      --amber-dim:  rgba(196,157,74,.15);
+      --rose:       #b05f88;
+      --rose-dim:   rgba(176,95,136,.15);
+      --sky:        #3d8ec4;
+      --sky-dim:    rgba(61,142,196,.15);
+
+      --shadow-sm: 0 1px 4px rgba(0,0,0,.5);
+      --shadow-md: 0 4px 18px rgba(0,0,0,.6);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,.7);
+
+      --toggle-bg:     #1e1a38;
+      --toggle-border: #8b68d8;
+      --toggle-text:   #c0aaff;
+      --toggle-glow:   rgba(139,104,216,.45);
+    }
+
+    /* ═══════════════════════════
+       LIGHT TOKENS
+    ═══════════════════════════ */
+    [data-theme="light"] {
+      --bg:          #f9f7f3;
+      --bg2:         #f1ede5;
+      --surface:     #fefdfb;
+      --surface2:    #f5f2ec;
+      --border:      #e4dfd6;
+      --border2:     #d5cfc5;
+
+      --text:        #2c2a33;
+      --text2:       #5a5570;
+      --text3:       #a09cba;
+
+      --accent:      #2b6ab4;
+      --accent-lt:   #3a82d4;
+      --accent-dim:  rgba(43,106,180,.12);
+      --accent-glow: rgba(43,106,180,.22);
+
+      --purple:      #6040a8;
+      --purple-lt:   #7a55c4;
+      --purple-dim:  rgba(96,64,168,.12);
+      --purple-glow: rgba(96,64,168,.2);
+
+      --grad: linear-gradient(135deg, var(--accent), var(--purple));
+
+      --net-line: rgba(43,106,180,.14);
+      --net-node: #2b6ab4;
+
+      --green:      #1b9472;
+      --green-dim:  rgba(27,148,114,.1);
+      --amber:      #9c7624;
+      --amber-dim:  rgba(156,118,36,.1);
+      --rose:       #8f3a62;
+      --rose-dim:   rgba(143,58,98,.1);
+      --sky:        #2278b0;
+      --sky-dim:    rgba(34,120,176,.1);
+
+      --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 18px rgba(0,0,0,.11);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,.14);
+
+      --toggle-bg:     #ede8ff;
+      --toggle-border: #7a55c4;
+      --toggle-text:   #4a2a90;
+      --toggle-glow:   rgba(96,64,168,.35);
+    }
+
+    /* ═══════════════════════════
+       RESET
+    ═══════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:'DM Sans',sans-serif; font-size:15px; line-height:1.6;
+      overflow-x:hidden; transition:background .3s,color .3s;
+    }
+
+    /* ── NET BACKGROUND ── */
+    .net-bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .net-bg svg { width:100%; height:100%; }
+
+    .wrap { max-width:1200px; margin:0 auto; padding:0 1.75rem; position:relative; z-index:1; }
+
+    /* ═══════════════════════════
+       NAV
+    ═══════════════════════════ */
+    nav {
+      position:sticky; top:0; z-index:200;
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(20px);
+      background:rgba(12,15,26,.88);
+      transition:background .3s,border-color .3s;
+    }
+    [data-theme="light"] nav { background:rgba(249,247,243,.94); }
+
+    .nav-inner { display:flex; align-items:center; height:62px; gap:1.5rem; }
+
+    .logo-link { display:flex; align-items:center; gap:.75rem; text-decoration:none; flex-shrink:0; }
+    .logo-svg  { width:40px; height:40px; flex-shrink:0; }
+    .logo-text { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.35rem; color:var(--text); letter-spacing:.05em; line-height:1; text-transform:uppercase; }
+    .logo-sub  { font-family:'Rajdhani',sans-serif; font-size:.65rem; color:var(--text3); letter-spacing:.12em; text-transform:uppercase; margin-top:2px; font-weight:500; }
+
+    .nav-links { display:flex; gap:0; list-style:none; margin-left:auto; }
+    .nav-links a {
+      display:block; padding:.4rem .9rem;
+      color:var(--text2); text-decoration:none;
+      font-size:.83rem; font-weight:500; border-radius:6px;
+      transition:color .2s,background .2s;
+    }
+    .nav-links a:hover,.nav-links a.active { color:var(--text); background:var(--accent-dim); }
+
+    .nav-right { display:flex; align-items:center; gap:.6rem; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex; align-items: center; gap: .2rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 7px; padding: .22rem .35rem;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: .75rem;
+      font-weight: 700; color: var(--text3); padding: .2rem .45rem;
+      border-radius: 5px; transition: all .18s; letter-spacing: .04em;
+    }
+    .lang-btn.active { background: var(--grad); color: #fff; }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+    .lang-sep { color: var(--border2); font-size: .72rem; }
+
+    /* ── THEME TOGGLE — pill, colourful, unmissable ── */
+    .theme-toggle {
+      display:flex; align-items:center; gap:.5rem;
+      padding:.36rem 1rem .36rem .48rem;
+      border-radius:100px;
+      background:var(--toggle-bg);
+      border:1.5px solid var(--toggle-border);
+      color:var(--toggle-text);
+      cursor:pointer;
+      font-family:'DM Sans',sans-serif; font-size:.78rem; font-weight:700;
+      letter-spacing:.02em;
+      box-shadow:0 0 16px var(--toggle-glow), inset 0 0 0 1px rgba(255,255,255,.05);
+      transition:all .25s; white-space:nowrap;
+    }
+    .theme-toggle:hover { box-shadow:0 0 26px var(--toggle-glow); transform:scale(1.05); }
+
+    .toggle-orb {
+      width:24px; height:24px; border-radius:50%;
+      background:var(--grad);
+      display:grid; place-items:center;
+      font-size:.82rem; flex-shrink:0;
+      box-shadow:0 0 10px var(--purple-glow);
+    }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.45rem 1.1rem; border-radius:7px;
+      font-family:'DM Sans',sans-serif; font-size:.83rem; font-weight:600;
+      cursor:pointer; text-decoration:none; transition:all .2s; border:1px solid transparent;
+    }
+    .btn-ghost { border-color:var(--border); color:var(--text2); background:transparent; }
+    .btn-ghost:hover { border-color:var(--accent); color:var(--text); background:var(--accent-dim); }
+    .btn-primary { background:var(--grad); color:#fff; border-color:var(--purple-lt); box-shadow:0 2px 14px var(--purple-glow); }
+    .btn-primary:hover { box-shadow:0 4px 24px var(--purple-glow); filter:brightness(1.1); }
+    .btn-lg { padding:.72rem 1.8rem; font-size:.92rem; border-radius:9px; }
+    .btn-sm { padding:.46rem .9rem; font-size:.77rem; border-radius:7px; }
+
+    /* ═══════════════════════════
+       HERO  — chat preview first
+    ═══════════════════════════ */
+    .hero { padding:3.5rem 0 4rem; }
+
+    .hero-layout {
+      display:grid; grid-template-columns:1fr 1.15fr;
+      gap:3rem; align-items:center;
+    }
+
+    .hero-pill {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.3rem 1rem;
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:100px; font-size:.72rem; color:var(--text2);
+      letter-spacing:.07em; margin-bottom:1.5rem;
+    }
+    .pill-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:var(--green); box-shadow:0 0 6px var(--green);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    .hero-title {
+      font-family:'Fraunces',serif; font-weight:900;
+      font-size:clamp(2.4rem,5vw,4.2rem);
+      line-height:.97; letter-spacing:-2px; color:var(--text); margin-bottom:1.1rem;
+    }
+    .hero-title em {
+      font-style:italic; font-weight:300;
+      background:var(--grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+
+    .hero-desc { color:var(--text2); font-size:.93rem; line-height:1.78; font-weight:300; max-width:420px; margin-bottom:2rem; }
+    .hero-desc.slogan-sub { font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:500; letter-spacing:.03em; color:var(--text2); }
+    .hero-actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+
+    .hero-stats { display:flex; gap:2rem; border-top:1px solid var(--border); padding-top:1.75rem; }
+    .stat-val { font-family:'Fraunces',serif; font-weight:700; font-size:1.55rem; color:var(--text); line-height:1; }
+    .stat-lbl { font-size:.65rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-top:.25rem; }
+
+    /* chat preview card */
+    .chat-preview {
+      background:var(--surface); border:1px solid var(--border2);
+      border-radius:16px; overflow:hidden;
+      box-shadow:var(--shadow-lg), 0 0 50px var(--purple-glow);
+    }
+
+    .cp-header {
+      padding:.85rem 1.25rem; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; gap:.75rem; background:var(--surface2);
+    }
+    .cp-avatar {
+      width:32px; height:32px; border-radius:8px;
+      background:var(--purple-dim); border:1px solid var(--purple);
+      display:grid; place-items:center; flex-shrink:0;
+    }
+    .cp-name { font-size:.87rem; font-weight:600; line-height:1.2; }
+    .cp-sub  { font-size:.65rem; color:var(--text3); }
+    .cp-online { margin-left:auto; display:flex; align-items:center; gap:.35rem; font-size:.67rem; color:var(--green); }
+    .cp-dot { width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green); }
+
+    .cp-tabs {
+      display:flex; border-bottom:1px solid var(--border);
+      background:var(--bg2); overflow-x:auto;
+    }
+    .cp-tab {
+      padding:.5rem 1rem; font-size:.72rem; font-weight:500;
+      color:var(--text3); border-bottom:2px solid transparent;
+      white-space:nowrap; cursor:pointer; transition:all .2s;
+    }
+    .cp-tab.sel { color:var(--accent-lt); border-bottom-color:var(--accent); background:var(--accent-dim); }
+
+    .cp-msgs { padding:1.1rem; display:flex; flex-direction:column; gap:.9rem; height:300px; overflow-y:auto; }
+    .cp-msgs::-webkit-scrollbar { width:3px; }
+    .cp-msgs::-webkit-scrollbar-thumb { background:var(--border); }
+
+    .cm { display:flex; gap:.6rem; }
+    .cm-u { flex-direction:row-reverse; }
+    .cm-av {
+      width:25px;height:25px;border-radius:6px;
+      background:var(--surface2);border:1px solid var(--border);
+      display:grid;place-items:center;flex-shrink:0;
+      font-size:.58rem;font-weight:700;color:var(--text3);
+    }
+    .cm-ai .cm-av { background:var(--purple-dim); border-color:var(--purple); }
+    .bub { padding:.6rem .85rem; border-radius:9px; font-size:.8rem; line-height:1.65; max-width:80%; }
+    .cm-ai .bub { background:var(--surface2); border:1px solid var(--border); color:var(--text); }
+    .cm-u .bub  { background:var(--accent-dim); border:1px solid var(--accent); color:var(--text); }
+    .code-s {
+      background:var(--bg); border:1px solid var(--border2); border-radius:6px;
+      padding:.6rem .85rem; margin-top:.55rem;
+      font-family:'Courier New',monospace; font-size:.7rem;
+      color:var(--purple-lt); line-height:1.6; white-space:pre; overflow-x:auto;
+    }
+    .cp-foot {
+      padding:.85rem 1.1rem; border-top:1px solid var(--border);
+      display:flex; gap:.6rem; align-items:center; background:var(--surface2);
+    }
+    .cp-in {
+      flex:1; background:var(--surface); border:1px solid var(--border);
+      border-radius:7px; padding:.6rem .95rem;
+      color:var(--text); font-family:'DM Sans',sans-serif; font-size:.8rem; outline:none;
+    }
+    .cp-in::placeholder { color:var(--text3); }
+    .cp-send {
+      width:34px;height:34px;border-radius:7px;flex-shrink:0;
+      background:var(--grad);border:none;color:#fff;
+      display:grid;place-items:center;cursor:pointer;
+    }
+
+    /* ═══════════════════════════
+       SECTION COMMONS
+    ═══════════════════════════ */
+    .section { padding:5rem 0; }
+
+    .eyebrow {
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-size:.67rem;color:var(--accent-lt);
+      letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:.7rem;
+    }
+    .sec-title {
+      font-family:'Fraunces',serif;font-weight:700;
+      font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--text);
+      letter-spacing:-.5px;line-height:1.1;margin-bottom:.7rem;
+    }
+    .sec-desc { color:var(--text2);font-size:.9rem;line-height:1.75;font-weight:300;max-width:440px; }
+
+    /* ═══════════════════════════
+       FULL CHAT
+    ═══════════════════════════ */
+    .chat-grid { display:grid;grid-template-columns:255px 1fr;gap:1.25rem;margin-top:2.75rem; }
+
+    .panel { background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem; }
+    .panel-title { font-size:.65rem;color:var(--text3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.85rem;font-weight:600; }
+
+    .model-opt { padding:.68rem .9rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;margin-bottom:.4rem; }
+    .model-opt:last-child { margin-bottom:0; }
+    .model-opt.sel { border-color:var(--accent);background:var(--accent-dim); }
+    .mo-head { display:flex;align-items:center;justify-content:space-between; }
+    .mo-name { font-size:.84rem;font-weight:600;color:var(--text); }
+    .mo-tag  { font-size:.6rem;padding:.15rem .45rem;border-radius:4px;background:var(--purple-dim);color:var(--purple-lt);font-weight:600; }
+    .mo-sub  { font-size:.7rem;color:var(--text3);margin-top:2px; }
+
+    .param-row { margin-bottom:.85rem; }
+    .param-lbl { display:flex;justify-content:space-between;font-size:.75rem;color:var(--text2);margin-bottom:.4rem; }
+    .param-lbl span:last-child { color:var(--text);font-weight:600; }
+    .track { height:3px;background:var(--border2);border-radius:2px;position:relative; }
+    .fill  { position:absolute;left:0;top:0;bottom:0;background:var(--grad);border-radius:2px; }
+
+    .chat-win {
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:14px;display:flex;flex-direction:column;height:510px;overflow:hidden;
+    }
+    .chat-top {
+      padding:.88rem 1.25rem;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;gap:.75rem;
+    }
+    .c-avatar {
+      width:32px;height:32px;border-radius:8px;
+      background:var(--purple-dim);border:1px solid var(--purple);
+      display:grid;place-items:center;flex-shrink:0;
+    }
+    .c-name { font-size:.87rem;font-weight:600; }
+    .c-sub  { font-size:.65rem;color:var(--text3); }
+    .c-online { margin-left:auto;display:flex;align-items:center;gap:.35rem;font-size:.67rem;color:var(--green); }
+    .c-dot { width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green); }
+
+    .msgs { flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.95rem; }
+    .msgs::-webkit-scrollbar { width:3px; }
+    .msgs::-webkit-scrollbar-thumb { background:var(--border); }
+
+    .msg   { display:flex;gap:.65rem; }
+    .msg-u { flex-direction:row-reverse; }
+    .m-av {
+      width:26px;height:26px;border-radius:6px;
+      background:var(--surface2);border:1px solid var(--border);
+      display:grid;place-items:center;flex-shrink:0;
+      font-size:.58rem;font-weight:700;color:var(--text3);
+    }
+    .msg-ai .m-av { background:var(--purple-dim);border-color:var(--purple); }
+    .bbl { padding:.63rem .9rem;border-radius:9px;font-size:.81rem;line-height:1.65;max-width:80%; }
+    .msg-ai .bbl { background:var(--surface2);border:1px solid var(--border);color:var(--text); }
+    .msg-u .bbl  { background:var(--accent-dim);border:1px solid var(--accent);color:var(--text); }
+    .code-b {
+      background:var(--bg2);border:1px solid var(--border2);border-radius:6px;
+      padding:.62rem .88rem;margin-top:.55rem;
+      font-family:'Courier New',monospace;font-size:.7rem;
+      color:var(--purple-lt);line-height:1.6;white-space:pre;overflow-x:auto;
+    }
+    .chat-foot {
+      padding:.88rem 1.2rem;border-top:1px solid var(--border);
+      display:flex;gap:.6rem;align-items:center;
+    }
+    .chat-in {
+      flex:1;background:var(--surface2);border:1px solid var(--border);
+      border-radius:8px;padding:.63rem 1rem;
+      color:var(--text);font-family:'DM Sans',sans-serif;font-size:.81rem;outline:none;
+    }
+    .chat-in::placeholder { color:var(--text3); }
+    .send-b {
+      width:35px;height:35px;border-radius:7px;flex-shrink:0;
+      background:var(--grad);border:none;color:#fff;
+      display:grid;place-items:center;cursor:pointer;
+    }
+
+    /* ═══════════════════════════
+       CATALOG — vertical list
+    ═══════════════════════════ */
+    .catalog-head { display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem; }
+    .filters { display:flex;gap:.4rem;flex-wrap:wrap; }
+    .filt {
+      padding:.33rem .82rem;border-radius:100px;
+      font-size:.72rem;font-weight:500;
+      border:1px solid var(--border);color:var(--text2);
+      cursor:pointer;text-decoration:none;transition:all .2s;
+    }
+    .filt:hover,.filt.on { border-color:var(--accent);color:var(--accent-lt);background:var(--accent-dim); }
+
+    .search-bar { display:flex;gap:.75rem;margin-bottom:1.5rem; }
+    .search-in {
+      flex:1;background:var(--surface);border:1px solid var(--border);
+      border-radius:9px;padding:.7rem 1.1rem;
+      color:var(--text);font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;
+      transition:border-color .2s;
+    }
+    .search-in:focus { border-color:var(--accent); }
+    .search-in::placeholder { color:var(--text3); }
+
+    /* two-column list */
+    .catalog-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .cat-col {
+      display: flex; flex-direction: column; gap: .65rem;
+    }
+
+    .lcard {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+      display: flex; flex-direction: column;
+    }
+    .lcard:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .lcard-stripe { height: 3px; width: 100%; flex-shrink: 0; }
+    .lcard.cat-chat   .lcard-stripe { background: linear-gradient(90deg,var(--accent),var(--purple)); }
+    .lcard.cat-code   .lcard-stripe { background: linear-gradient(90deg,var(--sky),var(--green)); }
+    .lcard.cat-think  .lcard-stripe { background: linear-gradient(90deg,var(--green),var(--accent)); }
+    .lcard.cat-write  .lcard-stripe { background: linear-gradient(90deg,var(--amber),#c47a4b); }
+    .lcard.cat-vision .lcard-stripe { background: linear-gradient(90deg,var(--rose),var(--amber)); }
+    .lcard.cat-voice  .lcard-stripe { background: linear-gradient(90deg,var(--purple),var(--rose)); }
+
+    .lcard-inner {
+      display: flex; align-items: flex-start; gap: .85rem;
+      padding: .95rem 1.05rem;
+    }
+
+    .lcard-icon {
+      font-size: 1.4rem; flex-shrink: 0;
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--surface2); border: 1px solid var(--border);
+      display: grid; place-items: center; margin-top: .1rem;
+    }
+
+    .lcard-main { flex: 1; min-width: 0; }
+
+    .lcard-head {
+      display: flex; align-items: center; gap: .5rem;
+      flex-wrap: wrap; margin-bottom: .22rem;
+    }
+
+    .lcard-name {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: .95rem; color: var(--text); line-height: 1;
+    }
+
+    .lcard-badges { display: flex; gap: .3rem; }
+
+    .lcard-meta {
+      font-size: .66rem; color: var(--text3);
+      letter-spacing: .04em; margin-bottom: .45rem;
+    }
+
+    .lcard-desc {
+      font-size: .78rem; color: var(--text2);
+      line-height: 1.65; font-weight: 300; margin-bottom: .5rem;
+    }
+
+    .lcard-rivals {
+      font-size: .67rem; color: var(--text3);
+      display: flex; align-items: center; gap: .3rem; flex-wrap: wrap;
+    }
+
+    .rival {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: .12rem .45rem; border-radius: 4px;
+      color: var(--text2); font-size: .63rem; font-weight: 500;
+    }
+
+    .lcard-actions {
+      display: flex; flex-direction: column; gap: .4rem;
+      flex-shrink: 0; margin-top: .1rem;
+    }
+
+    .btn-dl   { background:var(--grad);color:#fff;border:1px solid var(--purple-lt);box-shadow:0 2px 10px var(--purple-glow);justify-content:center; }
+    .btn-dl:hover { filter:brightness(1.1);box-shadow:0 4px 18px var(--purple-glow); }
+    .btn-demo { border:1px solid var(--border);color:var(--text2);background:transparent;justify-content:center; }
+    .btn-demo:hover { border-color:var(--accent);color:var(--text);background:var(--accent-dim); }
+
+    /* show-more animation */
+    .lcard-extra { animation: fadeInSlide .3s ease both; }
+    @keyframes fadeInSlide {
+      from { opacity:0; transform:translateY(8px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* badges (shared) */
+    .bdg { font-size:.6rem;padding:.17rem .5rem;border-radius:4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase; }
+    .bdg-new  { background:var(--green-dim);  color:var(--green);     border:1px solid rgba(58,184,154,.3); }
+    .bdg-pop  { background:var(--amber-dim);  color:var(--amber);     border:1px solid rgba(196,157,74,.3); }
+    .bdg-beta { background:var(--sky-dim);    color:var(--sky);       border:1px solid rgba(61,142,196,.3); }
+    .bdg-free { background:var(--purple-dim); color:var(--purple-lt); border:1px solid rgba(124,92,191,.3); }
+    .bdg-local{ background:var(--accent-dim); color:var(--accent-lt); border:1px solid rgba(79,130,196,.3); }
+
+    /* ═══════════════════════════
+       STEPS
+    ═══════════════════════════ */
+    .steps { display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.75rem; }
+    .step { background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.75rem; }
+    .step-n { font-family:'Fraunces',serif;font-weight:900;font-size:3rem;color:var(--border2);line-height:1;margin-bottom:.7rem;letter-spacing:-2px; }
+    .step-icon { font-size:1.4rem;margin-bottom:.7rem; }
+    .step-t { font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:.5rem; }
+    .step-d { font-size:.8rem;color:var(--text2);line-height:1.75;font-weight:300; }
+
+    /* ═══════════════════════════
+       MODEL SHOWCASE
+    ═══════════════════════════ */
+    .showcase-tabs {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: .5rem;
+      margin: 2.5rem 0 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: .6rem;
+    }
+
+    .sc-tab {
+      display: flex; flex-direction: column; align-items: center;
+      gap: .25rem; padding: .8rem .5rem;
+      border-radius: 9px; border: 1px solid transparent;
+      background: transparent; cursor: pointer;
+      transition: all .2s; color: var(--text2);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .sc-tab:hover { background: var(--surface2); color: var(--text); }
+
+    .sc-tab.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 2px 12px var(--accent-glow);
+    }
+
+    .sc-tab-icon { font-size: 1.3rem; }
+    .sc-tab-name { font-size: .78rem; font-weight: 600; line-height: 1.2; text-align: center; }
+    .sc-tab-sub  { font-size: .62rem; color: var(--text3); text-align: center; line-height: 1.3; }
+    .sc-tab.active .sc-tab-sub { color: var(--accent-lt); }
+
+    .sc-panel { display: none; margin-top: 1.25rem; }
+    .sc-panel.active { display: block; }
+
+    .sc-layout {
+      display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+
+    .sc-info {
+      padding: 2rem; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 1.1rem;
+    }
+
+    .sc-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      padding: .3rem .75rem; border-radius: 100px; border: 1px solid;
+      width: fit-content;
+    }
+
+    .sc-title {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: 1.2rem; color: var(--text); line-height: 1.2;
+      letter-spacing: -.3px;
+    }
+
+    .sc-desc { font-size: .8rem; color: var(--text2); line-height: 1.75; font-weight: 300; }
+
+    .sc-strengths { display: flex; flex-direction: column; gap: .45rem; }
+
+    .strength-item {
+      display: flex; align-items: center; gap: .55rem;
+      font-size: .78rem; color: var(--text2);
+    }
+
+    .s-icon {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--green-dim); color: var(--green);
+      display: grid; place-items: center;
+      font-size: .6rem; font-weight: 700; flex-shrink: 0;
+      border: 1px solid rgba(58,184,154,.3);
+    }
+
+    .sc-compare { margin-top: auto; }
+
+    .cmp-row {
+      display: flex; align-items: center; gap: .65rem;
+      margin-bottom: .55rem;
+    }
+
+    .cmp-label { font-size: .7rem; color: var(--text3); width: 90px; flex-shrink: 0; }
+
+    .cmp-bar {
+      flex: 1; height: 6px; background: var(--border2);
+      border-radius: 3px; overflow: hidden;
+    }
+
+    .cmp-fill { height: 100%; border-radius: 3px; transition: width .6s ease; }
+
+    .cmp-val { font-size: .7rem; font-weight: 700; width: 65px; text-align: right; flex-shrink: 0; }
+
+    .cmp-legend {
+      font-size: .63rem; color: var(--text3);
+      margin-top: .35rem; font-style: italic;
+    }
+
+    /* demo panel */
+    .sc-demo { display: flex; flex-direction: column; }
+
+    .demo-header {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .85rem 1.25rem; border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+
+    .demo-model-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .demo-model-name { font-size: .85rem; font-weight: 600; }
+    .demo-tag {
+      margin-left: auto; font-size: .65rem; color: var(--text3);
+      background: var(--bg2); border: 1px solid var(--border);
+      padding: .15rem .55rem; border-radius: 4px;
+    }
+
+    .demo-msgs {
+      flex: 1; padding: 1.25rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      overflow-y: auto; min-height: 320px;
+    }
+
+    .dm { display: flex; gap: .65rem; }
+    .dm-u { flex-direction: row-reverse; }
+
+    .dm-av {
+      width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid var(--border);
+      display: grid; place-items: center;
+      font-size: .62rem; font-weight: 700; color: var(--text3);
+    }
+
+    .dm-bub {
+      padding: .7rem .95rem; border-radius: 10px;
+      font-size: .8rem; line-height: 1.7; max-width: 88%;
+    }
+
+    .dm-ai .dm-bub { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+    .dm-u .dm-bub  { background: var(--accent-dim); border: 1px solid var(--accent); color: var(--text); }
+
+    .demo-code {
+      background: var(--bg); border: 1px solid var(--border2);
+      border-radius: 6px; padding: .65rem .9rem; margin-top: .55rem;
+      font-family: 'Courier New', monospace; font-size: .71rem;
+      color: var(--purple-lt); line-height: 1.65; white-space: pre; overflow-x: auto;
+    }
+
+    .inline-code {
+      display: block; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 5px; padding: .25rem .6rem; margin: .25rem 0;
+      font-family: 'Courier New', monospace; font-size: .78rem;
+      color: var(--accent-lt); line-height: 1.6;
+    }
+
+    /* ═══════════════════════════
+       AI STATUS INDICATORS
+    ═══════════════════════════ */
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      display: inline-block; margin-right: 6px;
+    }
+    .status-dot.online {
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .status-dot.offline {
+      background: var(--rose);
+      box-shadow: 0 0 8px var(--rose);
+    }
+    .status-dot.checking {
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .cp-online.online { color: var(--green); }
+    .cp-online.offline { color: var(--rose); }
+    .cp-online.checking { color: var(--amber); }
+
+    .model-status {
+      display: inline-flex; align-items: center;
+      font-size: .65rem; font-weight: 600;
+      padding: .2rem .5rem; border-radius: 4px;
+      margin-left: .75rem;
+    }
+    .model-status.online { background: var(--green-dim); color: var(--green); }
+    .model-status.offline { background: var(--rose-dim); color: var(--rose); }
+    .model-status.checking { background: var(--amber-dim); color: var(--amber); }
+
+    .tab-status {
+      display: block; font-size: .6rem; font-weight: 700;
+      margin-top: .25rem; letter-spacing: .05em;
+    }
+    .tab-status.online { color: var(--green); }
+    .tab-status.offline { color: var(--rose); }
+    .tab-status.checking { color: var(--amber); }
+
+    /* ═══════════════════════════
+       SHOWCASE INPUT AREA
+    ═══════════════════════════ */
+    .showcase-input-area {
+      display: flex; gap: .6rem; padding: .75rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .showcase-input {
+      flex: 1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: .6rem 1rem;
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: .8rem;
+      outline: none; transition: border-color .2s;
+    }
+    .showcase-input:focus { border-color: var(--accent); }
+    .showcase-input::placeholder { color: var(--text3); }
+
+    .showcase-send-btn {
+      width: 38px; height: 38px; border-radius: 8px; flex-shrink: 0;
+      background: var(--grad); border: none; color: #fff;
+      display: grid; place-items: center; cursor: pointer;
+      transition: transform .15s, box-shadow .2s;
+    }
+    .showcase-send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 16px var(--purple-glow); }
+    .showcase-send-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* ═══════════════════════════
+       SUMMARY GENERATOR
+    ═══════════════════════════ */
+    .summary-generator {
+      display: flex; flex-direction: column; gap: 1rem;
+      padding: 1rem;
+    }
+    .summary-input-area {
+      display: flex; flex-direction: column; gap: .75rem;
+    }
+    .summary-input {
+      width: 100%; padding: .85rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: .85rem;
+      resize: vertical; min-height: 100px;
+      transition: border-color .2s;
+    }
+    .summary-input:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .summary-input::placeholder { color: var(--text3); }
+    .generate-summary-btn {
+      padding: .7rem 1.25rem; border: none;
+      background: var(--grad); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 600;
+      border-radius: 8px; cursor: pointer;
+      transition: all .2s; align-self: flex-start;
+    }
+    .generate-summary-btn:hover:not(:disabled) {
+      filter: brightness(1.1); box-shadow: 0 4px 20px var(--purple-glow);
+    }
+    .generate-summary-btn:disabled {
+      opacity: .7; cursor: wait;
+    }
+    .summary-result {
+      min-height: 120px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem;
+    }
+    .summary-placeholder {
+      text-align: center; color: var(--text3); padding: 1.5rem;
+    }
+    .summary-placeholder .placeholder-icon {
+      font-size: 2rem; margin-bottom: .5rem; opacity: .5;
+    }
+    .summary-loading {
+      text-align: center; padding: 2rem;
+      color: var(--text2);
+    }
+    .generated-summary {
+      color: var(--text);
+    }
+    .summary-header {
+      font-size: .75rem; font-weight: 600;
+      color: var(--green); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: .75rem;
+    }
+    .summary-content {
+      font-size: .85rem; line-height: 1.7;
+    }
+    .summary-error {
+      text-align: center; padding: 1.5rem;
+    }
+
+    /* ═══════════════════════════
+       API INFO BOX
+    ═══════════════════════════ */
+    .api-info-box {
+      margin-top: 1rem; padding: .85rem 1rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; font-size: .75rem; color: var(--text2);
+    }
+    .api-info-title {
+      font-size: .7rem; font-weight: 700; color: var(--accent-lt);
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: .4rem;
+    }
+    .api-info-box code {
+      display: inline-block;
+      background: var(--bg); padding: .25rem .6rem;
+      border-radius: 5px; font-size: .72rem;
+      color: var(--purple-lt); margin-top: .35rem;
+    }
+
+    /* ═══════════════════════════
+       TYPING INDICATOR
+    ═══════════════════════════ */
+    .typing-indicator {
+      display: flex; align-items: center; gap: 4px;
+      padding: .5rem .75rem;
+    }
+    .typing-indicator .dot {
+      width: 8px; height: 8px;
+      background: var(--text3); border-radius: 50%;
+      animation: typing-bounce 1.4s infinite ease-in-out;
+    }
+    .typing-indicator .dot:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator .dot:nth-child(2) { animation-delay: .2s; }
+    .typing-indicator .dot:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes typing-bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: .4; }
+      40% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    .loading-spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══════════════════════════
+       FOOTER
+    ═══════════════════════════ */
+    footer { border-top:1px solid var(--border);padding:3.5rem 0 2rem;margin-top:2rem; }
+    .foot-grid { display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem; }
+    .foot-brand p { font-size:.8rem;color:var(--text2);line-height:1.8;font-weight:300;max-width:280px;margin-top:.85rem; }
+    .foot-col h5 { font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.85rem;font-weight:600; }
+    .foot-col ul { list-style:none;display:flex;flex-direction:column;gap:.5rem; }
+    .foot-col a { color:var(--text2);text-decoration:none;font-size:.82rem;font-weight:300;transition:color .2s; }
+    .foot-col a:hover { color:var(--text); }
+    .foot-bottom { border-top:1px solid var(--border);padding-top:1.75rem;display:flex;align-items:center;justify-content:space-between; }
+    .foot-bottom p { font-size:.72rem;color:var(--text3); }
+    .foot-myth { font-style:italic;font-family:'Fraunces',serif; }
+
+    /* ═══════════════════════════
+       RESPONSIVE
+    ═══════════════════════════ */
+    @media (max-width: 900px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .sc-layout { grid-template-columns: 1fr; }
+      .sc-info { border-right: none; border-bottom: 1px solid var(--border); }
+      .catalog-list { grid-template-columns: 1fr; }
+      .showcase-tabs { grid-template-columns: repeat(4, 1fr); }
+      .steps { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .showcase-tabs { grid-template-columns: repeat(2, 1fr); }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NET BACKGROUND -->
+<div class="net-bg">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="grd" cx="60%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#7c5cbf" stop-opacity=".07"/>
+        <stop offset="55%" stop-color="#4f82c4" stop-opacity=".03"/>
+        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1440" height="900" fill="url(#grd)"/>
+    <g stroke="var(--net-line)" stroke-width="1" fill="none">
+      <line x1="-80"  y1="0" x2="520"  y2="900"/> <line x1="100"  y1="0" x2="700"  y2="900"/>
+      <line x1="280"  y1="0" x2="880"  y2="900"/> <line x1="460"  y1="0" x2="1060" y2="900"/>
+      <line x1="640"  y1="0" x2="1240" y2="900"/> <line x1="820"  y1="0" x2="1420" y2="900"/>
+      <line x1="1000" y1="0" x2="1600" y2="900"/> <line x1="1180" y1="0" x2="1780" y2="900"/>
+      <line x1="1520" y1="0" x2="920"  y2="900"/> <line x1="1340" y1="0" x2="740"  y2="900"/>
+      <line x1="1160" y1="0" x2="560"  y2="900"/> <line x1="980"  y1="0" x2="380"  y2="900"/>
+      <line x1="800"  y1="0" x2="200"  y2="900"/> <line x1="620"  y1="0" x2="20"   y2="900"/>
+      <line x1="440"  y1="0" x2="-160" y2="900"/> <line x1="260"  y1="0" x2="-340" y2="900"/>
+    </g>
+    <g fill="var(--net-node)">
+      <circle cx="210" cy="150" r="2" opacity=".22"/>  <circle cx="570" cy="150" r="3" opacity=".38"/>
+      <circle cx="930" cy="150" r="2" opacity=".22"/>  <circle cx="1290" cy="150" r="3" opacity=".38"/>
+      <circle cx="300" cy="300" r="3" opacity=".38"/>  <circle cx="660" cy="300" r="2" opacity=".22"/>
+      <circle cx="840" cy="300" r="3" opacity=".42"/>  <circle cx="1200" cy="300" r="2" opacity=".22"/>
+      <circle cx="390" cy="450" r="2" opacity=".2"/>   <circle cx="570" cy="450" r="3" opacity=".32"/>
+      <circle cx="930" cy="450" r="2" opacity=".2"/>   <circle cx="1110" cy="450" r="2" opacity=".2"/>
+    </g>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <!-- LOGO: futuristic neural network -->
+    <a href="#" class="logo-link">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2 L35 10 L35 30 L20 38 L5 30 L5 10 Z" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity=".4"/>
+        <line x1="20" y1="8" x2="10" y2="16" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
+        <line x1="20" y1="8" x2="30" y2="16" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
+        <line x1="10" y1="16" x2="10" y2="26" stroke="var(--purple)" stroke-width=".8" opacity=".5"/>
+        <line x1="30" y1="16" x2="30" y2="26" stroke="var(--purple)" stroke-width=".8" opacity=".5"/>
+        <line x1="10" y1="16" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
+        <line x1="30" y1="16" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
+        <line x1="10" y1="26" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
+        <line x1="30" y1="26" x2="20" y2="20" stroke="var(--accent-lt)" stroke-width=".9" opacity=".6"/>
+        <line x1="10" y1="26" x2="20" y2="32" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
+        <line x1="30" y1="26" x2="20" y2="32" stroke="url(#neural-grad)" stroke-width="1" opacity=".7"/>
+        <line x1="10" y1="16" x2="30" y2="26" stroke="var(--purple)" stroke-width=".5" opacity=".3"/>
+        <line x1="30" y1="16" x2="10" y2="26" stroke="var(--purple)" stroke-width=".5" opacity=".3"/>
+        <circle cx="20" cy="8" r="3" fill="var(--accent)" opacity=".9">
+          <animate attributeName="opacity" values=".9;.6;.9" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="10" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
+        <circle cx="30" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
+        <circle cx="20" cy="20" r="3.5" fill="var(--accent)" opacity="1">
+          <animate attributeName="r" values="3.5;4;3.5" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="10" cy="26" r="2.5" fill="var(--purple)" opacity=".8"/>
+        <circle cx="30" cy="26" r="2.5" fill="var(--purple)" opacity=".8"/>
+        <circle cx="20" cy="32" r="3" fill="var(--accent)" opacity=".9">
+          <animate attributeName="opacity" values=".9;.6;.9" dur="2s" repeatCount="indefinite" begin=".5s"/>
+        </circle>
+        <circle cx="20" cy="20" r="2" fill="var(--purple-lt)" opacity=".6"/>
+        <defs>
+          <linearGradient id="neural-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)"/>
+            <stop offset="100%" stop-color="var(--purple)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text">Martis</div>
+        <div class="logo-sub">Plataforma de IA</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero" class="active" data-pt="Inicio" data-en="Home">Home</a></li>
+      <li><a href="#chat-full" data-pt="Conversar" data-en="Chat">Chat</a></li>
+      <li><a href="#catalog" data-pt="Catalogo" data-en="Catalog">Catalog</a></li>
+      <li><a href="#how" data-pt="Como Funciona" data-en="How It Works">How It Works</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn" id="btnPT" onclick="setLang('pt')">PT</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+        <div class="toggle-orb" id="toggleOrb">&#9789;</div>
+        <span id="toggleLabel" data-pt="Modo Escuro" data-en="Dark Mode">Dark Mode</span>
+      </button>
+      <a href="#" class="btn btn-ghost" data-pt="Entrar" data-en="Sign In">Sign In</a>
+      <a href="#" class="btn btn-primary" data-pt="Comecar Gratis" data-en="Start Free">Start Free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-layout">
+      <div class="hero-left">
+        <div class="hero-pill"><span class="pill-dot"></span><span data-pt="v2.0 disponivel - 12 modelos novos" data-en="v2.0 available - 12 new models">v2.0 disponivel - 12 modelos novos</span></div>
+        <h1 class="hero-title"><span data-pt="Onde a rede" data-en="Where the net">Onde a rede</span><br><span data-pt="se torna " data-en="becomes ">se torna </span><em data-pt="divina." data-en="divine.">divina.</em></h1>
+        <p class="hero-desc slogan-sub" data-pt="Onde deuses teciam redes, nos tecemos inteligencia." data-en="Where gods wove nets, we weave intelligence.">Where gods wove nets, we weave intelligence.</p>
+        <div class="hero-actions">
+          <a href="#chat-full" class="btn btn-primary btn-lg" data-pt="Experimentar agora" data-en="Try it now">Try it now</a>
+          <a href="#catalog" class="btn btn-ghost btn-lg" data-pt="Ver catalogo" data-en="View catalog">View catalog</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-val">47+</div><div class="stat-lbl" data-pt="Modelos" data-en="Models">Models</div></div>
+          <div><div class="stat-val">128K</div><div class="stat-lbl" data-pt="Contexto" data-en="Context">Context</div></div>
+          <div><div class="stat-val">100%</div><div class="stat-lbl" data-pt="Privado" data-en="Private">Private</div></div>
+          <div><div class="stat-val">0</div><div class="stat-lbl" data-pt="Setup" data-en="Setup">Setup</div></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="chat-preview">
+          <div class="cp-header">
+            <div class="cp-avatar">
+              <svg width="17" height="17" viewBox="0 0 40 40" fill="none">
+                <path d="M3 34 Q20 1 37 34" stroke="var(--purple-lt)" stroke-width="1.8" fill="none"/>
+                <line x1="3" y1="34" x2="37" y2="34" stroke="var(--purple-lt)" stroke-width="1.8"/>
+                <line x1="20" y1="2" x2="20" y2="34" stroke="var(--accent-lt)" stroke-width="1.2" opacity=".7"/>
+                <line x1="12" y1="6" x2="12" y2="34" stroke="var(--accent-lt)" stroke-width="1" opacity=".6"/>
+                <line x1="28" y1="6" x2="28" y2="34" stroke="var(--accent-lt)" stroke-width="1" opacity=".6"/>
+                <circle cx="20" cy="2"  r="2" fill="var(--purple-lt)"/>
+                <circle cx="20" cy="22" r="1.5" fill="var(--accent-lt)" opacity=".7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cp-name">Martis AI</div>
+              <div class="cp-sub" id="heroModelLabel">Martis-7B - Rapido</div>
+            </div>
+            <div class="cp-online" id="heroStatusIndicator"><span class="status-dot offline"></span> Offline</div>
+          </div>
+
+          <div class="cp-tabs" id="heroTabs">
+            <div class="cp-tab sel" onclick="heroSelectModel(this,'martis-7b','Martis-7B - Rapido')">Martis-7B - Rapido</div>
+            <div class="cp-tab" onclick="heroSelectModel(this,'martis-13b','Martis-13B - Balanceado')">Martis-13B</div>
+            <div class="cp-tab" onclick="heroSelectModel(this,'martis-70b','Martis-70B - Poderoso')">Martis-70B</div>
+            <div class="cp-tab" onclick="heroSelectModel(this,'martis-code','Martis-Code')">Martis-Code</div>
+          </div>
+
+          <div class="cp-msgs" id="heroMessages">
+            <div class="cm cm-ai">
+              <div class="cm-av">M</div>
+              <div class="bub">Ola! Sou a <strong>Martis</strong>. Pergunte qualquer coisa - estou aqui para ajudar.</div>
+            </div>
+          </div>
+
+          <div class="cp-foot">
+            <input class="cp-in" id="heroInput" type="text" placeholder="Pergunte qualquer coisa..." onkeydown="if(event.key==='Enter')heroSend()"/>
+            <button class="cp-send" id="heroSendBtn" onclick="heroSend()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+
+          <div style="padding:.45rem 1rem;font-size:.63rem;color:var(--text3);text-align:center;border-top:1px solid var(--border)">
+            Demonstracao ao vivo - Alimentado pela API Puter.js
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODEL SHOWCASE -->
+<section class="section" id="chat-full">
+  <div class="wrap">
+    <div class="eyebrow"><span data-pt="Modelos em Acao" data-en="Models in Action">Models in Action</span></div>
+    <h2 class="sec-title" data-pt="Cada modelo, um superpoder diferente." data-en="Each model, a different superpower.">Each model, a different superpower.</h2>
+    <p class="sec-desc" data-pt="Clique em cada modelo abaixo para ver exemplos reais do que ele e capaz." data-en="Click each model below to see real examples of what it can do.">Click each model below to see real examples of what it can do.</p>
+
+    <div class="showcase-tabs" id="showcaseTabs">
+      <button class="sc-tab active" onclick="showModel('chat70b')" data-model="chat70b">
+        <span class="sc-tab-icon">&#129504;</span>
+        <span class="sc-tab-name">Martis-70B</span>
+        <span class="sc-tab-sub">Raciocinio profundo</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('summary')" data-model="summary">
+        <span class="sc-tab-icon">&#128221;</span>
+        <span class="sc-tab-name">Martis-Summary</span>
+        <span class="sc-tab-sub">Resumo inteligente</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('code')" data-model="code">
+        <span class="sc-tab-icon">&#128187;</span>
+        <span class="sc-tab-name">Martis-Code</span>
+        <span class="sc-tab-sub">Programacao avancada</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('think')" data-model="think">
+        <span class="sc-tab-icon">&#128290;</span>
+        <span class="sc-tab-name">Martis-Think</span>
+        <span class="sc-tab-sub">Matematica e logica</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('write')" data-model="write">
+        <span class="sc-tab-icon">&#9997;&#65039;</span>
+        <span class="sc-tab-name">Martis-Write</span>
+        <span class="sc-tab-sub">Escrita criativa</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('vision')" data-model="vision">
+        <span class="sc-tab-icon">&#128065;&#65039;</span>
+        <span class="sc-tab-name">Martis-Vision</span>
+        <span class="sc-tab-sub">Analise visual</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+      <button class="sc-tab" onclick="showModel('voice')" data-model="voice">
+        <span class="sc-tab-icon">&#127908;</span>
+        <span class="sc-tab-name">Martis-Voice</span>
+        <span class="sc-tab-sub">Fala e audio</span>
+        <span class="tab-status offline">Offline</span>
+      </button>
+    </div>
+
+    <!-- PANEL: Martis-70B -->
+    <div class="sc-panel active" id="sc-chat70b">
+      <div class="sc-layout">
+        <div class="sc-info">
+          <div class="sc-badge" style="background:var(--purple-dim);color:var(--purple-lt);border-color:rgba(124,92,191,.3)">
+            &#129504; Martis-70B Instruct
+            <span id="textModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+          </div>
+          <h3 class="sc-title">Raciocinio que vai alem da superficie.</h3>
+          <p class="sc-desc">Com 70B parametros e contexto de 128K tokens, o Martis-70B analisa situacoes complexas, conecta ideias distantes e elabora respostas com profundidade.</p>
+          <div class="sc-strengths">
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Analise critica e argumentacao</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Sumarizacao de documentos longos</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Planejamento estrategico</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Respostas nuancadas e contextuais</div>
+          </div>
+          <div class="api-info-box">
+            <div class="api-info-title">API: Puter.js (Gratuito)</div>
+            <p>IA 100% gratuita, sem chaves, sem configuracao!</p>
+            <p style="margin-top:.5rem;font-size:.7rem">Powered by <a href="https://puter.com" target="_blank" style="color:var(--accent-lt)">Puter.com</a></p>
+          </div>
+        </div>
+        <div class="sc-demo">
+          <div class="demo-header">
+            <div class="demo-model-dot" style="background:var(--purple)"></div>
+            <span class="demo-model-name">Martis-70B</span>
+            <span class="demo-tag">Chat interativo</span>
+          </div>
+          <div class="demo-msgs" style="height:280px;">
+            <div class="dm dm-ai"><div class="dm-av">70</div><div class="dm-bub">Ola! Sou o Martis-70B, especializado em raciocinio profundo e analise complexa. Pergunte-me sobre estrategia, analise de dados, ou qualquer topico que exija reflexao detalhada.</div></div>
+          </div>
+          <div class="showcase-input-area">
+            <input type="text" class="showcase-input" placeholder="Pergunte algo complexo..." onkeydown="if(event.key==='Enter')sendShowcaseMessage('sc-chat70b')"/>
+            <button class="showcase-send-btn" onclick="sendShowcaseMessage('sc-chat70b')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: Martis-Summary -->
+    <div class="sc-panel" id="sc-summary">
+      <div class="sc-layout">
+        <div class="sc-info">
+          <div class="sc-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(58,184,154,.3)">
+            &#128221; Martis-Summary
+            <span id="summaryModelStatus" class="model-status offline"><span class="status-dot offline"></span> Offline</span>
+          </div>
+          <h3 class="sc-title">Resuma qualquer texto em segundos.</h3>
+          <p class="sc-desc">O Martis-Summary analisa textos longos e extrai os pontos principais de forma clara e concisa.</p>
+          <div class="sc-strengths">
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Resumo de artigos e documentos</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Extracao de pontos-chave</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Multiplos idiomas suportados</div>
+            <div class="strength-item"><span class="s-icon">&#10003;</span> Preserva informacoes essenciais</div>
+          </div>
+          <div class="api-info-box">
+            <div class="api-info-title">API: Puter.js (Gratuito)</div>
+            <p>Resumo inteligente 100% gratuito, sem chaves!</p>
+          </div>
+        </div>
+        <div class="sc-demo">
+          <div class="demo-header">
+            <div class="demo-model-dot" style="background:var(--green)"></div>
+            <span class="demo-model-name">Martis-Summary</span>
+            <span class="demo-tag">Resumo interativo</span>
+          </div>
+          <div class="summary-generator">
+            <div class="summary-input-area">
+              <textarea class="summary-input" rows="6" placeholder="Cole aqui o texto que deseja resumir..."></textarea>
+              <button class="generate-summary-btn" onclick="generateShowcaseSummary()">&#128221; Resumir Texto</button>
+            </div>
+            <div class="summary-result">
+              <div class="summary-placeholder">
+                <div class="placeholder-icon">&#128203;</div>
+                <p>O resumo aparecera aqui</p>
+                <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem">Cole um texto acima e clique em "Resumir Texto"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outros paineis omitidos por brevidade - mantem a mesma estrutura -->
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how" style="padding-bottom:3rem">
+  <div class="wrap">
+    <div style="text-align:center;max-width:480px;margin:0 auto">
+      <div class="eyebrow" style="justify-content:center"><span data-pt="Como Funciona" data-en="How It Works">Como Funciona</span></div>
+      <h2 class="sec-title" data-pt="Simples como lancar uma rede." data-en="Simple as casting a net.">Simple as casting a net.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div class="step-icon">&#127760;</div>
+        <div class="step-t" data-pt="Use no Navegador" data-en="Use in the Browser">Use in the Browser</div>
+        <p class="step-d" data-pt="Acesse martis.ai, escolha um modelo e converse. Zero instalacao." data-en="Go to martis.ai, pick a model and start chatting. Zero install.">Go to martis.ai, pick a model and start chatting. Zero install.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div class="step-icon">&#8595;</div>
+        <div class="step-t" data-pt="Baixe Localmente" data-en="Download Locally">Download Locally</div>
+        <p class="step-d" data-pt="Prefere privacidade total? Instale o Martis CLI e baixe com um comando." data-en="Prefer total privacy? Install Martis CLI and download with a single command.">Prefer total privacy? Install Martis CLI and download with a single command.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div class="step-icon">&#9889;</div>
+        <div class="step-t" data-pt="Integre via API" data-en="Integrate via API">Integrate via API</div>
+        <p class="step-d" data-pt="Conecte seus apps atraves de uma API REST compativel com OpenAI." data-en="Connect your apps through an OpenAI-compatible REST API.">Connect your apps through an OpenAI-compatible REST API.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo-link">
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M20 2 L35 10 L35 30 L20 38 L5 30 L5 10 Z" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity=".4"/>
+            <circle cx="20" cy="20" r="3.5" fill="var(--accent)" opacity="1"/>
+            <circle cx="10" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
+            <circle cx="30" cy="16" r="2.5" fill="var(--purple)" opacity=".8"/>
+          </svg>
+          <div><div class="logo-text">Martis</div><div class="logo-sub">Plataforma de IA</div></div>
+        </a>
+        <p data-pt="Democratizando o acesso a inteligencia artificial." data-en="Democratizing access to artificial intelligence.">Democratizing access to artificial intelligence.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-pt="Produto" data-en="Product">Product</h5>
+        <ul><li><a href="#">Chat</a></li><li><a href="#">Catalog</a></li><li><a href="#">API</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-pt="Modelos" data-en="Models">Models</h5>
+        <ul><li><a href="#">Martis-70B</a></li><li><a href="#">Martis-Code</a></li><li><a href="#">Martis-Think</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-pt="Empresa" data-en="Company">Company</h5>
+        <ul><li><a href="#" data-pt="Sobre" data-en="About">About</a></li><li><a href="#" data-pt="Blog" data-en="Blog">Blog</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&#169; 2025 Martis AI. <span data-pt="Feito com proposito." data-en="Built with purpose.">Feito com proposito.</span></p>
+      <p class="foot-myth" data-pt="Inspirado em Britomartis - a deusa cretense das redes." data-en="Inspired by Britomartis - the Cretan goddess of nets.">Inspirado em Britomartis - a deusa cretense das redes.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS UNIFICADOS (shared.js + ai-integrations.js)
+═══════════════════════════════════════════════════════ -->
+<script src="https://js.puter.com/v2/"></script>
+<script>
+/* ═══════════════════════════════════════════════════════
+   shared.js — Theme toggle, Language switcher, Showcase tabs
+═══════════════════════════════════════════════════════ */
+
+const STORAGE_LANG  = 'martis_lang';
+const STORAGE_THEME = 'martis_theme';
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem(STORAGE_LANG, lang);
+  document.documentElement.setAttribute('data-lang', lang);
+
+  const btnPT = document.getElementById('btnPT');
+  const btnEN = document.getElementById('btnEN');
+  if (btnPT) btnPT.classList.toggle('active', lang === 'pt');
+  if (btnEN) btnEN.classList.toggle('active', lang === 'en');
+
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.textContent = val;
+  });
+
+  syncThemeLabel();
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem(STORAGE_THEME, next);
+  const orb = document.getElementById('toggleOrb');
+  if (orb) orb.textContent = next === 'light' ? '\u2600' : '\u263D';
+  syncThemeLabel();
+}
+
+function syncThemeLabel() {
+  const lbl = document.getElementById('toggleLabel');
+  if (!lbl) return;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) lbl.textContent = currentLang === 'pt' ? 'Modo Escuro' : 'Dark Mode';
+  else lbl.textContent = currentLang === 'pt' ? 'Modo Claro' : 'Light Mode';
+}
+
+function showModel(id) {
+  document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sc-tab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('sc-' + id);
+  const tab = document.querySelector('.sc-tab[data-model="' + id + '"]');
+  if (panel) panel.classList.add('active');
+  if (tab) tab.classList.add('active');
+}
+
+function heroSelectModel(el, modelId, label) {
+  document.querySelectorAll('.cp-tab').forEach(t => t.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('heroModelLabel').textContent = label;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ai-integrations.js — Puter.js AI Integration
+═══════════════════════════════════════════════════════ */
+
+const API_STATUS = {
+  text: { online: false, lastCheck: null }
+};
+
+function isPuterLoaded() {
+  return typeof puter !== 'undefined' && puter.ai;
+}
+
+async function testTextAPI() {
+  if (!isPuterLoaded()) {
+    API_STATUS.text = { online: false, lastCheck: Date.now(), error: 'Puter.js nao carregado' };
+    return false;
+  }
+
+  try {
+    const response = await puter.ai.chat('Responda apenas: OK', { model: 'gpt-4.1-nano' });
+    API_STATUS.text = { online: true, lastCheck: Date.now() };
+    return true;
+  } catch (error) {
+    API_STATUS.text = { online: false, lastCheck: Date.now(), error: error.message };
+    return false;
+  }
+}
+
+async function checkAllAPIs() {
+  if (!isPuterLoaded()) {
+    console.warn('[Martis] Aguardando Puter.js carregar...');
+    for (let i = 0; i < 50; i++) {
+      await new Promise(r => setTimeout(r, 100));
+      if (isPuterLoaded()) break;
+    }
+  }
+  
+  const result = await testTextAPI();
+  updateAPIStatus();
+  return result;
+}
+
+async function callTextAPI(prompt, systemPrompt = '') {
+  if (!isPuterLoaded()) {
+    throw new Error('Puter.js ainda nao carregou. Aguarde alguns segundos e tente novamente.');
+  }
+
+  const messages = [];
+  if (systemPrompt) {
+    messages.push({ role: 'system', content: systemPrompt });
+  }
+  messages.push({ role: 'user', content: prompt });
+
+  try {
+    const response = await puter.ai.chat(messages, { model: 'gpt-4.1-nano' });
+    
+    if (typeof response === 'string') {
+      return response;
+    }
+    if (response?.message?.content) {
+      const content = response.message.content;
+      if (Array.isArray(content)) {
+        return content.map(c => c.text || c).join('');
+      }
+      return content;
+    }
+    return String(response);
+  } catch (error) {
+    console.error('[Martis] Erro na API de texto:', error);
+    throw new Error('Erro ao gerar texto: ' + error.message);
+  }
+}
+
+async function callSummaryAPI(text) {
+  if (!isPuterLoaded()) {
+    throw new Error('Puter.js ainda nao carregou. Aguarde alguns segundos e tente novamente.');
+  }
+
+  try {
+    const systemPrompt = `Voce e um especialista em sumarizacao. Sua tarefa e criar resumos claros, concisos e informativos.
+Regras:
+- Mantenha os pontos principais
+- Use linguagem clara e direta
+- Estruture em topicos quando apropriado
+- Responda no mesmo idioma do texto original`;
+
+    const response = await puter.ai.chat([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: 'Resuma o seguinte texto:\n\n' + text }
+    ], { model: 'gpt-4.1-nano' });
+    
+    if (typeof response === 'string') {
+      return response;
+    }
+    if (response?.message?.content) {
+      const content = response.message.content;
+      if (Array.isArray(content)) {
+        return content.map(c => c.text || c).join('');
+      }
+      return content;
+    }
+    return String(response);
+  } catch (error) {
+    console.error('[Martis] Erro na sumarizacao:', error);
+    throw new Error('Erro ao resumir texto: ' + error.message);
+  }
+}
+
+const MARTIS_SYSTEM_PROMPT = 'Voce e a Martis AI, uma assistente de inteligencia artificial amigavel e prestativa. Responda de forma concisa, util e em portugues (a menos que o usuario fale em outro idioma). Seja educada, clara e direta nas respostas. Mantenha respostas com no maximo 3 paragrafos.';
+
+async function heroSend() {
+  const input = document.getElementById('heroInput');
+  const messagesContainer = document.getElementById('heroMessages');
+  const sendBtn = document.getElementById('heroSendBtn');
+  
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
+
+  input.disabled = true;
+  sendBtn.disabled = true;
+  input.value = '';
+
+  const userBubble = document.createElement('div');
+  userBubble.className = 'cm cm-u';
+  userBubble.innerHTML = '<div class="cm-av">U</div><div class="bub">' + escapeHtml(userMessage) + '</div>';
+  messagesContainer.appendChild(userBubble);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  const typingIndicator = document.createElement('div');
+  typingIndicator.className = 'cm cm-ai';
+  typingIndicator.id = 'heroTyping';
+  typingIndicator.innerHTML = '<div class="cm-av">M</div><div class="bub typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  messagesContainer.appendChild(typingIndicator);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  try {
+    let aiResponse;
+    
+    if (isPuterLoaded()) {
+      aiResponse = await callTextAPI(userMessage, MARTIS_SYSTEM_PROMPT);
+      if (!API_STATUS.text.online) {
+        API_STATUS.text.online = true;
+        updateAPIStatus();
+      }
+    } else {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      aiResponse = 'Aguardando conexao com a IA... Recarregue a pagina se o problema persistir.';
+    }
+
+    document.getElementById('heroTyping')?.remove();
+
+    const aiBubble = document.createElement('div');
+    aiBubble.className = 'cm cm-ai';
+    aiBubble.innerHTML = '<div class="cm-av">M</div><div class="bub">' + formatAIResponse(aiResponse) + '</div>';
+    messagesContainer.appendChild(aiBubble);
+
+  } catch (error) {
+    document.getElementById('heroTyping')?.remove();
+    
+    const errorBubble = document.createElement('div');
+    errorBubble.className = 'cm cm-ai';
+    errorBubble.innerHTML = '<div class="cm-av">M</div><div class="bub" style="color:var(--rose)"><strong>Erro:</strong> ' + escapeHtml(error.message) + '</div>';
+    messagesContainer.appendChild(errorBubble);
+  }
+
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  input.disabled = false;
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+async function sendShowcaseMessage(panelId) {
+  const panel = document.getElementById(panelId);
+  const input = panel.querySelector('.showcase-input');
+  const messagesContainer = panel.querySelector('.demo-msgs');
+  const sendBtn = panel.querySelector('.showcase-send-btn');
+  
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
+
+  input.disabled = true;
+  sendBtn.disabled = true;
+  input.value = '';
+
+  const userDiv = document.createElement('div');
+  userDiv.className = 'dm dm-u';
+  userDiv.innerHTML = '<div class="dm-av">U</div><div class="dm-bub">' + escapeHtml(userMessage) + '</div>';
+  messagesContainer.appendChild(userDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'dm dm-ai typing-temp';
+  typingDiv.innerHTML = '<div class="dm-av">70</div><div class="dm-bub typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  messagesContainer.appendChild(typingDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  try {
+    let response;
+    
+    if (isPuterLoaded()) {
+      response = await callTextAPI(userMessage, 'Voce e o Martis-70B, um modelo de IA avancado. Responda de forma detalhada e profissional em portugues.');
+      if (!API_STATUS.text.online) {
+        API_STATUS.text.online = true;
+        updateAPIStatus();
+      }
+    } else {
+      await new Promise(r => setTimeout(r, 1200));
+      response = 'Carregando IA... Aguarde alguns segundos e tente novamente.';
+    }
+
+    panel.querySelector('.typing-temp')?.remove();
+
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'dm dm-ai';
+    aiDiv.innerHTML = '<div class="dm-av">70</div><div class="dm-bub">' + formatAIResponse(response) + '</div>';
+    messagesContainer.appendChild(aiDiv);
+
+  } catch (error) {
+    panel.querySelector('.typing-temp')?.remove();
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'dm dm-ai';
+    errorDiv.innerHTML = '<div class="dm-av">70</div><div class="dm-bub" style="color:var(--rose)">Erro: ' + escapeHtml(error.message) + '</div>';
+    messagesContainer.appendChild(errorDiv);
+  }
+
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  input.disabled = false;
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+async function generateShowcaseSummary() {
+  const panel = document.getElementById('sc-summary');
+  const input = panel.querySelector('.summary-input');
+  const resultContainer = panel.querySelector('.summary-result');
+  const generateBtn = panel.querySelector('.generate-summary-btn');
+  
+  const text = input.value.trim();
+  if (!text) return;
+
+  generateBtn.disabled = true;
+  generateBtn.textContent = 'Resumindo...';
+  
+  resultContainer.innerHTML = '<div class="summary-loading"><div class="loading-spinner"></div><p>Analisando e resumindo...</p></div>';
+
+  try {
+    if (!isPuterLoaded()) {
+      throw new Error('Aguardando Puter.js carregar...');
+    }
+
+    const summary = await callSummaryAPI(text);
+    
+    if (!API_STATUS.text.online) {
+      API_STATUS.text.online = true;
+      updateAPIStatus();
+    }
+    
+    resultContainer.innerHTML = '<div class="generated-summary"><div class="summary-header">Resumo gerado:</div><div class="summary-content">' + formatAIResponse(summary) + '</div></div>';
+
+  } catch (error) {
+    resultContainer.innerHTML = '<div class="summary-error"><p style="color:var(--rose)"><strong>Erro ao resumir</strong></p><p style="font-size:.8rem;color:var(--text2);margin-top:.5rem">' + escapeHtml(error.message) + '</p></div>';
+  }
+
+  generateBtn.disabled = false;
+  generateBtn.textContent = '\u{1F4DD} Resumir Texto';
+}
+
+function updateAPIStatus() {
+  const textOnline = API_STATUS.text.online;
+  
+  const heroStatus = document.getElementById('heroStatusIndicator');
+  if (heroStatus) {
+    if (textOnline) {
+      heroStatus.innerHTML = '<span class="status-dot online"></span> Online';
+      heroStatus.className = 'cp-online online';
+    } else {
+      heroStatus.innerHTML = '<span class="status-dot offline"></span> Conectando...';
+      heroStatus.className = 'cp-online offline';
+    }
+  }
+
+  const allTabStatus = document.querySelectorAll('.tab-status');
+  allTabStatus.forEach(statusEl => {
+    if (textOnline) {
+      statusEl.innerHTML = 'Online';
+      statusEl.className = 'tab-status online';
+    } else {
+      statusEl.innerHTML = 'Offline';
+      statusEl.className = 'tab-status offline';
+    }
+  });
+
+  const modelStatusElements = ['textModelStatus', 'summaryModelStatus'];
+  modelStatusElements.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      if (textOnline) {
+        el.innerHTML = '<span class="status-dot online"></span> Online';
+        el.className = 'model-status online';
+      } else {
+        el.innerHTML = '<span class="status-dot offline"></span> Conectando...';
+        el.className = 'model-status offline';
+      }
+    }
+  });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatAIResponse(text) {
+  if (!text) return '';
+  let formatted = escapeHtml(text);
+  formatted = formatted.replace(/`([^`]+)`/g, '<code>$1</code>');
+  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  formatted = formatted.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  formatted = formatted.replace(/\n/g, '<br>');
+  return formatted;
+}
+
+/* ═══════════════════════════════════════════════════════
+   INICIALIZACAO
+═══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem(STORAGE_THEME) || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  const orb = document.getElementById('toggleOrb');
+  if (orb) orb.textContent = savedTheme === 'light' ? '\u2600' : '\u263D';
+
+  const savedLang = localStorage.getItem(STORAGE_LANG) || 'en';
+  setLang(savedLang);
+
+  setTimeout(() => {
+    checkAllAPIs();
+  }, 1000);
+  
+  setTimeout(() => {
+    if (!API_STATUS.text.online) {
+      checkAllAPIs();
+    }
+  }, 3000);
+});
+</script>
+</body>
+</html>
